@@ -4,8 +4,11 @@ Diese Repo enthält die Programme für den Studienkurs "Grundlagen der Programmi
 ###########################################
 
 Sprache:  C
+
 Compiler: C99
+
 #############################
+
 aktuell vorhandene Übungen:
 
 + keine
