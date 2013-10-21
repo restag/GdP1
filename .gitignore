@@ -1,0 +1,47 @@
+# Compiled Source #
+###################
+*.app
+*.com
+*.class
+*.dll
+*.dylib
+*.exe
+*.ko
+*.o
+*.out
+*.so
+*.so.*
+
+# Libraries #
+#############
+*.lib
+*.a
+
+# Packages #
+############
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+
+
+# OS generated #
+################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
