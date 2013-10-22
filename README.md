@@ -11,6 +11,13 @@ Compiler: C99
 
 aktuell vorhandene Übungen:
 
-+ keine
+für Praktikum (Uebungen)
++ Hello World
++ interval output
++ string edit
+
+für Tutorium
++ Intro
++ linked list (wip)
 
 #############################
