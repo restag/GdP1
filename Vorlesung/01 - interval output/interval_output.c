@@ -23,6 +23,9 @@ int main()
 	int intervalStart;
 	int intervalStop;
 
+	// declare counter
+	int i;
+
 	// Frage nach erster Zahl
 	printf("Bitte geben Sie die Intervalgrenze 1 ein:\n");
 	scanf("%d", &inputOne);
@@ -62,6 +65,22 @@ int main()
 	printf("Intervalstart: %d\n", intervalStart);
 	printf("Intervalende: %d\n", intervalStop);
 	printf(DIVLINE);
+
+	// Gebe Elemente aus
+	printf("Das Interval enthält folgende Element:\n");
+
+	for (i=intervalStart; i<=intervalStop; i++) {
+
+		if ((i%2) == 1) {
+
+			printf("%d\n", i);
+
+		}
+
+	}
+
+	printf(DIVLINE);
+	printf("Program fertig\n");
 
 
 	return 0;
