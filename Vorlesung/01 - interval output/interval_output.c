@@ -14,7 +14,7 @@ Note:	Fehlermeldung bei ungültigem Input
 
 // Definiere Trennlinie
 
-#define DIVLINE "============================\n"
+#define DIVLINE "============================"
 
 int main()
 {
@@ -61,10 +61,10 @@ int main()
 	}
 
 	// Gebe Intervalgrenzen aus
-	printf(DIVLINE);
+	puts(DIVLINE);
 	printf("Intervalstart: %d\n", intervalStart);
 	printf("Intervalende: %d\n", intervalStop);
-	printf(DIVLINE);
+	puts(DIVLINE);
 
 	// Gebe Elemente aus
 	printf("Das Interval enthält folgende Element:\n");
@@ -79,7 +79,7 @@ int main()
 
 	}
 
-	printf(DIVLINE);
+	puts(DIVLINE);
 	printf("Program fertig\n");
 
 
