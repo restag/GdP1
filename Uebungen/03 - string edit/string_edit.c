@@ -74,10 +74,6 @@ int main()
 		while ((c = getchar()) != '\n' &&  c != EOF);
 
 
-		// '\n' von String löschen
-		crop(inputString);
-
-
 		//  Ergebnis ausgeben
 		printf("Die Länge des Strings %s beträgt %d Zeichen.\n", inputString, stringLength);
 
