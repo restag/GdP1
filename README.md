@@ -15,6 +15,7 @@ für Praktikum (Uebungen)
 + Hello World
 + interval output
 + string edit
++ stringpuffer
 
 für Tutorium
 + Intro
