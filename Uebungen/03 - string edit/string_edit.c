@@ -33,34 +33,58 @@ int stringLaenge(char string[])
 	return i;
 }
 
+void crop(char *string) {
+
+	int i = stringLaenge(string);
+
+	if (string[i-1] == '\n') {
+
+		string[i-1] = '\0';
+
+	}
+}
+
 int main()
 {
+	int c; // for input flush
+	int stringLength;
 	char inputString[CACHESIZE];
 
 	puts(DIVLINE);
-	printf("Bitte einen String eingeben: ");
 
-	while (1) {
+	while (strcmp(inputString, ENDSTRING) != 0) {
 
-		scanf("%s", inputString);
+		// nach input fragen
+		printf("Bitte einen String eingeben: ");
 
-		if (strcmp(inputString, ENDSTRING) == 0) {
 
-			break;
+		// Input lesen
+		fgets(inputString, CACHESIZE, stdin);
 
-		}
 
-		printf("Die Länge des Strings %s beträgt %d Zeichen.\n", inputString, stringLaenge(inputString));
+		// crop input string
+		crop(inputString);
 
-		// input Cache leeren
-		fflush(stdin);
+
+		// Länge lesen
+		stringLength = stringLaenge(inputString);
+
+
+		// input Cache löschen
+		while ((c = getchar()) != '\n' &&  c != EOF);
+
+
+		// '\n' von String löschen
+		crop(inputString);
+
+
+		//  Ergebnis ausgeben
+		printf("Die Länge des Strings %s beträgt %d Zeichen.\n", inputString, stringLength);
 
 		puts(DIVLINESMALL);
-		printf("Bitte nächsten String eingeben: ");
 
 	}
 
-	puts(DIVLINE);
 	printf("Programm wurde beendet\n");
 
 	return 0;
