@@ -62,16 +62,16 @@ int main()
 		fgets(inputString, CACHESIZE, stdin);
 
 
+		// Input Cache löschen
+//		while ((c = getchar ()) != '\n' && c != EOF && stringLaenge(inputString) >= CACHESIZE);
+
+
 		// crop input string
 		crop(inputString);
 
 
 		// Länge lesen
 		stringLength = stringLaenge(inputString);
-
-
-		// input Cache löschen
-		while ((c = getchar()) != '\n' &&  c != EOF);
 
 
 		//  Ergebnis ausgeben
