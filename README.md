@@ -11,7 +11,11 @@ Compiler: C99
 
 aktuell vorhandene Übungen:
 
-für Praktikum (Uebungen)
+für Praktikum
++ Count
++ MyName
+
+für Übungen
 + Hello World
 + interval output
 + string edit
