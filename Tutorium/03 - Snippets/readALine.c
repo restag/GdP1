@@ -16,7 +16,7 @@
 int main(void) {
     char buf[BUF_SIZE];
     int c, i = 0;
-    
+
     puts("\n\t\"WELCOME TO FEED ME!\"\n");
 
     puts("\n>> Can I haz input?");
@@ -26,7 +26,7 @@ int main(void) {
         ;
     buf[--i] = '\0';
     // proves that strlen(buf) == i:
-    assert(strlen(buf) == i);              
+    assert(strlen(buf) == i);
 
     /* Silly part */
     printf(">> \"%s\" -- omnomnom ", buf);
