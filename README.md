@@ -19,7 +19,7 @@ für Übungen
 + Hello World
 + interval output
 + string edit
-+ stringpuffer (wip)
++ stringpuffer
 
 für Tutorium
 + Intro

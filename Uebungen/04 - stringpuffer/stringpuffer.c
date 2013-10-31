@@ -12,6 +12,10 @@ Es werden alle Leerzeichen entfernt.
 #define PUFFERGROESSE 20
 #define	ERROR 1
 #define STRINGTOSTRIP ' '
+#define INTRO "Bitte String eingeben:"
+#define OUTPUT "Der eingegebene Sting lautet: %s"
+#define ERROROUT "Fehler beim einlesen"
+#define MAXREACHED "Es wurde die Puffergröße überschritten, weitere Zeichen wurden entfernt"
 
 int main()
 {
@@ -21,11 +25,11 @@ int main()
 
 // Vorgabe Start
 	char stringPuffer[PUFFERGROESSE];
-	printf("Bitte String eingeben:"); fflush(stdout);
+	puts(INTRO);
 
 	if (fgets(stringPuffer, PUFFERGROESSE, stdin) == NULL) {
 
-		printf("Fehler beim einlesen\n");
+		puts(ERROROUT);
 		//return ERROR;
 
 	}
@@ -47,7 +51,7 @@ int main()
 
 
 	// Stringausgabe
-	printf("Der eingegebene String lautet: %s\n", outputString);
+	printf(OUTPUT, outputString);
 
 	return 0;
 }
