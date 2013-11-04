@@ -14,6 +14,8 @@ aktuell vorhandene Übungen:
 für Praktikum
 + Count
 + MyName
++ Worm000
++ Worm005
 
 für Übungen
 + Hello World
