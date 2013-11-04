@@ -4,6 +4,9 @@
 Es werden zwei Zeilen Code ausgegeben
 */
 
+#include <stdio.h>
+
+
 int main(){
 
 	char name[] = "Benjamin Ewert";
@@ -14,4 +17,5 @@ int main(){
 	printf("Mein Name ist %s\n", name);
 	printf("Mein Geburtsdatum ist der %02d.%02d.%04d.\n", day, month, year);
 
+	return 0;
 }
