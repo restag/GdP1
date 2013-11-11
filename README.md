@@ -28,5 +28,6 @@ für Tutorium
 + linked list (wip)
 + Snippets (wip)
 + Zonkspiel
++ trimString (wip)
 
 #############################
