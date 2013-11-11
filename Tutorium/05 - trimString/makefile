@@ -11,7 +11,7 @@
 
 # add all targets in ./bin here
 
-TARGETS += $(BIN_DIR)/zonkspiel
+TARGETS += $(BIN_DIR)/trimString
 
 
 #####################################################################
