@@ -1,0 +1,22 @@
+make clean; make
+	-> -mpreferred-stack-boundary=4
+
+gdbtui bin/factorial
+winheight src 7
+
+source gdb.stackdump
+break main
+run 4
+
+set_bfp
+
+Stack ausgeben mittels
+	stack_all32
+
+Dann Makefile aendern:
+
+-mpreferred-stack-boundary=2
+
+Demo nochmals
+-> Stackframes sind kleiner da auf 2^2 aligned stat auf 2^4
+
