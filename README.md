@@ -12,21 +12,21 @@ Compiler: C99
 aktuell vorhandene Übungen:
 
 ##für Praktikum
-*Count
-*MyName
-*Worm000
-*Worm005
-*Worm010
+* Count
+* MyName
+* Worm000
+* Worm005
+* Worm010
 
 ##für Übungen
-*Hello World
-*interval output
-*string edit
-*stringpuffer
+* Hello World
+* interval output
+* string edit
+* stringpuffer
 
 ##für Tutorium
-*Intro
-*linked list (wip)
-*Snippets (wip)
-*Zonkspiel
-*trimString (wip)
+* Intro
+* linked list (wip)
+* Snippets (wip)
+* Zonkspiel
+* trimString (wip)
