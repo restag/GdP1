@@ -1,0 +1,124 @@
+#----------------------------------------------------------------------
+# Teil 1: demonstriert Layout eines eindimensionalen Feldes im Speicher
+#----------------------------------------------------------------------
+
+lars@vmmint13-10:~/GdPI/CodeExamples/PointersAndArrays
+$ bin/storageLayoutArray-1dim 
+Base address is 0xbfe8f27c
+at index 0: address=0xbfe8f27c content=00000000
+at index 1: address=0xbfe8f280 content=11111111
+at index 2: address=0xbfe8f284 content=22222222
+at index 3: address=0xbfe8f288 content=33333333
+at index 4: address=0xbfe8f28c content=44444444
+
+Wir fuehren das Programm im Debugger aus und untersuchen das Stack-Frame
+der Funktion main:
+
+Nota Bene:
+Da wir das Programm erneut starten, koennen sich die
+Speicheradressen aendern
+
+lars@vmmint13-10:~/GdPI/CodeExamples/PointersAndArrays
+$ gdb -q bin/storageLayoutArray-1dim 
+Reading symbols from ... bin/storageLayoutArray-1dim...done.
+
+(gdb) break main
+Breakpoint 1 at 0x8048450: file storageLayoutArray-1dim.c, line 22.
+(gdb) run
+Starting program: ... /bin/storageLayoutArray-1dim 
+
+Breakpoint 1, main () at storageLayoutArray-1dim.c:22
+22	    int theArray[ARRAY_SIZE]={
+(gdb) next
+30	    dumpArray_1dim(theArray, ARRAY_SIZE);
+
+Damit der naechste Befehl 'stackw' funktioniert, muss das gdb-Skript
+  gdb.stackdump
+geladen werden. Zum Beispiel per 'source  gdb.stackdump'.
+Siehe CodeExamples/Stack
+Man kann den Befehl zum Laden des Skripts auch in der Datei
+ ~/.gdbinit hinterlegen. Dann wird der Code immer automatisch geladen.
+
+(gdb) stackw
+
+-----------
+0xbffff830: 0x002d93e4
+0xbffff834: 0x0000000b
+0xbffff838: 0x08049ff4
+0xbffff83c: 0x080484c1
+0xbffff840: 0xffffffff
+0xbffff844: 0x00166196
+0xbffff848: 0x002d8ff4
+0xbffff84c: 0x00000000
+0xbffff850: 0x11111111
+0xbffff854: 0x22222222
+0xbffff858: 0x33333333
+0xbffff85c: 0x44444444
+0xbffff860: 0x080484a0
+0xbffff864: 0x00000000
+-----------
+
+Wir sehen, dass die Werte des Arrays in einem zusammenhaengenden
+Speicherblock ohne Luecken abgelegt sind.
+
+#------------------------------------------------------------------
+# Teil 2: Zur Laufzeit ist nur die Basisadresse des Arrays bekannt
+#------------------------------------------------------------------
+
+(gdb) disassemble /m main
+
+Dump of assembler code for function main:
+22	int main() {
+   0x08048447 <+0>:	push   %ebp
+   0x08048448 <+1>:	mov    %esp,%ebp
+   0x0804844a <+3>:	and    $0xfffffff0,%esp
+   0x0804844d <+6>:	sub    $0x30,%esp
+
+23	  int theArray[ARRAY_SIZE]={
+   0x08048450 <+9>:	movl   $0x0,0x1c(%esp)
+   0x08048458 <+17>:	movl   $0x11111111,0x20(%esp)
+   0x08048460 <+25>:	movl   $0x22222222,0x24(%esp)
+   0x08048468 <+33>:	movl   $0x33333333,0x28(%esp)
+   0x08048470 <+41>:	movl   $0x44444444,0x2c(%esp)
+
+24	    0x00000000,
+25	    0x11111111,
+26	    0x22222222,
+27	    0x33333333,
+28	    0x44444444,
+29	  };
+30	
+31	  dumpArray_1dim(theArray, ARRAY_SIZE);
+=> 0x08048478 <+49>:	movl   $0x5,0x4(%esp)
+   0x08048480 <+57>:	lea    0x1c(%esp),%eax
+   0x08048484 <+61>:	mov    %eax,(%esp)
+   0x08048487 <+64>:	call   0x80483e4 <dumpArray_1dim>
+
+Fuehre zwei Instruktionen im Assembler aus, damit die Basisadresses
+des Arrays in das Register eax geladen wird.
+
+(gdb) si
+(gdb) si
+(gdb) disass /m main
+   ...
+   0x08048478 <+49>:	movl   $0x5,0x4(%esp)
+   0x08048480 <+57>:	lea    0x1c(%esp),%eax
+=> 0x08048484 <+61>:	mov    %eax,(%esp)
+   0x08048487 <+64>:	call   0x80483e4 <dumpArray_1dim>
+   ...
+
+Nachpruefen der Adressen
+
+(gdb) p /x $sp + 0x1c
+$1 = 0xbffff84c
+(gdb) p /x $eax
+$2 = 0xbffff84c
+(gdb) p &theArray 
+$3 = (int (*)[5]) 0xbffff84c
+
+Im Code wird also explizit die Basisadresse des Arrays hart kodiert.
+Hier $sp + 0x1c
+Mehr ist von dem Array zur Laufzeit nicht bekannt.
+Insbesondere gibt es keine Variable (Pointer), die die Adresse enthalten
+wuerde! Im C-Code steht der Name des Arrays fuer die feste Basisadresse.
+

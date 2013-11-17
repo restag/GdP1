@@ -1,0 +1,12 @@
+UTF-8 kodierte Textdatei in PDF konvertieren.
+Mit der paps-Utility.
+
+f=DemoStackFrame.txt; paps --cpi 11 --header $f  | ps2pdf - $f.pdf
+f=DemoMyName.txt;     paps --cpi 11 --header $f  | ps2pdf - $f.pdf
+
+Das gibt es nun auch als Shell-Script
+
+~/bin/utf8Topdf
+
+
+

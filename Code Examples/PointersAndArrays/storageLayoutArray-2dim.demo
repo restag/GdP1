@@ -1,0 +1,69 @@
+Demonstriert Layout eines zweidimensionalen Feldes im Speicher
+
+lars@vmmint13-10:~/GdPI/CodeExamples/PointersAndArrays
+$ bin/storageLayoutArray-2dim 
+Base address is 0xbfb94fe0
+at index 0,0: address=0xbfb94fe0 content=00000000
+at index 0,1: address=0xbfb94fe4 content=00001111
+at index 0,2: address=0xbfb94fe8 content=00002222
+at index 1,0: address=0xbfb94fec content=11110000
+at index 1,1: address=0xbfb94ff0 content=11111111
+at index 1,2: address=0xbfb94ff4 content=11112222
+at index 2,0: address=0xbfb94ff8 content=22220000
+at index 2,1: address=0xbfb94ffc content=22221111
+at index 2,2: address=0xbfb95000 content=22222222
+at index 3,0: address=0xbfb95004 content=33330000
+at index 3,1: address=0xbfb95008 content=33331111
+at index 3,2: address=0xbfb9500c content=33332222
+
+Wir fuehren das Programm im Debugger aus und untersuchen das Stack-Frame
+der Funktion main:
+
+Nota Bene:
+Da wir das Programm erneut starten, koennen sich die
+Speicheradressen aendern
+
+lars@vmmint13-10:~/GdPI/CodeExamples/PointersAndArrays
+$ gdb -q bin/storageLayoutArray-2dim 
+Reading symbols ... bin/storageLayoutArray-2dim...done.
+
+(gdb) break main
+Breakpoint 1 at 0x8048481: file storageLayoutArray-2dim.c, line 25.
+(gdb) run
+Starting program: /home/lars/Lehre/GrundlagenDerProgrammierung_I/WS2012/CodeExamples/PointersAndArrays/bin/storageLayoutArray-2dim 
+
+Breakpoint 1, main () at storageLayoutArray-2dim.c:25
+25	    int theArray[ROWS][COLS]={
+(gdb) next
+32	    dumpArray_2dim(theArray, ROWS, COLS);
+
+Damit der naechste Befehl 'stackw' funktioniert, muss das gdb-Skript
+  gdb.stackdump
+geladen werden. Zum Beispiel per 'source  gdb.stackdump'.
+Siehe CodeExamples/Stack
+Man kann den Befehl zum Laden des Skripts auch in der Datei
+ ~/.gdbinit hinterlegen. Dann wird der Code immer automatisch geladen.
+
+(gdb) stackw
+-----------
+0xbffff820: 0x08048510
+0xbffff824: 0x08049ff4
+0xbffff828: 0x00000001
+0xbffff82c: 0x080482dd
+0xbffff830: 0x00000000
+0xbffff834: 0x00001111
+0xbffff838: 0x00002222
+0xbffff83c: 0x11110000
+0xbffff840: 0x11111111
+0xbffff844: 0x11112222
+0xbffff848: 0x22220000
+0xbffff84c: 0x22221111
+0xbffff850: 0x22222222
+0xbffff854: 0x33330000
+0xbffff858: 0x33331111
+0xbffff85c: 0x33332222
+0xbffff860: 0x08048510
+0xbffff864: 0x00000000
+-----------
+(gdb)
+
