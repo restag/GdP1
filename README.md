@@ -29,4 +29,6 @@ aktuell vorhandene Übungen:
 * linked list (wip)
 * Snippets (wip)
 * Zonkspiel
-* trimString (wip)
+* trimString
+* trimStringv2
+* trimStringv3 (wip)
