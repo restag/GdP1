@@ -8,7 +8,10 @@ Lösung mit globaler Variable
 #include <ctype.h>
 #include <stdio.h>
 
-char result[256];
+#define RESULT_MAX 256
+
+
+char result[RESULT_MAX];
 
 char* trim(char* t);
 
@@ -25,6 +28,7 @@ char* trim(char* t){
     int k = 0;
 
 	for (i = 0; t[i] != '\0'; i++) {
+        if (k >= RESULT_MAX -1) break;
 		if (!(isblank(t[i]) || t[i] == '\n')) {
 
             result[k] = t[i];
