@@ -26,6 +26,7 @@ aktuell vorhandene Übungen:
 * interval output
 * string edit
 * stringpuffer
+* loop (edit compile run)
 
 ##für Tutorium
 * Intro
