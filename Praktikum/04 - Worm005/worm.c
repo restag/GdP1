@@ -278,7 +278,7 @@ int initializeWorm(int headpos_y, int headpos_x, int dir, int color) {
     theworm_headpos_x = headpos_x;
 
     // Initialize the heading of the worm
-    setWormHeading(WORM_UP); 
+    setWormHeading(dir); 
 
     // Initialze color of the worm
     theworm_wcolor = color;
