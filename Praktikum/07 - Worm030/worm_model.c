@@ -29,8 +29,6 @@ int theworm_dy;
 color_pairs_t theworm_wcolor;       // Code of color pair used for the worm
 
 
-
-
 // *****************************************************
 // Functions concerning the management of the worm data
 // *****************************************************

@@ -52,8 +52,7 @@ int main(void) {
         // we print a conventional error message via printf after
         // the call of cleanupCursesApp()
         cleanupCursesApp();
-        printf("Das Fenster ist zu klein: wir brauchen mindestens %dx%d\n",
-                MIN_NUMBER_OF_COLS, MIN_NUMBER_OF_ROWS );
+        printf("Das Fenster ist zu klein: wir brauchen mindestens %dx%d\n", MIN_NUMBER_OF_COLS, MIN_NUMBER_OF_ROWS );
         res_code = RES_FAILED;
     } else {
         res_code = doLevel();
@@ -76,7 +75,7 @@ void initializeColors() {
     init_pair(COLP_FREE_CELL, COLOR_BLACK, COLOR_BLACK);
 }
 
-void readUserInput(game_states_t* agame_state ) {
+void readUserInput(game_states_t* agame_state) {
     int ch; // For storing the key codes
 
     if ((ch = getch()) > 0) {
@@ -155,7 +154,7 @@ res_codes_t doLevel() {
         moveWorm(&game_state);
         
         // Bail out of the loop if something bad happened
-        if ( game_state != WORM_GAME_ONGOING ) {
+        if (game_state != WORM_GAME_ONGOING) {
             end_level_loop = true;
             continue; // Go to beginning of the loop's block and check loop condition
         }
