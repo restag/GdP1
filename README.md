@@ -17,6 +17,8 @@ aktuell vorhandene Übungen:
 * Worm000
 * Worm005
 * Worm010
+* Worm020
+* Worm030 (wip)
 
 ##für Übungen
 * Hello World
