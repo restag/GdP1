@@ -10,8 +10,11 @@
 // The worm model
 
 #include <curses.h>
-#include "worm.h"
+#include <stdbool.h>
+
 #include "board_model.h"
+#include "prep.h"
+#include "worm.h"
 #include "worm_model.h"
 
 // Data defining the worm
@@ -26,7 +29,7 @@ int theworm_headindex;              // an index in the array for the worm's head
 int theworm_dx;
 int theworm_dy;
 
-color_pairs_t theworm_wcolor;       // Code of color pair used for the worm
+colorpairs_t theworm_wcolor;       // Code of color pair used for the worm
 
 
 // *****************************************************
@@ -37,7 +40,7 @@ color_pairs_t theworm_wcolor;       // Code of color pair used for the worm
 // The following functions all depend on the model of the worm
 
 // Initialize the worm
-extern res_codes_t initializeWorm(int len_max, int headpos_y, int headpos_x, worm_heading_t dir, color_pairs_t color) {
+extern rescodes_t initializeWorm(int len_max, int headpos_y, int headpos_x, wormheading_t dir, colorpairs_t color) {
     // Local vars for loops etc.
     int i;
 
@@ -96,7 +99,7 @@ extern void cleanWormTail() {
 
 }
 
-extern void moveWorm(game_states_t* agame_state) {
+extern void moveWorm(gamestates_t *agame_state) {
     int headpos_y;
     int headpos_x;
 
@@ -171,7 +174,7 @@ extern bool isInUseByWorm(int new_headpos_y, int new_headpos_x) {
 }
 
 // Setters
-extern void setWormHeading(worm_heading_t dir) {
+extern void setWormHeading(wormheading_t dir) {
     switch(dir) {
         case WORM_UP :// User wants up
             theworm_dx= 0;

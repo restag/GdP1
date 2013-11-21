@@ -10,7 +10,6 @@
 // The board model
 
 #include <curses.h>
-#include "worm.h"
 #include "board_model.h"
 
 // *************************************************
@@ -19,7 +18,7 @@
 // *************************************************
 
 // Place an item onto the curses display.
-void placeItem(int y, int x, chtype symbol, color_pairs_t color_pair) {
+void placeItem(int y, int x, chtype symbol, colorpairs_t color_pair) {
 
     //  Store item on the display (symbol code)
     move(y, x);                         // Move cursor to (y,x)

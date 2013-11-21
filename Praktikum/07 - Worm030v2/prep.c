@@ -3,12 +3,18 @@
 // Used for teaching in classes
 //
 // Author:
+// Benjamin Ewert
+// (c) 2013
+//
+// Author of original version:
 // Franz Regensburger
 // Ingolstadt University of Applied Sciences
 // (C) 2011
+//
 
 
 #include <curses.h>
+#include <stdbool.h>
 #include "prep.h"
 
 
@@ -17,7 +23,8 @@
 // *********************************************
 
 // Initialize application with respect to curses settings
-void initializeCursesApplication() {
+void initializeCursesApplication(void)
+{
     initscr(); // Initialize the curses screen
 
     // Note:
@@ -40,4 +47,30 @@ void cleanupCursesApp(void)
     refresh();    // Write changes to terminal
     curs_set(1);  // Set cursor state to normal visibility
     endwin();     // Terminate curses application
+}
+
+
+// *********************************************
+// Pregame Checks
+// *********************************************
+bool windowHasMinSize(void)
+{
+    // Maximal LINES and COLS are set by curses for the current window size.
+    // Note: we do not cope with resizing in this simple examples!
+    if (LINES < MIN_NUMBER_OF_ROWS || COLS < MIN_NUMBER_OF_COLS) {
+        return false;
+    }
+
+    return true;
+}
+
+// *********************************************
+// pregame setup
+// *********************************************
+void initializeColors()
+{
+    // Define colors of the game
+    start_color();
+    init_pair(COLP_USER_WORM, COLOR_GREEN, COLOR_BLACK);
+    init_pair(COLP_FREE_CELL, COLOR_BLACK, COLOR_BLACK);
 }

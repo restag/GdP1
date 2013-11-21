@@ -26,8 +26,8 @@
 // ********************************************************************************************
 
 void initializeColors();
-void readUserInput(game_states_t* agame_state );
-res_codes_t doLevel();
+void readUserInput(gamestates_t *agame_state);
+rescodes_t doLevel();
 
 
 
@@ -36,18 +36,17 @@ res_codes_t doLevel();
 // ********************************************************************************************
 
 int main(void) {
-    res_codes_t res_code;         // Result code from functions
+    rescodes_t res_code;         // Result code from functions
 
     // Here we start
     initializeCursesApplication();  // Init various settings of our application
     initializeColors();             // Init colors used in the game
 
-    // Maximal LINES and COLS are set by curses for the current window size.
-    // Note: we do not cope with resizing in this simple examples!
+    
 
     // Check if the window is large enough to display messages in the message area
     // a has space for at least one line for the worm
-    if ( LINES < MIN_NUMBER_OF_ROWS || COLS < MIN_NUMBER_OF_COLS ) {
+    if (!windowHasMinSize()) {
         // Since we not even have the space for displaying messages
         // we print a conventional error message via printf after
         // the call of cleanupCursesApp()
@@ -67,15 +66,7 @@ int main(void) {
 // Management of the game
 // ************************************
 
-// Initialize colors of the game
-void initializeColors() {
-    // Define colors of the game
-    start_color();
-    init_pair(COLP_USER_WORM, COLOR_GREEN, COLOR_BLACK);
-    init_pair(COLP_FREE_CELL, COLOR_BLACK, COLOR_BLACK);
-}
-
-void readUserInput(game_states_t* agame_state) {
+void readUserInput(gamestates_t *agame_state) {
     int ch; // For storing the key codes
 
     if ((ch = getch()) > 0) {
@@ -108,10 +99,10 @@ void readUserInput(game_states_t* agame_state) {
     return;
 }
 
-res_codes_t doLevel() {
-    game_states_t game_state; // The current game_state
+rescodes_t doLevel() {
+    gamestates_t game_state; // The current game_state
 
-    res_codes_t res_code; // Result code from functions
+    rescodes_t res_code; // Result code from functions
     bool end_level_loop;    // Indicates whether we should leave the main loop
 
     int bottomLeft_y, bottomLeft_x;   // Start positions of the worm

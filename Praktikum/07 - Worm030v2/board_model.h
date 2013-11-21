@@ -12,12 +12,11 @@
 #ifndef _BOARD_MODEL_H
 #define _BOARD_MODEL_H
 
-#include <curses.h>
-#include "worm.h"
+#include "prep.h"
 
 // Placing and removing items from the game board
 // Check boundaries of game board
-extern void placeItem(int y, int x, chtype symbol, color_pairs_t color_pair);
+extern void placeItem(int y, int x, chtype symbol, colorpairs_t color_pair);
 
 // Getters
 extern int getLastRow();
