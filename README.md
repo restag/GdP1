@@ -36,3 +36,9 @@ aktuell vorhandene Übungen:
 * trimString
 * trimStringv2
 * trimStringv3 (wip)
+
+aktuell vorhandene Templatea:
+##Templates
+* Makefile
+* headerTemplate.h
+* sourceTemplate.c
