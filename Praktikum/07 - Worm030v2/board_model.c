@@ -16,16 +16,21 @@
  *
  */
 
+//*********************************************************
+//* header includes
+//*********************************************************
+// include framework headers below here
 #include <curses.h>
+
+// include headers below here
 #include "board_model.h"
 #include "prep.h"
 
-// *************************************************
-// Placing and removing items from the game board
-// Check boundaries of game board
-// *************************************************
 
-// Place an item onto the curses display.
+//*********************************************************
+//* fuctions
+//*********************************************************
+//* Place an item onto the curses display.
 void placeItem(int y, int x, chtype symbol, colorpairs_t color_pair) {
 
     //  Store item on the display (symbol code)
@@ -35,8 +40,7 @@ void placeItem(int y, int x, chtype symbol, colorpairs_t color_pair) {
     attroff(COLOR_PAIR(color_pair));    // Stop writing in selected color
 }
 
-// Getters
-
+//* Getters
 // Get the last usable row on the display
 int getLastRow() {
     return (LINES-1);

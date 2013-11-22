@@ -41,8 +41,7 @@
 //*********************************************************
 //* function prototypes
 //*********************************************************
-// Placing and removing items from the game board
-// Check boundaries of game board
+//placing & removing items from the board
 extern void placeItem(int y, int x, chtype symbol, colorpairs_t color_pair);
 
 // Getters

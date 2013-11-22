@@ -17,20 +17,19 @@ gameops
 ********************************************
 functions - gameops
 ********************************************
-void initializeColors();
 void readUserInput(game_states_t *agame_state)
 res_codes_t doLevel();
 
 ********************************************
 defines - gameops
 ********************************************
-NAPT_TIME
+NAP_TIME
 
 ********************************************
 typedefs - gameops
 ********************************************
 rescodes_t
-
+gamestates_t
 
 
 ********************************************
@@ -49,6 +48,7 @@ defines - prep
 ********************************************
 MIN_NUMBER_OF_ROWS
 MIN_NUMBER_OF_COLS
+UNUSED_POS_ELEM
 
 ********************************************
 typedefs - prep
@@ -82,9 +82,22 @@ void setWormHeading(worm_heading_t dir)
 ********************************************
 defines
 ********************************************
+SYMBOL_FREE_CELL
+SYMBOL_WORM_INNER_ELEMENT
 WORM_LENGTH
 
 ********************************************
 typedef - worm_model
 ********************************************
 wormheading_t
+
+********************************************
+global vars
+********************************************
+int theworm_maxindex
+int theworm_headindex
+int theworm_wormpos_y[Array]
+int theworm_wormpos_x[Array]
+int theworm_dy
+int theworm_dx
+colorpairs_t theworm_wcolor

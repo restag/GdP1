@@ -22,7 +22,21 @@
 //*********************************************************
 //* header includes 
 //*********************************************************
-// none
+// framework header
+#include <stdbool.h>
+
+// custom header
+
+
+//*********************************************************
+//* defines
+//*********************************************************
+// board dimensions
+#define MIN_NUMBER_OF_ROWS 5    // The guaranteed number of rows available for the board
+#define MIN_NUMBER_OF_COLS 10   // The guaranteed number of columns available for the board
+
+// Codes for the array of positions
+#define UNUSED_POS_ELEM -1      // Unused element in the worm arrays of positions
 
 
 //*********************************************************
@@ -36,16 +50,6 @@ typedef enum ColorPairs{
 
 
 //*********************************************************
-//* defines
-//*********************************************************
-// board dimensions
-#define MIN_NUMBER_OF_ROWS 5    // The guaranteed number of rows available for the board
-#define MIN_NUMBER_OF_COLS 10   // The guaranteed number of columns available for the board
-
-// Codes for the array of positions
-#define UNUSED_POS_ELEM -1      // Unused element in the worm arrays of positions
-
-//*********************************************************
 //* function prototypes
 //*********************************************************
 // Standard curses initialization and cleanup
@@ -55,5 +59,7 @@ void cleanupCursesApp(void);
 // pregame checks
 bool windowHasMinSize(void);
 
+// pregame setup
+void initializeColors(void);
 
 #endif  // #define _PREP_H

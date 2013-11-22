@@ -16,17 +16,20 @@
  *
  */
 
-
+//*********************************************************
+//* header includes
+//*********************************************************
+// include framework headers below here
 #include <curses.h>
 #include <stdbool.h>
+
+// include headers below here
 #include "prep.h"
 
-
 //*********************************************************
-//* Board prepping
+//* fuctions
 //*********************************************************
 //* Standard curses initialization & cleanup
-
 // Initialize application with respect to curses settings
 void initializeCursesApplication(void)
 {
@@ -56,7 +59,7 @@ void cleanupCursesApp(void)
 
 
 //*********************************************************
-//* Pregame Checks
+//* pregame Checks
 
 // Check the minimum size of the terminal window
 bool windowHasMinSize(void)
@@ -70,10 +73,9 @@ bool windowHasMinSize(void)
     return true;
 }
 
-// *********************************************
-// pregame setup
-// *********************************************
-void initializeColors()
+//*********************************************************
+//* pregame setup
+void initializeColors(void)
 {
     // Define colors of the game
     start_color();

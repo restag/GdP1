@@ -15,36 +15,42 @@
  * (C) 2011
  *
  */
-// The worm model
 
-#include <curses.h>
+//*********************************************************
+//* header includes
+//*********************************************************
+// include framework headers below here
+#include <stdbool.h>
 
+// include headers below here
+#include "board_model.h"
+#include "gameops.h"                // for ResCodes
+#include "prep.h"                   // for ColorPairs
 #include "worm_model.h"
 
+
+//*********************************************************
+//* global vars
+//*********************************************************
 // Data defining the worm
 int theworm_wormpos_y[WORM_LENGTH]; // Array of y positions for worm elements
 int theworm_wormpos_x[WORM_LENGTH]; // Array of x positions for worm elements
 int theworm_maxindex;               // Last usable index in the arrays theworm_wormpos_y and theworm_wormpos_x
 int theworm_headindex;              // an index in the array for the worm's head position 0<= theworm_headindex<= theworm_maxindex
 
-
-// The current heading of the worm
-// These are offsets from the set {-1,0,+1}
+// The current heading of the worm (These are offsets from the set {-1,0,+1})
 int theworm_dx;
 int theworm_dy;
 
 colorpairs_t theworm_wcolor;       // Code of color pair used for the worm
 
 
-// *****************************************************
-// Functions concerning the management of the worm data
-// *****************************************************
-
-// START WORM_DETAIL
-// The following functions all depend on the model of the worm
-
+//*********************************************************
+//* fuctions
+//*********************************************************
+//* worm data management
 // Initialize the worm
-extern rescodes_t initializeWorm(int len_max, int headpos_y, int headpos_x, wormheading_t dir, colorpairs_t color) {
+rescodes_t initializeWorm(int len_max, int headpos_y, int headpos_x, wormheading_t dir, colorpairs_t color) {
     // Local vars for loops etc.
     int i;
 
@@ -75,16 +81,14 @@ extern rescodes_t initializeWorm(int len_max, int headpos_y, int headpos_x, worm
     return RES_OK;
 }
 
-
-// Show the worms's elements on the display
-// Simple version
-extern void showWorm() {
+// Show and delete the worms's elements on the display
+void showWorm() {
     // Due to our encoding we just need to show the head element
     // All other elements are already displayed
     placeItem(theworm_wormpos_y[theworm_headindex], theworm_wormpos_x[theworm_headindex], SYMBOL_WORM_INNER_ELEMENT, theworm_wcolor);
 }
 
-extern void cleanWormTail() {
+void cleanWormTail() {
 
     int tailindex;
 
@@ -103,7 +107,8 @@ extern void cleanWormTail() {
 
 }
 
-extern void moveWorm(gamestates_t *agame_state) {
+// worm movement
+void moveWorm(gamestates_t *agame_state) {
     int headpos_y;
     int headpos_x;
 
@@ -151,8 +156,8 @@ extern void moveWorm(gamestates_t *agame_state) {
     }
 }
 
-// a simple collision detection
-extern bool isInUseByWorm(int new_headpos_y, int new_headpos_x) {
+// collision detection
+bool isInUseByWorm(int new_headpos_y, int new_headpos_x) {
     int i;
     bool collision = false;
     

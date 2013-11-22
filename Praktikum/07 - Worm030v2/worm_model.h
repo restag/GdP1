@@ -21,8 +21,10 @@
 //*********************************************************
 //* header includes 
 //*********************************************************
+// framework header
 #include <stdbool.h>
 
+// custom header
 #include "gameops.h"            // for ResCodes
 #include "prep.h"               // for ColorPairs
 
@@ -42,6 +44,9 @@ typedef enum WormHeading {
 //*********************************************************
 //* defines
 //*********************************************************
+// worm elements
+#define SYMBOL_FREE_CELL ' '
+#define SYMBOL_WORM_INNER_ELEMENT '0'
 // worm settings
 #define WORM_LENGTH 20          // Maximal length of the worm
 
@@ -50,10 +55,16 @@ typedef enum WormHeading {
 //* function prototypes
 //*********************************************************
 // Functions concerning the management of the worm data
-extern rescodes_t initializeWorm(int len_max, int headpos_y, int headpos_x, wormheading_t dir, colorpairs_t color);
-extern void showWorm();
-extern void cleanWormTail();
-extern void moveWorm(gamestates_t* agame_state);
+rescodes_t initializeWorm(int len_max, int headpos_y, int headpos_x, wormheading_t dir, colorpairs_t color);
+
+// show & delete worm elements
+void showWorm();
+void cleanWormTail();
+
+// worm movement
+void moveWorm(gamestates_t* agame_state);
+
+// collision detection
 extern bool isInUseByWorm(int new_headpos_y, int new_headpos_x);
 
 // Setters

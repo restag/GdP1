@@ -16,61 +16,26 @@
  *
  */
 
+//*********************************************************
+//* header includes
+//*********************************************************
+// include framework headers below here
 #include <curses.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include <stdbool.h>
-#include <time.h>
-#include <string.h>
-#include <unistd.h>
+#include <stdio.h>
+
+// include headers below here
+#include "board_model.h"
+#include "gameops.h"
+#include "worm_model.h"
 
 
-// ********************************************************************************************
-// Management of the game
-// ********************************************************************************************
-
-void initializeColors();
-void readUserInput(gamestates_t *agame_state);
-rescodes_t doLevel();
-
-
-
-// ********************************************************************************************
-// MAIN
-// ********************************************************************************************
-
-int main(void) {
-    rescodes_t res_code;         // Result code from functions
-
-    // Here we start
-    initializeCursesApplication();  // Init various settings of our application
-    initializeColors();             // Init colors used in the game
-
-    
-
-    // Check if the window is large enough to display messages in the message area
-    // a has space for at least one line for the worm
-    if (!windowHasMinSize()) {
-        // Since we not even have the space for displaying messages
-        // we print a conventional error message via printf after
-        // the call of cleanupCursesApp()
-        cleanupCursesApp();
-        printf("Das Fenster ist zu klein: wir brauchen mindestens %dx%d\n", MIN_NUMBER_OF_COLS, MIN_NUMBER_OF_ROWS );
-        res_code = RES_FAILED;
-    } else {
-        res_code = doLevel();
-        cleanupCursesApp();
-    }
-
-    return res_code;
-}
-
-
-// ************************************
-// Management of the game
-// ************************************
-
-void readUserInput(gamestates_t *agame_state) {
+//*********************************************************
+//* fuctions
+//*********************************************************
+// game management
+void readUserInput(gamestates_t *agame_state)
+{
     int ch; // For storing the key codes
 
     if ((ch = getch()) > 0) {
@@ -103,7 +68,8 @@ void readUserInput(gamestates_t *agame_state) {
     return;
 }
 
-rescodes_t doLevel() {
+rescodes_t doLevel()
+{
     gamestates_t game_state; // The current game_state
 
     rescodes_t res_code; // Result code from functions
@@ -176,7 +142,3 @@ rescodes_t doLevel() {
     // Normal exit point
     return res_code;
 }
-
-
-// END WORM_DETAIL
-// ********************************************************************************************

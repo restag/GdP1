@@ -33,6 +33,14 @@ typedef enum ResCodes {
 	RES_FAILED,
 } rescodes_t;
 
+// Game state codes
+typedef enum GameStates {
+	WORM_GAME_ONGOING,
+	WORM_OUT_OF_BOUNDS,	// left screen
+	WORM_GAME_QUIT,		// User likes to quit
+    WORM_CROSSING,      // Worm bit itself
+} gamestates_t;
+
 
 //*********************************************************
 //* defines
@@ -44,7 +52,6 @@ typedef enum ResCodes {
 //*********************************************************
 //* function prototypes
 //*********************************************************
-void initializeColors();
 void readUserInput(gamestates_t* agame_state );
 rescodes_t doLevel();
 
