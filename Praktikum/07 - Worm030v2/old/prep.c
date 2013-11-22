@@ -1,16 +1,20 @@
-// A simple variant of the game Snake
-//
-// Used for teaching in classes
-//
-// Author:
-// Benjamin Ewert
-// (c) 2013
-//
-// Author of original version:
-// Franz Regensburger
-// Ingolstadt University of Applied Sciences
-// (C) 2011
-//
+/* A simple variant of the game Snake
+ * Used for teaching in classes
+ *
+ * This version is an alternativ version of the given code,
+ * following a more strict approach of separation
+ *
+ *
+ * Author:
+ * Benjamin Ewert
+ * (c) 2013
+ *
+ * Author of original version:
+ * Franz Regensburger
+ * Ingolstadt University of Applied Sciences
+ * (C) 2011
+ *
+ */
 
 
 #include <curses.h>
@@ -18,9 +22,10 @@
 #include "prep.h"
 
 
-// *********************************************
-// Standard curses initialization and cleanup
-// *********************************************
+//*********************************************************
+//* Board prepping
+//*********************************************************
+//* Standard curses initialization & cleanup
 
 // Initialize application with respect to curses settings
 void initializeCursesApplication(void)
@@ -50,9 +55,10 @@ void cleanupCursesApp(void)
 }
 
 
-// *********************************************
-// Pregame Checks
-// *********************************************
+//*********************************************************
+//* Pregame Checks
+
+// Check the minimum size of the terminal window
 bool windowHasMinSize(void)
 {
     // Maximal LINES and COLS are set by curses for the current window size.

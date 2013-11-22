@@ -21,6 +21,16 @@ void initializeColors();
 void readUserInput(game_states_t *agame_state)
 res_codes_t doLevel();
 
+********************************************
+defines - gameops
+********************************************
+NAPT_TIME
+
+********************************************
+typedefs - gameops
+********************************************
+rescodes_t
+
 
 
 ********************************************
@@ -34,6 +44,17 @@ void cleanupCursesApp()
 bool windowHasMinSize()
 void initializeColors()
 
+********************************************
+defines - prep
+********************************************
+MIN_NUMBER_OF_ROWS
+MIN_NUMBER_OF_COLS
+
+********************************************
+typedefs - prep
+********************************************
+colorpairs_t
+
 
 
 ********************************************
@@ -43,6 +64,7 @@ worm
 functions - worm
 ********************************************
 int main()
+
 
 ********************************************
 ********************************************
@@ -56,3 +78,13 @@ void cleanWormTail()
 void moveWorm(game_states_t *agame_state)
 bool isInUseByWorm(int new_headpos_y, int new_headpos_x)
 void setWormHeading(worm_heading_t dir)
+
+********************************************
+defines
+********************************************
+WORM_LENGTH
+
+********************************************
+typedef - worm_model
+********************************************
+wormheading_t

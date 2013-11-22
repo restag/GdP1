@@ -15,12 +15,14 @@ HEADERS += prep.h
 HEADERS += worm.h
 HEADERS += worm_model.h
 HEADERS += board_model.h
+HEADERS += gameops.h
 
 # Please add all object files in ./ here
 OBJECTS += prep.o
 OBJECTS += worm.o
 OBJECTS += worm_model.o
 OBJECTS += board_model.o
+OBJECTS += gameops.o
 
 # Please add THE target in ./bin here
 TARGET += $(BIN_DIR)/worm
