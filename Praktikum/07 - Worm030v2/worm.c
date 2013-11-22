@@ -1,4 +1,18 @@
-/* put a description in here 
+/* A simple variant of the game Snake
+ * Used for teaching in classes
+ *
+ * This version is an alternativ version of the given code,
+ * following a more strict approach of separation
+ *
+ *
+ * Author:
+ * Benjamin Ewert
+ * (c) 2013
+ *
+ * Author of original version:
+ * Franz Regensburger
+ * Ingolstadt University of Applied Sciences
+ * (C) 2011
  *
  */
 
@@ -9,6 +23,7 @@
 #include <stdio.h>
 
 // include headers below here
+#include "debug.h"  // uncomment for debugging
 #include "gameops.h"
 #include "prep.h"
 
@@ -18,6 +33,14 @@
 //*********************************************************
 // put function code below here
 int main(void) {
+
+    // stops program to make time to attach gdb
+    #ifdef _DEBUG_H
+    waitForUserInput();
+    #endif
+
+
+
     rescodes_t res_code;         // Result code from functions
 
     // Here we start
