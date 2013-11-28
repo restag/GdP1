@@ -23,7 +23,7 @@
 #include <stdio.h>
 
 // include headers below here
-#include "debug.h"  // uncomment for debugging
+//#include "debug.h"  // uncomment for debugging
 #include "gameops.h"
 #include "prep.h"
 

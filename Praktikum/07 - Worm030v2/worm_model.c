@@ -164,16 +164,16 @@ bool isInUseByWorm(int new_headpos_y, int new_headpos_x) {
     // wirkt kurios
     i = theworm_headindex;
     do {
+        //compare the position of the current worm element with the new_headpos
+        if (theworm_wormpos_x[i] == new_headpos_x && theworm_wormpos_y[i] == new_headpos_y){
+            collision = true;
+        }
+        
         // do some index magic
         if (i == WORM_LENGTH) {
             i = 0;
         } else {
             i++;
-        }
-
-        //compare the position of the current worm element with the new_headpos
-        if (theworm_wormpos_x[i] == new_headpos_x && theworm_wormpos_y[i] == new_headpos_y){
-            collision = true;
         }
     } while (i != theworm_headindex && theworm_wormpos_x[i-1] != UNUSED_POS_ELEM && !collision);
 
