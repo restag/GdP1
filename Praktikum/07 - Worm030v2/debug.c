@@ -29,6 +29,8 @@ void waitForUserInput()
 
     // wait for the user input
     ch = getchar();
+
+    ch = ch; // hide warning for unused var
     
     return;
 }
