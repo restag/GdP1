@@ -27,6 +27,7 @@ aktuell vorhandene Übungen:
 * string edit
 * stringpuffer
 * loop (edit compile run)
+* bordered thing (wip)
 
 ##für Tutorium
 * Intro
