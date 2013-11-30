@@ -19,8 +19,10 @@ char bild[ZEILEN][SPALTEN];
 // put function code below here
 int main()
 {
-    // draw border
+    // build border
+    baueRahmen();
 
+    // draw border
     drucke();
 
     return 0;
@@ -31,17 +33,20 @@ int main()
 void baueRahmen() {
     int i,j;
 
+    // fill array with blanks
     for (i=0;i<ZEILEN;i++){
         for (j=0;j<SPALTEN;j++) {
             bild[i][j] = ' ';
         }
     }
 
+    // fill first and last row with *
     for (j=0; j<SPALTEN; j++) {
         bild[0][j] = '*';
         bild[ZEILEN-1][j] = '*';
     }
 
+    // fill first and last col with *
     for (i=0; i<ZEILEN; i++) {
         bild[i][0] = '*';
         bild[i][ZEILEN-1] = '*';
@@ -56,8 +61,9 @@ void drucke() {
     int i,j;
 
     for (i=0; i<ZEILEN; i++) {
-        for (j=0;i<SPALTEN; j++) {
-            // print char
+
+        // print char
+        for (j=0;j<SPALTEN; j++) {
             printf("%c", bild[i][j]);
         }
 
