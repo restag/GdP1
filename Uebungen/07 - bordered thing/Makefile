@@ -18,7 +18,7 @@ HEADERS += rahmen1.h
 OBJECTS += rahmen1.o
 
 # Please add THE target in ./bin here
-TARGET += $(BIN_DIR)/<BIN_NAME>
+TARGET += $(BIN_DIR)/bordered_thing
  
 #################################################
 # There is no need to edit below this line

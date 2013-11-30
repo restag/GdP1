@@ -2,19 +2,21 @@
  *
  */
 
-#ifndef _<HEADER_NAME>_H
-#define _<HEADER_NAME>_H
+#ifndef _RAHMEN1_H
+#define _RAHMEN1_H
 //*********************************************************
 //* header includes 
 //*********************************************************
 // put header includes below here
-
+#include <stdio.h>
+#include <stdlib.h>
 
 //*********************************************************
 //* defines
 //*********************************************************
 // put defines below here
-
+#define ZEILEN 15
+#define SPALTEN 15
 
 //*********************************************************
 //* type definitions
@@ -26,6 +28,7 @@
 //* function prototypes
 //*********************************************************
 // put prototypes below here
+void baueRahmen();
+void drucke();
 
-
-#endif  // #define _<HEADER_NAME>_H
+#endif  // #define _RAHMEN1_H
