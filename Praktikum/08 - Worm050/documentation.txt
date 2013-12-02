@@ -1,0 +1,103 @@
+This is the documentation of the current state of the worm game
+
+********************************************
+********************************************
+board_model
+********************************************
+functions - board_model
+********************************************
+void placeitem(int y, int x, chtype symbol, colorpairs_t color_pair)
+int getLastRow()
+int getLastCol()
+
+
+********************************************
+********************************************
+gameops
+********************************************
+functions - gameops
+********************************************
+void readUserInput(game_states_t *agame_state)
+res_codes_t doLevel();
+
+********************************************
+defines - gameops
+********************************************
+NAP_TIME
+
+********************************************
+typedefs - gameops
+********************************************
+rescodes_t
+gamestates_t
+
+
+********************************************
+********************************************
+prep
+********************************************
+functions - prep
+********************************************
+void initializeCursesApplication()
+void cleanupCursesApp()
+bool windowHasMinSize()
+void initializeColors()
+
+********************************************
+defines - prep
+********************************************
+MIN_NUMBER_OF_ROWS
+MIN_NUMBER_OF_COLS
+UNUSED_POS_ELEM
+
+********************************************
+typedefs - prep
+********************************************
+colorpairs_t
+
+
+
+********************************************
+********************************************
+worm
+********************************************
+functions - worm
+********************************************
+int main()
+
+
+********************************************
+********************************************
+worm_model
+********************************************
+functions - worm_model
+********************************************
+res_codes_t initializeWorm(int len_max, int headpos_y, int headpos_x, worm_heading_t dir, color_pairs_t color)
+void showWorm()
+void cleanWormTail()
+void moveWorm(game_states_t *agame_state)
+bool isInUseByWorm(int new_headpos_y, int new_headpos_x)
+void setWormHeading(worm_heading_t dir)
+
+********************************************
+defines
+********************************************
+SYMBOL_FREE_CELL
+SYMBOL_WORM_INNER_ELEMENT
+WORM_LENGTH
+
+********************************************
+typedef - worm_model
+********************************************
+wormheading_t
+
+********************************************
+global vars
+********************************************
+int theworm_maxindex
+int theworm_headindex
+int theworm_wormpos_y[Array]
+int theworm_wormpos_x[Array]
+int theworm_dy
+int theworm_dx
+colorpairs_t theworm_wcolor
