@@ -37,6 +37,8 @@ aktuell vorhandene Übungen:
 * trimString
 * trimStringv2
 * trimStringv3 (wip)
+* stringStruct
+* recursive fac
 
 aktuell vorhandene Templatea:
 ##Templates
