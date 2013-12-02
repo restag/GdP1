@@ -13,6 +13,7 @@
 # Please add all header files in ./ here
 HEADERS += prep.h
 HEADERS += worm.h
+#HEADERS += messages.h
 HEADERS += worm_model.h
 HEADERS += board_model.h
 HEADERS += gameops.h
@@ -21,6 +22,7 @@ HEADERS += debug.h
 # Please add all object files in ./ here
 OBJECTS += prep.o
 OBJECTS += worm.o
+#OBJECTS += messages.o
 OBJECTS += worm_model.o
 OBJECTS += board_model.o
 OBJECTS += gameops.o
