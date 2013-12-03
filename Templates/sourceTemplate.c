@@ -5,9 +5,9 @@
 //*********************************************************
 //* header includes
 //*********************************************************
-// include framework headers below here
+// put framework header includes below here
 
-// include headers below here
+// put custom header includes below here
 
 
 
