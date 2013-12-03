@@ -20,29 +20,14 @@
 //* header includes
 //*********************************************************
 // include framework headers below here
-#include <stdbool.h>
 
 // include headers below here
-#include "board_model.h"
-#include "gameops.h"                // for ResCodes
-#include "prep.h"                   // for ColorPairs
 #include "worm_model.h"
-
 
 //*********************************************************
 //* global vars
 //*********************************************************
-// Data defining the worm
-int theworm_wormpos_y[WORM_LENGTH]; // Array of y positions for worm elements
-int theworm_wormpos_x[WORM_LENGTH]; // Array of x positions for worm elements
-int theworm_maxindex;               // Last usable index in the arrays theworm_wormpos_y and theworm_wormpos_x
-int theworm_headindex;              // an index in the array for the worm's head position 0<= theworm_headindex<= theworm_maxindex
 
-// The current heading of the worm (These are offsets from the set {-1,0,+1})
-int theworm_dx;
-int theworm_dy;
-
-colorpairs_t theworm_wcolor;       // Code of color pair used for the worm
 
 
 //*********************************************************
@@ -50,89 +35,87 @@ colorpairs_t theworm_wcolor;       // Code of color pair used for the worm
 //*********************************************************
 //* worm data management
 // Initialize the worm
-rescodes_t initializeWorm(int len_max, int headpos_y, int headpos_x, wormheading_t dir, colorpairs_t color) {
+rescodes_t initializeWorm(worm_t* aworm, int len_max, pos_t headpos, wormheading_t dir, colorpairs_t color) {
     // Local vars for loops etc.
     int i;
 
-    // initialize last usable index to len_max -1: theworm_maxindex
-    theworm_maxindex = len_max - 1;
+    // initialize last usable index to len_max -1: aworm.maxindex
+    aworm -> maxindex = len_max - 1;
     
-    //initialize headindex: theworm_headindex
-    theworm_headindex = 0;
+    //initialize headindex: aworm.headindex
+    aworm -> headindex = 0;
 
     /* Mark all elements as unused in the arrays of positions
-     * theworm_wormpos_y[] and theworm_wormpos_x[]
+     * aworm.wormpos[]
      * an unused position in the array is marked with code UNUSED_POS_ELEM*/
-    for (i=0; i<= theworm_maxindex;i++){
-        theworm_wormpos_y[i] = UNUSED_POS_ELEM;
-        theworm_wormpos_x[i] = UNUSED_POS_ELEM;
+    for (i=0; i<= aworm -> maxindex;i++){
+        aworm -> wormpos[i].y = UNUSED_POS_ELEM;
+        aworm -> wormpos[i].x = UNUSED_POS_ELEM;
     }
 
     // Initialize position of worms head
-    theworm_wormpos_y[theworm_headindex] = headpos_y;
-    theworm_wormpos_x[theworm_headindex] = headpos_x;
+    aworm -> wormpos[aworm -> headindex] = headpos;
 
     // Initialize the heading of the worm
-    setWormHeading(dir); 
+    setWormHeading(aworm, dir); 
 
     // Initialze color of the worm
-    theworm_wcolor = color;
+    aworm -> wcolor = color;
 
     return RES_OK;
 }
 
 // Show and delete the worms's elements on the display
-void showWorm() {
+void showWorm(worm_t* aworm) {
     // Due to our encoding we just need to show the head element
     // All other elements are already displayed
-    placeItem(theworm_wormpos_y[theworm_headindex], theworm_wormpos_x[theworm_headindex], SYMBOL_WORM_INNER_ELEMENT, theworm_wcolor);
+    placeItem(aworm -> wormpos[aworm -> headindex], SYMBOL_WORM_INNER_ELEMENT, aworm -> wcolor);
 }
 
-void cleanWormTail() {
+void cleanWormTail(worm_t* aworm) {
 
     int tailindex;
 
     // Compute tailindex
-    tailindex = (theworm_headindex + 1) % WORM_LENGTH;
+    tailindex = (aworm -> headindex + 1) % WORM_LENGTH;
 
     // Check the array of worm elements.
     // Is the arrayelement at tailindex already in use?
-    // Checking either array theworm_wormpos_y or theworm_wormpos_x is enough.
-    if (theworm_wormpos_y[tailindex] != UNUSED_POS_ELEM) {
+    // Checking either aworm -> wormpos.y or aworm -> wormpos.x is enough.
+    if (aworm -> wormpos[tailindex].y != UNUSED_POS_ELEM) {
 
         // YES: place a SYMBOL_FREE_CELL at the tail's position
-        placeItem(theworm_wormpos_y[tailindex], theworm_wormpos_x[tailindex], SYMBOL_FREE_CELL, COLP_FREE_CELL);
+        placeItem( aworm -> wormpos[tailindex], SYMBOL_FREE_CELL, COLP_FREE_CELL);
 
     }
 
 }
 
 // worm movement
-void moveWorm(gamestates_t *agame_state) {
-    int headpos_y;
-    int headpos_x;
+void moveWorm(worm_t* aworm, gamestates_t *agame_state) {
+    pos_t headpos;
 
     // get the current position of the worm's head element and
     // compute the new head position according to current heading.
     // DO NOT store the new head position in the array of positions, yet.
-    headpos_y = theworm_wormpos_y[theworm_headindex] + theworm_dy;
-    headpos_x = theworm_wormpos_x[theworm_headindex] + theworm_dx;
+    headpos.y = aworm -> wormpos[aworm -> headindex].y + aworm -> dy;
+    headpos.x = aworm -> wormpos[aworm -> headindex].x + aworm -> dx;
 
     // Check if we would hit something or are going to leave the display
     // if we move the worm's head according to worm's last direction.
     // We are not allowed to leave the display's window.
-    if (headpos_x < 0) {
+    if (headpos.x < 0) {
         *agame_state = WORM_OUT_OF_BOUNDS;
-    } else if (headpos_x > getLastCol() ) { 
+    } else if (headpos.x > getLastCol() ) { 
         *agame_state = WORM_OUT_OF_BOUNDS; 
-    } else if (headpos_y < 0) {  
+    } else if (headpos.y < 0) {  
         *agame_state = WORM_OUT_OF_BOUNDS;
-    } else if (headpos_y > getLastRow() ) {
+    } else if (headpos.y > getLastRow() ) {
         *agame_state = WORM_OUT_OF_BOUNDS;
     } else {
         // We will stay within bounds.
         // Check if the worm's head will collide with itself at the new position
-        if (isInUseByWorm(headpos_y, headpos_x)) {
+        if (isInUseByWorm(aworm, headpos)) {
             // bites itself: BAD => stop game
             *agame_state = WORM_CROSSING;
         }
@@ -141,31 +124,30 @@ void moveWorm(gamestates_t *agame_state) {
     if (*agame_state == WORM_GAME_ONGOING) {
         // all is good: we didn't hit anything or leave the display
         // => update the worm structure.
-        // Increment theworm_headindex
+        // Increment aworm -> headindex
         // Go round if end of worm is reached (ring buffer)
 
-        if (theworm_headindex == WORM_LENGTH -1) {
-            theworm_headindex = 0;
+        if (aworm -> headindex == WORM_LENGTH -1) {
+            aworm -> headindex = 0;
         } else {
-            theworm_headindex++;
+            aworm -> headindex++;
         }
 
         // store new coordinates of the head element into worm structure
-        theworm_wormpos_x[theworm_headindex] = headpos_x;
-        theworm_wormpos_y[theworm_headindex] = headpos_y;
+        aworm -> wormpos[aworm -> headindex] = headpos;
     }
 }
 
 // collision detection
-bool isInUseByWorm(int new_headpos_y, int new_headpos_x) {
+bool isInUseByWorm(worm_t* aworm, pos_t new_headpos) {
     int i;
     bool collision = false;
     
     // wirkt kurios
-    i = theworm_headindex;
+    i = aworm -> headindex;
     do {
         //compare the position of the current worm element with the new_headpos
-        if (theworm_wormpos_x[i] == new_headpos_x && theworm_wormpos_y[i] == new_headpos_y){
+        if (aworm -> wormpos[i].x == new_headpos.x && aworm -> wormpos[i].y == new_headpos.y){
             collision = true;
         }
         
@@ -175,7 +157,7 @@ bool isInUseByWorm(int new_headpos_y, int new_headpos_x) {
         } else {
             i++;
         }
-    } while (i != theworm_headindex && theworm_wormpos_x[i-1] != UNUSED_POS_ELEM && !collision);
+    } while (i != aworm -> headindex && aworm -> wormpos[i-1].x != UNUSED_POS_ELEM && !collision);
 
 
     // return result
@@ -183,23 +165,23 @@ bool isInUseByWorm(int new_headpos_y, int new_headpos_x) {
 }
 
 // Setters
-extern void setWormHeading(wormheading_t dir) {
+extern void setWormHeading(worm_t* aworm, wormheading_t dir) {
     switch(dir) {
         case WORM_UP :// User wants up
-            theworm_dx= 0;
-            theworm_dy= -1;
+            aworm -> dx= 0;
+            aworm -> dy= -1;
             break;
         case WORM_DOWN :// User wants down
-            theworm_dx = 0;
-            theworm_dy = 1;
+            aworm -> dx = 0;
+            aworm -> dy = 1;
             break;
         case WORM_LEFT      :// User wants left
-            theworm_dx = -1;
-            theworm_dy = 0;
+            aworm -> dx = -1;
+            aworm -> dy = 0;
             break;
         case WORM_RIGHT      :// User wants right
-            theworm_dx = 1;
-            theworm_dy = 0;
+            aworm -> dx = 1;
+            aworm -> dy = 0;
             break;
     }
 }

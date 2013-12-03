@@ -11,22 +11,24 @@
 #
 
 # Please add all header files in ./ here
+HEADERS += debug.h
 HEADERS += prep.h
-HEADERS += worm.h
-#HEADERS += messages.h
-HEADERS += worm_model.h
 HEADERS += board_model.h
 HEADERS += gameops.h
-HEADERS += debug.h
+HEADERS += worm_model.h
+HEADERS += userops.h
+HEADERS += worm.h
+#HEADERS += messages.h
 
 # Please add all object files in ./ here
+OBJECTS += debug.o
 OBJECTS += prep.o
+OBJECTS += board_model.o
+OBJECTS += worm_model.o
+OBJECTS += userops.o
+OBJECTS += gameops.o
 OBJECTS += worm.o
 #OBJECTS += messages.o
-OBJECTS += worm_model.o
-OBJECTS += board_model.o
-OBJECTS += gameops.o
-OBJECTS += debug.o
 
 # Please add THE target in ./bin here
 TARGET += $(BIN_DIR)/worm

@@ -25,21 +25,9 @@
 #include <stdbool.h>
 
 // custom header
-#include "gameops.h"            // for ResCodes
-#include "prep.h"               // for ColorPairs
-
-
-//*********************************************************
-//* type definitions
-//*********************************************************
-// Directions for the worm
-typedef enum WormHeading {
-	WORM_UP,
-	WORM_DOWN,
-	WORM_LEFT,
-	WORM_RIGHT,
-} wormheading_t;
-
+#include "prep.h"
+#include "gameops.h"
+#include "board_model.h"
 
 //*********************************************************
 //* defines
@@ -52,22 +40,50 @@ typedef enum WormHeading {
 
 
 //*********************************************************
+//* type definitions & structs
+//*********************************************************
+// Directions for the worm
+typedef enum WormHeading {
+	WORM_UP,
+	WORM_DOWN,
+	WORM_LEFT,
+	WORM_RIGHT,
+} wormheading_t;
+
+// a worm structure
+struct worm {
+    int maxindex;       // Last usable index in the array pointed to by wormpos
+    int headindex;      // An index in the array for the head position of the worm
+                        // 0 <= headindex <= maxindex
+    pos_t wormpos[WORM_LENGTH]; // Array of x,y positions of all the elements of the worm
+
+    // The current heading of the worm
+    // These are offsets from the set {-1, 0, +1}
+    int dy;
+    int dx;
+    // color of the worm
+    colorpairs_t wcolor;
+};
+
+typedef struct worm worm_t;
+
+//*********************************************************
 //* function prototypes
 //*********************************************************
 // Functions concerning the management of the worm data
-rescodes_t initializeWorm(int len_max, int headpos_y, int headpos_x, wormheading_t dir, colorpairs_t color);
+rescodes_t initializeWorm(worm_t* aworm, int len_max, pos_t headpos, wormheading_t dir, colorpairs_t color);
 
 // show & delete worm elements
-void showWorm();
-void cleanWormTail();
+void showWorm(worm_t* aworm);
+void cleanWormTail(worm_t* aworm);
 
 // worm movement
-void moveWorm(gamestates_t* agame_state);
+void moveWorm(worm_t* aworm, gamestates_t* agame_state);
 
 // collision detection
-extern bool isInUseByWorm(int new_headpos_y, int new_headpos_x);
+extern bool isInUseByWorm(worm_t* aworm, pos_t new_headpos);
 
 // Setters
-extern void setWormHeading(wormheading_t dir);
+extern void setWormHeading(worm_t* aworm, wormheading_t dir);
 
 #endif  // #define _WORM_MODEL_H

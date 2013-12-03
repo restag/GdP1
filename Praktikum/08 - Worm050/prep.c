@@ -21,7 +21,6 @@
 //*********************************************************
 // include framework headers below here
 #include <curses.h>
-#include <stdbool.h>
 
 // include headers below here
 #include "prep.h"

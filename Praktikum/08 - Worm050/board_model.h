@@ -23,15 +23,20 @@
 //*********************************************************
 #include <curses.h>             // for chtype
 
+// include custom headers here
 #include "prep.h"               // for ColorPairs
 
 
 //*********************************************************
-//* type definitions
+//* type definitions & structs
 //*********************************************************
-// none
+// position on the board
+struct pos {
+    int y;  // y-coordinate (row)
+    int x;  // x-coordinate (col)
+};
 
-
+typedef struct pos pos_t;
 //*********************************************************
 //* defines
 //*********************************************************
@@ -42,7 +47,7 @@
 //* function prototypes
 //*********************************************************
 //placing & removing items from the board
-extern void placeItem(int y, int x, chtype symbol, colorpairs_t color_pair);
+void placeItem(pos_t posi, chtype symbol, colorpairs_t color_pair);
 
 // Getters
 extern int getLastRow();

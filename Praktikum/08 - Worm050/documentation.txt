@@ -6,9 +6,20 @@ board_model
 ********************************************
 functions - board_model
 ********************************************
-void placeitem(int y, int x, chtype symbol, colorpairs_t color_pair)
+void placeitem(pos_t pos, chtype symbol, colorpairs_t color_pair)
 int getLastRow()
 int getLastCol()
+
+********************************************
+typedefs - board_model
+********************************************
+pos_t
+
+********************************************
+structs - board_model
+********************************************
+pos
+
 
 
 ********************************************
@@ -17,7 +28,6 @@ gameops
 ********************************************
 functions - gameops
 ********************************************
-void readUserInput(game_states_t *agame_state)
 res_codes_t doLevel();
 
 ********************************************
@@ -58,6 +68,11 @@ colorpairs_t
 
 
 ********************************************
+fuctions - userops
+********************************************
+void readUserInput(worm_t* aworm, gamestates_t* agame_state)
+
+********************************************
 ********************************************
 worm
 ********************************************
@@ -66,18 +81,19 @@ functions - worm
 int main()
 
 
+
 ********************************************
 ********************************************
 worm_model
 ********************************************
 functions - worm_model
 ********************************************
-res_codes_t initializeWorm(int len_max, int headpos_y, int headpos_x, worm_heading_t dir, color_pairs_t color)
-void showWorm()
-void cleanWormTail()
-void moveWorm(game_states_t *agame_state)
-bool isInUseByWorm(int new_headpos_y, int new_headpos_x)
-void setWormHeading(worm_heading_t dir)
+res_codes_t initializeWorm(worm_t* aworm, int len_max, pos_t headpos, worm_heading_t dir, color_pairs_t color)
+void showWorm(worm_t* aworm)
+void cleanWormTail(worm_t* aworm)
+void moveWorm(worm_t* aworm, game_states_t *agame_state)
+bool isInUseByWorm(worm_t* aworm, pos_t new_headpos)
+void setWormHeading(worm_t* aworm, worm_heading_t dir)
 
 ********************************************
 defines
@@ -90,14 +106,15 @@ WORM_LENGTH
 typedef - worm_model
 ********************************************
 wormheading_t
+worm_t
+
+********************************************
+structs - worm_model
+********************************************
+worm
+
+
 
 ********************************************
 global vars
 ********************************************
-int theworm_maxindex
-int theworm_headindex
-int theworm_wormpos_y[Array]
-int theworm_wormpos_x[Array]
-int theworm_dy
-int theworm_dx
-colorpairs_t theworm_wcolor
