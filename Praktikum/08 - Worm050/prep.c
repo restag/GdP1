@@ -65,7 +65,7 @@ bool windowHasMinSize(void)
 {
     // Maximal LINES and COLS are set by curses for the current window size.
     // Note: we do not cope with resizing in this simple examples!
-    if (LINES < ROWS_RESERVED +1 || COLS < MIN_NUMBER_OF_COLS) {
+    if (LINES < MIN_NUMBER_OF_ROWS + ROWS_RESERVED || COLS < MIN_NUMBER_OF_COLS) {
         return false;
     }
 
