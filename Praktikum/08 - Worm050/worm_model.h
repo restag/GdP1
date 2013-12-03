@@ -86,4 +86,7 @@ extern bool isInUseByWorm(worm_t* aworm, pos_t new_headpos);
 // Setters
 extern void setWormHeading(worm_t* aworm, wormheading_t dir);
 
+// Getters
+pos_t getWormHeadPos(worm_t* aworm);
+
 #endif  // #define _WORM_MODEL_H

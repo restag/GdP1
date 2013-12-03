@@ -29,6 +29,7 @@
 typedef enum ResCodes {
 	RES_OK,
 	RES_FAILED,
+    RES_INTERNAL_ERROR,
 } rescodes_t;
 
 // Game state codes

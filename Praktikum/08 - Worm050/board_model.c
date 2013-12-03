@@ -41,7 +41,7 @@ void placeItem(pos_t posi, chtype symbol, colorpairs_t color_pair) {
 //* Getters
 // Get the last usable row on the display
 int getLastRow() {
-    return (LINES-1);
+    return (LINES - 1 - ROWS_RESERVED);
 }
 
 // Get the last usable column on the display

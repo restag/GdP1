@@ -27,6 +27,7 @@
 #include "worm_model.h"
 #include "board_model.h"
 #include "userops.h"
+#include "messages.h"
 
 //*********************************************************
 //* fuctions
@@ -54,6 +55,9 @@ rescodes_t doLevel()
     if ( res_code != RES_OK) {
         return res_code;
     }
+
+    // show boarder line in order to seperate the message area
+    showBoarderLine();
 
     // Show worm at its initial position
     showWorm(&userworm);
@@ -88,6 +92,9 @@ rescodes_t doLevel()
         showWorm(&userworm);
         // END process userworm
 
+        // inform user about position and lengthof userworm in status window
+        showStatus(&userworm);
+
         // Sleep a bit before we show the updated window
         napms(NAP_TIME);
 
@@ -101,8 +108,22 @@ rescodes_t doLevel()
     res_code = RES_OK;
 
     // For some reason we left the control loop of the current level.
-    // However, in this version we do not yet check for the reason.
-    // There is no user feedback at the moment!
+    // Check why, according to game_state
+    switch (game_state) {
+        case WORM_GAME_QUIT:
+            // user must have typed "q" to quit
+            showDialog("Sie haben die aktuelle Runde abgebrochen!", "Bitte Taste drücken");
+            break;
+        case WORM_OUT_OF_BOUNDS:
+            showDialog("Sie haben verloren, weil Sie das Spielfeld verlassen haben!", "Bitte Taste drücken");
+            break;
+        case WORM_CROSSING:
+            showDialog("Sie haben verloren, weil Sie sich selbst gebissen haben!", "Bitte Taste drücken");
+            break;
+        default:
+            showDialog("Interner Fehler!", "Bitte Taste drücken");
+            res_code = RES_INTERNAL_ERROR;
+    }
 
     // Normal exit point
     return res_code;

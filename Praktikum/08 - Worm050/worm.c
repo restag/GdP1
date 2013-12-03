@@ -56,7 +56,7 @@ int main(void) {
         // we print a conventional error message via printf after
         // the call of cleanupCursesApp()
         cleanupCursesApp();
-        printf("Das Fenster ist zu klein: wir brauchen mindestens %dx%d\n", MIN_NUMBER_OF_COLS, MIN_NUMBER_OF_ROWS );
+        printf("Das Fenster ist zu klein: wir brauchen mindestens %dx%d\n", MIN_NUMBER_OF_COLS, MIN_NUMBER_OF_ROWS + ROWS_RESERVED);
         res_code = RES_FAILED;
     } else {
         res_code = doLevel();

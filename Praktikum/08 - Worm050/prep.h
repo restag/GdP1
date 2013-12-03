@@ -33,7 +33,8 @@
 //*********************************************************
 // board dimensions
 #define MIN_NUMBER_OF_ROWS 5    // The guaranteed number of rows available for the board
-#define MIN_NUMBER_OF_COLS 10   // The guaranteed number of columns available for the board
+#define MIN_NUMBER_OF_COLS 70   // The guaranteed number of columns available for the board
+#define ROWS_RESERVED 4         // rows reserved for messagebox
 
 // Codes for the array of positions
 #define UNUSED_POS_ELEM -1      // Unused element in the worm arrays of positions
@@ -44,8 +45,9 @@
 //*********************************************************
 // Numbers for color pairs used by curses macro COLOR_PAIR
 typedef enum ColorPairs{
-    COLP_FREE_CELL = 0,
+    COLP_FREE_CELL,
     COLP_USER_WORM = 1,
+    COLP_BARRIER,
 } colorpairs_t;
 
 

@@ -18,7 +18,7 @@
 
 extern void clearLineInMessageArea(int row);
 extern void showBoarderLine();
-extern void showStatus(struct worm* aworm);
+extern void showStatus(worm_t* aworm);
 extern int showDialog(char* prompt1, char* prompt2);
 
 #endif  // #define _MESSAGES_H

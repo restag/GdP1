@@ -185,3 +185,13 @@ extern void setWormHeading(worm_t* aworm, wormheading_t dir) {
             break;
     }
 }
+
+// Getters
+pos_t getWormHeadPos(worm_t* aworm)
+{
+    // structures are passed by value!
+    // -> we return a copy here
+    return aworm -> wormpos[aworm -> headindex];
+
+
+}

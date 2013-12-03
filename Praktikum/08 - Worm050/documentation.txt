@@ -11,6 +11,12 @@ int getLastRow()
 int getLastCol()
 
 ********************************************
+defines - board_model
+********************************************
+SYMBOL_BARRIER
+ROWS_RESERVED
+
+********************************************
 typedefs - board_model
 ********************************************
 pos_t
@@ -40,6 +46,20 @@ typedefs - gameops
 ********************************************
 rescodes_t
 gamestates_t
+
+
+
+********************************************
+********************************************
+messages
+********************************************
+functions - messages
+********************************************
+void clearLineInMessageArea(int row)
+void showBoarderLine()
+void showStatus(worm_t aworm)
+int showDialog(char* prompt1, char* promt2)
+
 
 
 ********************************************
@@ -94,6 +114,7 @@ void cleanWormTail(worm_t* aworm)
 void moveWorm(worm_t* aworm, game_states_t *agame_state)
 bool isInUseByWorm(worm_t* aworm, pos_t new_headpos)
 void setWormHeading(worm_t* aworm, worm_heading_t dir)
+pos_t getWormHeadPos(worm_t* aworm)
 
 ********************************************
 defines

@@ -40,10 +40,10 @@ void showBoarderLine() {
 }
 
 // Display status about the game in the message area
-void showStatus(struct worm* aworm) {
+void showStatus(worm_t* aworm) {
     int pos_line2 = LINES -ROWS_RESERVED + 2;
 
-    struct pos headpos = getWormHeadPos(aworm);
+    pos_t headpos = getWormHeadPos(aworm);
     mvprintw(pos_line2, 1,"Wurm ist an Position: y=%3d x=%3d", headpos.y, headpos.x);
 }
 

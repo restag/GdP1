@@ -18,7 +18,7 @@ HEADERS += gameops.h
 HEADERS += worm_model.h
 HEADERS += userops.h
 HEADERS += worm.h
-#HEADERS += messages.h
+HEADERS += messages.h
 
 # Please add all object files in ./ here
 OBJECTS += debug.o
@@ -28,7 +28,7 @@ OBJECTS += worm_model.o
 OBJECTS += userops.o
 OBJECTS += gameops.o
 OBJECTS += worm.o
-#OBJECTS += messages.o
+OBJECTS += messages.o
 
 # Please add THE target in ./bin here
 TARGET += $(BIN_DIR)/worm
