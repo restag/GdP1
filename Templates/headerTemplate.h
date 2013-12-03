@@ -34,5 +34,7 @@
 //*********************************************************
 // put prototypes below here
 
+// setters
 
+// getters
 #endif  // #define _<HEADER_NAME>_H
