@@ -1,0 +1,156 @@
+This is the documentation of the current state of the worm game
+
+********************************************
+********************************************
+board_model
+********************************************
+functions - board_model
+********************************************
+rescodes_t initializeBoard(board_t* aboard)
+rescodes_t initializeLevel(board_t* aboard)
+void placeitem(board_t* aboard, pos_t pos,boardcodes_t* boardcode, chtype symbol, colorpairs_t color_pair)
+void decrementNumberOfFoodItems(board_t* aboard);
+void setNumberOfFoodItems(board_t* aboard, int n);
+int getNumberOfFoodItems(board_t* aboard)
+boardcodes_t getContentAt(board_t* aboard, pos_t pos)
+int getLastRowOnBoard(board_t* aboard);
+int getLastColOnBoard(board_t* aboard);
+
+
+********************************************
+defines - board_model
+********************************************
+SYMBOL_BARRIER
+SYMBOL_FOOD_1
+SYMBOL_FOOD_2
+SYMBOL_FOOD_3
+
+********************************************
+typedefs - board_model
+********************************************
+boardcode_t
+pos_t
+
+********************************************
+structs - board_model
+********************************************
+pos
+
+
+
+********************************************
+********************************************
+gameops
+********************************************
+functions - gameops
+********************************************
+res_codes_t doLevel();
+
+********************************************
+defines - gameops
+********************************************
+NAP_TIME
+
+********************************************
+typedefs - gameops
+********************************************
+rescodes_t
+gamestates_t
+
+
+
+********************************************
+********************************************
+messages
+********************************************
+functions - messages
+********************************************
+void clearLineInMessageArea(int row)
+void showStatus(worm_t aworm)
+int showDialog(char* prompt1, char* promt2)
+
+
+
+********************************************
+********************************************
+prep
+********************************************
+functions - prep
+********************************************
+void initializeCursesApplication()
+void cleanupCursesApp()
+bool windowHasMinSize()
+void initializeColors()
+
+********************************************
+defines - prep
+********************************************
+MIN_NUMBER_OF_ROWS
+MIN_NUMBER_OF_COLS
+ROWS_RESERVED
+UNUSED_POS_ELEM
+
+********************************************
+typedefs - prep
+********************************************
+colorpairs_t
+
+
+
+********************************************
+fuctions - userops
+********************************************
+void readUserInput(worm_t* aworm, gamestates_t* agame_state)
+
+********************************************
+********************************************
+worm
+********************************************
+functions - worm
+********************************************
+int main()
+
+
+
+********************************************
+********************************************
+worm_model
+********************************************
+functions - worm_model
+********************************************
+res_codes_t initializeWorm(worm_t* aworm, int len_max, int len_cur, pos_t headpos, wormheading_t dir, colorpairs_t color)
+void growWorm(worm_t* aworm, boni_t growth)
+void showWorm(board_t* aboard, worm_t* aworm)
+void cleanWormTail(board_t* aboard, worm_t* aworm)
+void moveWorm(board_t* aboard, worm_t* aworm, game_states_t *agame_state)
+bool isInUseByWorm(worm_t* aworm, pos_t new_headpos)
+void setWormHeading(worm_t* aworm, worm_heading_t dir)
+pos_t getWormHeadPos(worm_t* aworm)
+int getWormLength(worm_t* aworm)
+
+********************************************
+defines - worm_model
+********************************************
+SYMBOL_FREE_CELL
+SYMBOL_WORM_HEAD_ELEMENT
+SYMBOL_WORM_INNER_ELEMENT
+SYMBOL_WORM_TAIL_ELEMENT
+WORM_LENGTH
+WORM_INITIAL_LENGTH
+
+********************************************
+typedef - worm_model
+********************************************
+wormheading_t
+worm_t
+
+********************************************
+structs - worm_model
+********************************************
+worm
+
+
+
+********************************************
+global vars
+********************************************
