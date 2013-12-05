@@ -55,7 +55,18 @@ void baueRahmen(char einBild[][SPALTEN], int rows, int cols) {
 
 }
 
+void baueStern(char einBild[][SPALTEN], int rows, int cols, int z0, int s0)
+{
+    machStrahl(einBild, rows, cols, z0, s0, 1, 1);
 
+
+}
+
+void machStrahl(char einBild[][SPALTEN], int rows, int cols, int xStep, int yStep)
+{
+
+
+}
 
 // print all
 void drucke(char einBild[][SPALTEN], int rows, int cols) {
