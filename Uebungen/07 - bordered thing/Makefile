@@ -11,11 +11,11 @@
 #
 
 # Please add all header files in ./ here
-HEADERS += rahmen1.h
+HEADERS += rahmen2.h
 
 
 # Please add all object files in ./ here
-OBJECTS += rahmen1.o
+OBJECTS += rahmen2.o
 
 # Please add THE target in ./bin here
 TARGET += $(BIN_DIR)/bordered_thing
