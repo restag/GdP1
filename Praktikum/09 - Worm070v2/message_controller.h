@@ -2,21 +2,32 @@
  *
  */
 
-#ifndef _USERINTERACTION_CONTROLER_H
-#define _USERINTERACTION_CONTROLER_H
+#ifndef _MESSAGE_CONTROLLER_H
+#define _<HEADER_CONTROLLER_H
 //*********************************************************
 //* header includes 
 //*********************************************************
 // put framework header includes below here
 
 // put custom header includes below here
-#include "worm_model.h"
-#include "gameops.h"
+
 
 //*********************************************************
 //* defines
 //*********************************************************
 // put defines below here
+
+
+//*********************************************************
+//* enums
+//*********************************************************
+// put enums below here
+
+
+//*********************************************************
+//* enum type definitions
+//*********************************************************
+// put typedefs for enums here
 
 
 //*********************************************************
@@ -26,15 +37,17 @@
 
 
 //*********************************************************
-//* type definitions
+//* struct type definitions
 //*********************************************************
-// put typedefs below here
+// put struct typedefs below here
 
 
 //*********************************************************
 //* function prototypes
 //*********************************************************
-// read the user input
-void readUserInput(worm_t* aworm, gamestates_t* agame_state);
+// put prototypes below here
 
-#endif  // #define _USERINTERACTION_CONTROLER_H
+// setters
+
+// getters
+#endif  // #define _MESSAGE_CONTROLLER_H

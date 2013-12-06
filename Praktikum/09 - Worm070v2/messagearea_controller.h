@@ -2,23 +2,21 @@
  *
  */
 
-#ifndef _MESSAGEAREA_H
-#define _MESSAGEAREA_H
+#ifndef _MESSAGEAREA_CONTROLER_H
+#define _MESSAGEAREA_CONTROLER_H
 //*********************************************************
 //* header includes 
 //*********************************************************
 // put framework header includes below here
 
 // put custom header includes below here
-
+#include "messagearea_model.h"
 
 //*********************************************************
 //* defines
 //*********************************************************
 // put defines below here
-#define MESSAGEAREA_MIN_HEIGHT 4
-#define MESSAGEAREA_BLANKS_RESERVED_LEFT 1
-#define MESSAGEAREA_BLANKS_RESERVED_RIGHT 1
+
 
 //*********************************************************
 //* enums
@@ -36,26 +34,26 @@
 //* structs
 //*********************************************************
 // put structs below here
-struct MessageArea {
-    int height;
-    char* messageLine[MESSAGEAREA_MIN_HEIGHT - 1];
-};
+
 
 //*********************************************************
 //* struct type definitions
 //*********************************************************
 // put struct typedefs below here
-typedef struct MessageArea messagearea_t;
+
 
 //*********************************************************
 //* function prototypes
 //*********************************************************
 // put prototypes below here
+// update the worm status
+void updateWormStatus(messagearea_t* aMessageArea, worm_t* aworm);
 
-// setters
-void setMessageAtLine(messagearea_t* aMessageArea, char* aMessageText, int lineNumber);
+// clear line of message area
+void cleaLineInMessageArea (messagearea_t* aMessageArea, int lineNumber);
 
-// getters
-char* getMessageFromLine(messagearea_t* aMessageArea, int lineNumber);
+// show status in message area
+void showStatus(message_area_t* aMessageArea, worm_t* aworm);
 
-#endif  // #define _MESSAGE_H
+
+#endif  // #define _MESSAGEAREA_CONTROLER_H

@@ -43,7 +43,34 @@ gamestates_t
 ********************************************
 functions - game_controler
 ********************************************
+rescodes_t doLevel()
 
+
+********************************************
+* message_model
+********************************************
+defines - message_model
+********************************************
+
+********************************************
+typedefs - message_model
+********************************************
+message_t
+
+********************************************
+functions - message_model
+********************************************
+void setMsgLength(message_t* aMessage, int length)
+void setMsgString(message_t* aMessage, char* aString)
+
+
+********************************************
+* messagearea_controler
+********************************************
+functions - messagearea_controler
+********************************************
+void clearLineInMessageArea(messageare_t* aMessageArea, int lineNumber)
+void showStatus(messagearea_t* aMessageArea, worm_t* aworm)
 
 ********************************************
 * messagearea_model
@@ -51,6 +78,8 @@ functions - game_controler
 defines - messagearea_model
 ********************************************
 MESSAGEAREA_MIN_HEIGHT
+MESSAGEAREA_BLANKS_RESERVED LEFT
+MESSAGEAREA_BLANKS_RESERVED RIGHT
 
 ********************************************
 typedefs - messagearea_model

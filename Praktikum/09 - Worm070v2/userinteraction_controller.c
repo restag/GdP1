@@ -8,7 +8,7 @@
 // put framework header includes below here
 
 // put custom header includes below here
-#include "userops.h"
+#include "userinteraction_controller.h"
 
 //*********************************************************
 //* global vars
@@ -31,7 +31,7 @@ void readUserInput(worm_t* aworm, gamestates_t* agame_state)
         // Blocking or non-blocking depends of config of getch
         switch(ch) {
             case 'q' :    // User wants to end the show
-                agame_state = WORM_GAME_QUIT;
+                *agame_state = WORM_GAME_QUIT;
                 break;
             case KEY_UP :// User wants up
                 setWormHeading(aworm, WORM_UP);

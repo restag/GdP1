@@ -2,8 +2,8 @@
  *
  */
 
-#ifndef _MESSAGEAREA_H
-#define _MESSAGEAREA_H
+#ifndef _MESSAGE_MODEL_H
+#define _MESSAGE_MODEL_H
 //*********************************************************
 //* header includes 
 //*********************************************************
@@ -16,9 +16,7 @@
 //* defines
 //*********************************************************
 // put defines below here
-#define MESSAGEAREA_MIN_HEIGHT 4
-#define MESSAGEAREA_BLANKS_RESERVED_LEFT 1
-#define MESSAGEAREA_BLANKS_RESERVED_RIGHT 1
+
 
 //*********************************************************
 //* enums
@@ -36,16 +34,16 @@
 //* structs
 //*********************************************************
 // put structs below here
-struct MessageArea {
-    int height;
-    char* messageLine[MESSAGEAREA_MIN_HEIGHT - 1];
+struct Message {
+    int msgLength;
+    char* msgString;
 };
 
 //*********************************************************
 //* struct type definitions
 //*********************************************************
 // put struct typedefs below here
-typedef struct MessageArea messagearea_t;
+typedef struct Message message_t;
 
 //*********************************************************
 //* function prototypes
@@ -53,9 +51,8 @@ typedef struct MessageArea messagearea_t;
 // put prototypes below here
 
 // setters
-void setMessageAtLine(messagearea_t* aMessageArea, char* aMessageText, int lineNumber);
+void setMsgLength(message_t* aMessage, int length);
+void setMsgString(message_t* aMessage, char* aString);
 
 // getters
-char* getMessageFromLine(messagearea_t* aMessageArea, int lineNumber);
-
-#endif  // #define _MESSAGE_H
+#endif  // #define _MESSAGE_MODEL_H
