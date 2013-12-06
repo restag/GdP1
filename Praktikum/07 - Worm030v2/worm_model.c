@@ -160,13 +160,18 @@ void moveWorm(gamestates_t *agame_state) {
 bool isInUseByWorm(int new_headpos_y, int new_headpos_x) {
     int i;
     bool collision = false;
-    
+    int tailindex;
+
+    // Compute tailindex
+    tailindex = (theworm_headindex + 1) % WORM_LENGTH; 
     // wirkt kurios
     i = theworm_headindex;
     do {
         //compare the position of the current worm element with the new_headpos
         if (theworm_wormpos_x[i] == new_headpos_x && theworm_wormpos_y[i] == new_headpos_y){
-            collision = true;
+            if (!(theworm_wormpos_x[i] == theworm_wormpos_x[tailindex] && theworm_wormpos_y[i] == theworm_wormpos_y[tailindex])){
+                collision = true;
+            }
         }
         
         // do some index magic
