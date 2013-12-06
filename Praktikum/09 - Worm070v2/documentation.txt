@@ -1,0 +1,124 @@
+This is the documentation of the current state of the worm game
+
+
+********************************************
+* board_model
+********************************************
+defines - board_model
+********************************************
+
+********************************************
+typedefs - board_model
+********************************************
+boardcodes_t
+pos_t
+board_t
+
+********************************************
+functions - board_model
+********************************************
+setNumberOfFoodItems(board_t* aboard, int n)
+getLastRowOnBoard(board_t* aboard)
+getLastColOnBoard(board_t* abaord)
+getNumberOfFoodItems(board_t* abaord)
+
+********************************************
+structs - board_model
+********************************************
+
+
+********************************************
+* game_controler
+********************************************
+defines - game_controler
+********************************************
+NAP_TIME
+
+********************************************
+typedefs - game_controler
+********************************************
+rescodes_t
+gamestates_t
+
+********************************************
+functions - game_controler
+********************************************
+
+
+********************************************
+* messagearea_model
+********************************************
+defines - messagearea_model
+********************************************
+MESSAGEAREA_MIN_HEIGHT
+
+********************************************
+typedefs - messagearea_model
+********************************************
+messagearea_t
+
+********************************************
+functions - messagearea_model
+********************************************
+void setMessageAtLine(messagearea_t* aMessageArea, char* aMessageText, int lineNumber)
+char* getMessageFromLine(messagearea_t* aMessageArea, int lineNumber)
+
+
+********************************************
+* prep
+********************************************
+defines - prep
+********************************************
+MIN_NUMBER_OF_ROWS
+MIN_NUMBER_OF_COLS
+
+********************************************
+typedefs - prep
+********************************************
+
+********************************************
+functions - prep
+********************************************
+void initializeCursesApp()
+void cleanupCursesApp()
+bool windowHasMinSize()
+
+
+********************************************
+* userinteraction_controler
+********************************************
+fuctions - userinteraction_controler
+********************************************
+void readUserInput(worm_t* aworm, gamestates_t* agame_state)
+
+
+********************************************
+* worm
+********************************************
+functions - worm
+********************************************
+int main()
+
+
+
+********************************************
+********************************************
+worm_model
+********************************************
+defines - worm_model
+********************************************
+WORM_LENGTH
+WORM_INITIAL_LENGTH
+********************************************
+typedef - worm_model
+********************************************
+
+********************************************
+functions - worm_model
+********************************************
+
+
+
+********************************************
+global vars
+********************************************
