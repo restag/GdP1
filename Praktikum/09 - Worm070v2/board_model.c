@@ -20,6 +20,7 @@
 //* header includes
 //*********************************************************
 // put framework header includes below here
+#include <stdlib.h>
 
 // put custom header includes below here
 #include "board_model.h"
@@ -28,6 +29,19 @@
 //*********************************************************
 //* fuctions
 //*********************************************************
+
+board_t* allocBlankBoard()
+{
+    board_t* theBoard= malloc(sizeof(board_t));
+
+    return theBoard;
+}
+
+void freeBoard(board_t* aBoard)
+{
+    free(aBoard);
+}
+
 //* setters
 extern void setNumberOfFoodItems(board_t* aboard, int n)
 {

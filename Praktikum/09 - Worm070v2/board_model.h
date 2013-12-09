@@ -77,7 +77,7 @@ struct board {
     int last_row;   // last usable row on the board
     int last_col;   // last usable col on the board
 
-    boardcodes_t cells[MIN_NUMBER_OF_ROWS][MIN_NUMBER_OF_COLS];
+    boardcodes_t cells[MIN_NUMBER_OF_ROWS - MESSAGEAREA_MIN_HEIGHT][MIN_NUMBER_OF_COLS];
     /**
      * a 2-dimensional array for storing the contents of the board.
      *
@@ -99,6 +99,10 @@ typedef struct board board_t;
 //*********************************************************
 //* function prototypes
 //*********************************************************
+
+board_t* allocBlankBoard();
+void freeBoard(board_t* aBoard);
+
 // setters
 extern void setNumberOfFoodItems(board_t* aboard, int n);
 

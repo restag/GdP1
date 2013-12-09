@@ -17,6 +17,8 @@ board_t
 ********************************************
 functions - board_model
 ********************************************
+board_t* allocBlankBoard()
+void freeBoard(board_t* aBoard)
 setNumberOfFoodItems(board_t* aboard, int n)
 getLastRowOnBoard(board_t* aboard)
 getLastColOnBoard(board_t* abaord)
@@ -60,14 +62,16 @@ message_t
 ********************************************
 functions - message_model
 ********************************************
-void setMsgLength(message_t* aMessage, int length)
+message_t* initBlankMessage()
+void freeMessage(message_t* aMessage)
 void setMsgString(message_t* aMessage, char* aString)
+void clearMsgString(message_t* aMessage)
 
 
 ********************************************
-* messagearea_controler
+* messagearea_controller
 ********************************************
-functions - messagearea_controler
+functions - messagearea_controller
 ********************************************
 void clearLineInMessageArea(messageare_t* aMessageArea, int lineNumber)
 void showStatus(messagearea_t* aMessageArea, worm_t* aworm)
@@ -89,8 +93,10 @@ messagearea_t
 ********************************************
 functions - messagearea_model
 ********************************************
-void setMessageAtLine(messagearea_t* aMessageArea, char* aMessageText, int lineNumber)
-char* getMessageFromLine(messagearea_t* aMessageArea, int lineNumber)
+messagearea_t* allocBlankMessageArea()
+void freeMessageArea(messagearea_t* aMessageArea)
+void setMessageAtLine(messagearea_t* aMessageArea, message_t* aMessage, int lineNumber)
+message_t* getMessageFromLine(messagearea_t* aMessageArea, int lineNumber)
 
 
 ********************************************

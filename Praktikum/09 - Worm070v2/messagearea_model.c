@@ -7,11 +7,10 @@
 //* header includes
 //*********************************************************
 // put framework header includes below here
-#include <string.h>
 #include <stdlib.h>
-#include <stdio.h>
+
 // put custom header includes below here
-#include "message_model.h"
+#include "messagearea_model.h"
 
 //*********************************************************
 //* global vars
@@ -24,46 +23,38 @@
 // put function codes below here
 
 //*********************************************************
+//* program main
 
 //*********************************************************
-message_t* initBlankMessage()
+
+messagearea_t* allocBlankMessageArea()
 {
-    // reserve memory
-    message_t* newMsg = malloc(sizeof(message_t));
-    
-    // asign default Value
-    newMsg -> msgString = NULL;
-
-    return newMsg;
-
+    messagearea_t* theMessageArea = malloc(sizeof(messagearea_t));
+    return theMessageArea;
 }
 
-void freeMessage(message_t* aMessage)
+void freeMessageArea(messagearea_t* aMessageArea)
 {
-    clearMsgString(aMessage);
+    // free content
+    int i;
 
-    free(aMessage);
+    for (i = 0; i < MESSAGEAREA_MIN_HEIGHT; i++) {
+        freeMessage(aMessageArea -> messageLine[i]);
+    }
+    
+    // free message area
+    free(aMessageArea);
 }
 
 //* setters
-void setMsgString(message_t* aMessage, char* aString)
+void setMessageAtLine(messagearea_t* aMessageArea, message_t* aMessage, int lineNumber)
 {
-    // free the old one
-    clearMsgString(aMessage);
-
-    // set the new one
-    aMessage -> msgString = strdup(aString);
-}
-
-void clearMsgString(message_t* aMessage)
-{
-    // check if exists
-    if (aMessage -> msgString != NULL) {
-        free(aMessage -> msgString);
-    }
-
+    aMessageArea -> messageLine[lineNumber - 1] = aMessage;
 }
 
 //*********************************************************
 //* getters
-
+message_t* getMessageFromLine(messagearea_t* aMessageArea, int lineNumber)
+{
+    return aMessageArea -> messageLine[lineNumber -1];
+}
