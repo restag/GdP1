@@ -7,9 +7,11 @@
 //* header includes
 //*********************************************************
 // put framework header includes below here
-
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
 // put custom header includes below here
-
+#include "message_model.h"
 
 //*********************************************************
 //* global vars
@@ -24,15 +26,35 @@
 //*********************************************************
 
 //*********************************************************
-//* setters
-void setMsgLength(message_t* aMessage, int length)
+message_t* initBlankMessage()
 {
-    aMessage -> msgLength = length;
+    // reserve memory
+    message_t* newMsg = malloc(sizeof(message_t));
+    
+    // asign default Value
+    newMsg -> msgString = NULL;
+
+    return newMsg;
+
 }
 
+//* setters
 void setMsgString(message_t* aMessage, char* aString)
 {
-    aMessage -> msgString = aString;
+    // free the old one
+    clearMsgString(aMessage);
+
+    // set the new one
+    aMessage -> msgString = strdup(aString);
+}
+
+void clearMsgString(message_t* aMessage)
+{
+    // check if exists
+    if (aMessage -> msgString != NULL) {
+        free(aMessage -> msgString);
+    }
+
 }
 
 //*********************************************************

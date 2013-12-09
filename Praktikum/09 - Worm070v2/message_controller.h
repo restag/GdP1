@@ -3,14 +3,14 @@
  */
 
 #ifndef _MESSAGE_CONTROLLER_H
-#define _<HEADER_CONTROLLER_H
+#define _MESSAGE_CONTROLLER_H
 //*********************************************************
 //* header includes 
 //*********************************************************
 // put framework header includes below here
 
 // put custom header includes below here
-
+#include "message_model.h"
 
 //*********************************************************
 //* defines
@@ -46,7 +46,9 @@
 //* function prototypes
 //*********************************************************
 // put prototypes below here
+message_t* initMessageWithString(char* aString);
 
+void alterMessage(message_t* aMessage, char* newString);
 // setters
 
 // getters

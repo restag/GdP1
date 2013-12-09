@@ -24,8 +24,16 @@
 
 //*********************************************************
 //* intitialize a message
-message_t createMsg(char[] string)
+message_t* initMessageWithString(char* aString)
 {
-    int* p = malloc(sizeof(string +1));
+    message_t* msg = initBlankMessage();
 
-    return 
+    setMsgString(msg, aString);
+
+    return msg;
+}
+
+void alterMessage(message_t* aMessage, char* newString)
+{
+    setMsgString(aMessage, newString);
+}

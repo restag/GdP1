@@ -35,7 +35,6 @@
 //*********************************************************
 // put structs below here
 struct Message {
-    int msgLength;
     char* msgString;
 };
 
@@ -50,9 +49,12 @@ typedef struct Message message_t;
 //*********************************************************
 // put prototypes below here
 
+message_t* initBlankMessage();
+
 // setters
-void setMsgLength(message_t* aMessage, int length);
 void setMsgString(message_t* aMessage, char* aString);
+
+void clearMsgString(message_t* aMessage);
 
 // getters
 #endif  // #define _MESSAGE_MODEL_H
