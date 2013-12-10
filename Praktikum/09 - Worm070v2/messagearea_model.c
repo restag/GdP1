@@ -30,6 +30,11 @@
 messagearea_t* allocBlankMessageArea()
 {
     messagearea_t* theMessageArea = malloc(sizeof(messagearea_t));
+    int lineIndex;
+    
+    for (lineIndex = 0; lineIndex < MESSAGEAREA_MIN_HEIGHT - 1; lineIndex++) {
+        theMessageArea -> messageLine[lineIndex] = NULL;
+    }
     return theMessageArea;
 }
 
@@ -38,18 +43,23 @@ void freeMessageArea(messagearea_t* aMessageArea)
     // free content
     int i;
 
-    for (i = 0; i < MESSAGEAREA_MIN_HEIGHT; i++) {
-        freeMessage(aMessageArea -> messageLine[i]);
+    for (i = 1; i < MESSAGEAREA_MIN_HEIGHT; i++) {
+        freeMessageLine(aMessageArea, i);
     }
     
     // free message area
     free(aMessageArea);
 }
 
-//* setters
-void setMessageAtLine(messagearea_t* aMessageArea, message_t* aMessage, int lineNumber)
+void freeMessageLine(messagearea_t* theMessageArea, int lineNumber)
 {
-    aMessageArea -> messageLine[lineNumber - 1] = aMessage;
+    freeMessage(theMessageArea -> messageLine[lineNumber]);
+}
+
+//* setters
+void setMessageAtLine(messagearea_t* theMessageArea, message_t* theMessage, int lineNumber)
+{
+    theMessageArea -> messageLine[lineNumber - 1] = theMessage;
 }
 
 //*********************************************************

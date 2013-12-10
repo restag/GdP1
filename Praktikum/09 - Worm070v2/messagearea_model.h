@@ -56,9 +56,10 @@ typedef struct MessageArea messagearea_t;
 
 messagearea_t* allocBlankMessageArea();
 void freeMessageArea(messagearea_t* aMessageArea);
+void freeMessageLine(messagearea_t* aMessageArea, int lineNumber);
 
 // setters
-void setMessageatLine(messagearea_t* aMessageArea, message_t* aMessage, int lineNumber);
+void setMessageAtLine(messagearea_t* aMessageArea, message_t* aMessage, int lineNumber);
 
 // getters
 message_t* getMessageFromLine(messagearea_t* aMessageArea, int lineNumber);

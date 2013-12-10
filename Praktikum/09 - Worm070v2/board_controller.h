@@ -2,15 +2,16 @@
  *
  */
 
-#ifndef _MESSAGE_CONTROLLER_H
-#define _MESSAGE_CONTROLLER_H
+#ifndef _BOARD_CONTROLLER_H
+#define _BOARD_CONTROLLER_H
 //*********************************************************
 //* header includes 
 //*********************************************************
 // put framework header includes below here
 
 // put custom header includes below here
-#include "message_model.h"
+#include "board_model.h"
+
 
 //*********************************************************
 //* defines
@@ -46,12 +47,8 @@
 //* function prototypes
 //*********************************************************
 // put prototypes below here
-message_t* createMessage();
 
-message_t* createMessageWithString(char* newString);
-
-void alterMessage(message_t* aMessage, char* newString);
 // setters
 
 // getters
-#endif  // #define _MESSAGE_CONTROLLER_H
+#endif  // #define _BOARD_CONTROLLER_H

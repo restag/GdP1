@@ -26,7 +26,7 @@
 //*********************************************************
 
 //*********************************************************
-message_t* initBlankMessage()
+message_t* allocBlankMessage()
 {
     // reserve memory
     message_t* newMsg = malloc(sizeof(message_t));
@@ -44,6 +44,8 @@ void freeMessage(message_t* aMessage)
 
     free(aMessage);
 }
+
+//* initializers
 
 //* setters
 void setMsgString(message_t* aMessage, char* aString)

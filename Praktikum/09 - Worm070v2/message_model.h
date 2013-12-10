@@ -48,9 +48,11 @@ typedef struct Message message_t;
 //* function prototypes
 //*********************************************************
 // put prototypes below here
-
-message_t* initBlankMessage();
+// allocation & freeing
+message_t* allocBlankMessage();
 void freeMessage(message_t* aMessage);
+
+// initializers
 
 // setters
 void setMsgString(message_t* aMessage, char* aString);

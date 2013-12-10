@@ -2,15 +2,17 @@
  *
  */
 
-#ifndef _MESSAGE_CONTROLLER_H
-#define _MESSAGE_CONTROLLER_H
+#ifndef _MESSAGEAREA_CONTROLLER_H
+#define _MESSAGEAREA_CONTROLLER_H
 //*********************************************************
 //* header includes 
 //*********************************************************
 // put framework header includes below here
 
 // put custom header includes below here
-#include "message_model.h"
+#include "messagearea_model.h"
+#include "board_model.h"
+#include "worm_model.h"
 
 //*********************************************************
 //* defines
@@ -46,12 +48,15 @@
 //* function prototypes
 //*********************************************************
 // put prototypes below here
-message_t* createMessage();
+messagearea_t* createMessageArea();
 
-message_t* createMessageWithString(char* newString);
+void clearLineInMessageArea(messagearea_t* aMessageArea, int lineNumber);
+void clearMessageArea(messagearea_t* aMessageArea);
+void eraseMessageLineInDisplay(int lineNumber);
+void printMessageLine(messagearea_t* aMessageArea, int lineNumber);
+void printMessages(messagearea_t* aMessageArea);
+void updateStatus(messagearea_t* aMessageArea, board_t* aBoard, worm_t* aWorm);
+void setDialog(messagearea_t* aMessageArea, char* prompt1, char* prompt2);
+int printDialog(messagearea_t* aMessageArea, char* prompt1, char* prompt2);
 
-void alterMessage(message_t* aMessage, char* newString);
-// setters
-
-// getters
-#endif  // #define _MESSAGE_CONTROLLER_H
+#endif  // #define _MESSAGEAREA_CONTROLLER_H
