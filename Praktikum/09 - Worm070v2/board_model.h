@@ -103,13 +103,19 @@ typedef struct board board_t;
 board_t* allocBlankBoard();
 void freeBoard(board_t* aBoard);
 
+// initializers
+void initializeDefaultBoard(board_t* aboard);
+
 // setters
+void setLastRow(board_t* aboard);
+void setLastCol(board_t* aboard);
+void setCellContent(board_t* aboard, pos_t cellPos, boardcodes_t cellContent); 
 extern void setNumberOfFoodItems(board_t* aboard, int n);
 
 // getters
-int getNumberOfFoodItems(board_t* aboard);
-extern boardcodes_t getContentAt(board_t* aboard, pos_t pos);
 int getLastRowOnBoard(board_t* aboard);
 int getLastColOnBoard(board_t* aboard);
+extern boardcodes_t getContentAt(board_t* aboard, pos_t pos);
+int getNumberOfFoodItems(board_t* aboard);
 
 #endif  // #define _BOARD_MODEL_H

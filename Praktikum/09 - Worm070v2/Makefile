@@ -28,12 +28,12 @@ OBJECTS += debug.o
 OBJECTS += message_model.o
 OBJECTS += messagearea_model.o
 OBJECTS += message_controller.o
-OBJECTS += worm_controller.o
 OBJECTS += prep.o
 OBJECTS += board_model.o
 OBJECTS += worm_model.o
+OBJECTS += worm_controller.o
 OBJECTS += userinteraction_controller.o
-#OBJECTS += gameops.o
+#OBJECTS += gamecontroller.o
 #OBJECTS += worm.o
 
 # Please add THE target in ./bin here

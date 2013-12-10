@@ -43,8 +43,45 @@ void freeBoard(board_t* aBoard)
     free(aBoard);
 }
 
+//* initializers
+void initializeDefaultBoard(board_t* theBoard)
+{
+    // board dimensions
+    setLastRow(theBoard);
+    setLastCol(theBoard);
+
+    // Cell Content
+    int rowIndex, colIndex;
+    pos_t curCell;
+
+    for (rowIndex = 0; rowIndex <= theBoard -> last_row; rowIndex++) {
+        for(colIndex = 0; colIndex <= theBoard -> last_col; colIndex++) {
+            curCell.x = colIndex;
+            curCell.y = rowIndex;
+            setCellContent(theBoard, curCell, BC_FREE_CELL);
+        }
+    }
+
+    // food items
+    setNumberOfFoodItems(theBoard, 0);
+}
 
 //* setters
+void setLastRow(board_t* theBoard)
+{
+    theBoard -> last_row = MIN_NUMBER_OF_ROWS - MESSAGEAREA_MIN_HEIGHT;
+}
+
+void setLastCol(board_t* theBoard)
+{
+    theBoard -> last_col = MIN_NUMBER_OF_COLS;
+}
+
+void setCellContent(board_t* theBoard, pos_t cellPos, boardcodes_t cellContent)
+{
+    theBoard -> cells[cellPos.y][cellPos.x] = cellContent;
+}
+
 extern void setNumberOfFoodItems(board_t* aboard, int n)
 {
     aboard -> food_items = n;

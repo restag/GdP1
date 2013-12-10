@@ -19,11 +19,15 @@ board_t
 functions - board_model
 ********************************************
 board_t* allocBlankBoard()
-void freeBoard(board_t* aBoard)
-setNumberOfFoodItems(board_t* aboard, int n)
-getLastRowOnBoard(board_t* aboard)
-getLastColOnBoard(board_t* abaord)
-getNumberOfFoodItems(board_t* abaord)
+void freeBoard(board_t* aboard)
+void initializeDefaultBoard(board_t* aboard)
+void setLastRow(board_t* aboard)
+void setLastCol(board_t* aboard)
+void setCellContent(board_t* aboard, pos_t cellPos, boardcodes_t cellContent)
+void setNumberOfFoodItems(board_t* aboard, int n)
+int getLastRowOnBoard(board_t* aboard)
+int getLastColOnBoard(board_t* abaord)
+int getNumberOfFoodItems(board_t* abaord)
 
 ********************************************
 structs - board_model
