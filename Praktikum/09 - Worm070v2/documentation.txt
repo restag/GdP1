@@ -11,6 +11,7 @@ defines - board_model
 typedefs - board_model
 ********************************************
 boardcodes_t
+colorpairs_t
 pos_t
 board_t
 
@@ -30,20 +31,20 @@ structs - board_model
 
 
 ********************************************
-* game_controler
+* game_controller
 ********************************************
-defines - game_controler
+defines - game_controller
 ********************************************
 NAP_TIME
 
 ********************************************
-typedefs - game_controler
+typedefs - game_controller
 ********************************************
 rescodes_t
 gamestates_t
 
 ********************************************
-functions - game_controler
+functions - game_controller
 ********************************************
 rescodes_t doLevel()
 
@@ -128,6 +129,7 @@ void readUserInput(worm_t* aworm, gamestates_t* agame_state)
 
 
 ********************************************
+********************************************
 * worm
 ********************************************
 functions - worm
@@ -135,6 +137,14 @@ functions - worm
 int main()
 
 
+********************************************
+********************************************
+* worm_controller
+********************************************
+functions - worm_controller
+********************************************
+worm_t* createDefaultWorm()
+void setWormHeading(worm_t* aworm, wormheading_t dir)
 
 ********************************************
 ********************************************
@@ -147,11 +157,27 @@ WORM_INITIAL_LENGTH
 ********************************************
 typedef - worm_model
 ********************************************
+wormt_t
+worm_heading_t
 
 ********************************************
 functions - worm_model
 ********************************************
+worm_t* allocBlankWorm()
+void freeWorm(worm_t* aworm);
 
+void initializeDefaultWorm(worm_t* aworm)
+void initializeWormWithValues(worm_t* aworm, pos_t startPos, colorpairs_t wcolor) 
+
+void setCurLastIndex(worm_t* aworm, int lastIndex)
+void setHeadIndex(worm_t* aworm, int headindex)
+void setWormPos(worm_t* aworm, pos_t startPos)
+void setNextStep(worm_t* aworm, pos_t nextStep)
+
+void setWormColor(worm_t* aworm, colorpairs_t wcolor)
+
+pos_t getWormHeadPos(worm_t* aworm)
+int getWormLength(worm_t* aworm)
 
 
 ********************************************

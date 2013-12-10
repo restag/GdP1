@@ -37,10 +37,12 @@ board_t* allocBlankBoard()
     return theBoard;
 }
 
+
 void freeBoard(board_t* aBoard)
 {
     free(aBoard);
 }
+
 
 //* setters
 extern void setNumberOfFoodItems(board_t* aboard, int n)

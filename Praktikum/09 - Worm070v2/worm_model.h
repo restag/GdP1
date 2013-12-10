@@ -47,8 +47,8 @@ struct worm {
 
     // The current heading of the worm
     // These are offsets from the set {-1, 0, +1}
-    int dy;
-    int dx;
+    pos_t nextStep;
+
     // color of the worm
     colorpairs_t wcolor;
 };
@@ -65,14 +65,29 @@ typedef enum WormHeading {
 	WORM_RIGHT,
 } wormheading_t;
 
+
 // structs
 typedef struct worm worm_t;
 
 //*********************************************************
 //* function prototypes
 //*********************************************************
+
+worm_t* allocBlankWorm();
+void freeWorm(worm_t* aworm);
+
+// initializers
+void initializeDefaultWorm(worm_t*);
+void initializeWormWithValues(worm_t* aworm, pos_t startPos, colorpairs_t wcolor);
+
 // Setters
-void setWormHeading(worm_t* aworm, wormheading_t dir);
+void setCurLastIndex(worm_t* aworm, int LastIndex);
+void setMaxIndex(worm_t* aworm, int maxindex);
+void setHeadIndex(worm_t* aworm, int headindex);
+void setWormPos(worm_t* aworm, pos_t wormPos);
+void setNextStep(worm_t* aworm, pos_t nextStep);
+
+void setWormColor(worm_t* aworm, colorpairs_t wcolor);
 
 // Getters
 extern pos_t getWormHeadPos(worm_t* aworm);

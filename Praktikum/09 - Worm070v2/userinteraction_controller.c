@@ -9,6 +9,7 @@
 
 // put custom header includes below here
 #include "userinteraction_controller.h"
+#include "worm_controller.h"
 
 //*********************************************************
 //* global vars

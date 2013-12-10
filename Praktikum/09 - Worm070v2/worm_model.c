@@ -20,9 +20,11 @@
 //* header includes
 //*********************************************************
 // put framework header includes below here
+#include <stdlib.h>
 
 // put custom header includes below here
 #include "worm_model.h"
+#include "board_model.h"
 
 //*********************************************************
 //* global vars
@@ -33,27 +35,63 @@
 //*********************************************************
 //* fuctions
 //*********************************************************
-// Setters
-void setWormHeading(worm_t* aworm, wormheading_t dir)
+worm_t* allocBlankWorm()
 {
-    switch(dir) {
-        case WORM_UP :// User wants up
-            aworm -> dx= 0;
-            aworm -> dy= -1;
-            break;
-        case WORM_DOWN :// User wants down
-            aworm -> dx = 0;
-            aworm -> dy = 1;
-            break;
-        case WORM_LEFT      :// User wants left
-            aworm -> dx = -1;
-            aworm -> dy = 0;
-            break;
-        case WORM_RIGHT      :// User wants right
-            aworm -> dx = 1;
-            aworm -> dy = 0;
-            break;
-    }
+    worm_t* newWorm = malloc(sizeof(worm_t));
+
+    return newWorm;
+}
+
+
+
+void freeWorm(worm_t* aWorm)
+{
+    free(aWorm);
+}
+
+
+void initializeDefaultWorm(worm_t* aworm)
+{
+    setCurLastIndex(aworm, 0);
+    setMaxIndex(aworm, WORM_LENGTH);
+    setHeadIndex(aworm, 0);
+}
+
+void initializeWormWithValues(worm_t* aworm, pos_t startPos, colorpairs_t wcolor)
+{
+    setWormPos(aworm, startPos);
+    setWormColor(aworm, wcolor);
+}
+
+// Setters
+void setCurLastIndex(worm_t* aworm, int LastIndex)
+{
+    aworm -> cur_lastindex = LastIndex;
+}
+
+void setMaxIndex(worm_t* aworm, int maxindex)
+{
+    aworm -> maxindex = maxindex;
+}
+
+void setHeadIndex(worm_t* aworm, int headindex)
+{
+    aworm -> headindex = headindex;
+}
+
+void setWormPos(worm_t* aworm, pos_t wormPos)
+{
+    aworm -> wormpos[aworm -> headindex] = wormPos;   
+}
+
+void setNextStep(worm_t* aworm, pos_t nextStep)
+{
+    aworm -> nextStep = nextStep;
+}
+
+void setWormColor(worm_t* aworm, colorpairs_t wcolor)
+{
+    aworm -> wcolor = wcolor;
 }
 
 // Getters
