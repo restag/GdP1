@@ -73,7 +73,7 @@ void cleanupCursesApp(void)
 // Maximal LINES and COLS for the current window size are set by curses.
 // note: we do not cope with resizing in this simple examples!
 
-bool windowFitsMessageArea(void)
+bool windowFitsMessagearea(void)
 {
     if (LINES < MESSAGEAREA_MIN_HEIGHT || COLS < BOARD_MIN_WIDTH) {
         return false;
@@ -82,7 +82,7 @@ bool windowFitsMessageArea(void)
     return true;
 }
 
-bool windowFitsMessageAreaAndBoard(void)
+bool windowFitsMessageareaAndBoard(void)
 {
     if (LINES < WINDOW_MIN_HEIGHT || COLS < BOARD_MIN_WIDTH) {
         return false;

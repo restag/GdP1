@@ -1,42 +1,22 @@
-/* A simple variant of the game Snake
- * Used for teaching in classes
- *
- * This version is an alternativ version of the given code,
- * following a more strict approach of separation
- *
- *
- * Author:
- * Benjamin Ewert
- * (c) 2013
- *
- * Author of original version:
- * Franz Regensburger
- * Ingolstadt University of Applied Sciences
- * (C) 2011
- * The "prep" files are used to check the window for the game requirements
- * and setup the window for modification by the gameboard
+/* put a description in here 
  *
  */
 
-
-#ifndef _PREP_H
-#define _PREP_H
+#ifndef _MESSAGEAREA_CONTROLLER_H
+#define _MESSAGEAREA_CONTROLLER_H
 //*********************************************************
 //* header includes 
 //*********************************************************
 // put framework header includes below here
-#include <stdbool.h>
 
 // put custom header includes below here
 #include "messagearea_model.h"
-#include "board_model.h"
 
 
 //*********************************************************
 //* defines
 //*********************************************************
-// board dimensions
-#define WINDOW_MIN_HEIGHT (BOARD_MIN_HEIGHT + MESSAGEAREA_MIN_HEIGHT)    // The guaranteed number of rows available for the board
+// put defines below here
 
 
 //*********************************************************
@@ -50,6 +30,7 @@
 //*********************************************************
 // put typedefs for enums here
 
+
 //*********************************************************
 //* structs
 //*********************************************************
@@ -59,19 +40,32 @@
 //*********************************************************
 //* struct type definitions
 //*********************************************************
-// put typedefs for structs here
+// put struct typedefs below here
+
 
 //*********************************************************
 //* function prototypes
 //*********************************************************
-// Standard curses initialization and cleanup
-void initializeCursesApp(void); 
-void cleanupCursesApp(void);
+// put prototypes below here
+// initializing & freeing
+messagearea_t* initializeMessagearea(void);
+void freeMessageareaAndContent(messagearea_t* aMessagearea);
 
-// pregame checks
-bool windowFitsMessagearea(void);
-bool windowFitsMessageareaAndBoard(void);
+// management
+void moveMessageareaToIndex(messagearea_t* aMessagearea, int lineIndex);
 
-// pre-game setup
-void initializeColors(void);
-#endif  // #define _PREP_H
+// display interaction
+void eraseMessageLineInDisplay(messagearea_t* aMessagearea, int lineNumber);
+void printMessageLine(messagearea_t* aMessageArea, int lineNumber);
+
+
+/*
+void clearLineInMessageArea(messagearea_t* aMessageArea, int lineNumber);
+void clearMessageArea(messagearea_t* aMessageArea);
+
+void printMessages(messagearea_t* aMessageArea);
+void updateStatus(messagearea_t* aMessageArea, board_t* aBoard, worm_t* aWorm);
+void setDialog(messagearea_t* aMessageArea, char* prompt1, char* prompt2);
+int printDialog(messagearea_t* aMessageArea, char* prompt1, char* prompt2);
+*/
+#endif  // #define _MESSAGEAREA_CONTROLLER_H

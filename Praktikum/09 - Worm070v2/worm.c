@@ -59,15 +59,15 @@ int main()
 
     // * pregame checks
     // check the window dimesions
-    if (windowFitsMessageArea()){
+    if (windowFitsMessagearea()){
         // do visual setup
         initializeColors();
-        //initializeMessageArea();
+        messagearea_t* theMessagearea = initializeMessagearea();
 
         // check if game can be run
-        if (windowFitsMessageAreaAndBoard()){
+        if (windowFitsMessageareaAndBoard()){
             // all good, do pre-game setup
-            
+            moveMessageareaToIndex(theMessagearea, BOARD_MIN_HEIGHT);
 
 
             // run game

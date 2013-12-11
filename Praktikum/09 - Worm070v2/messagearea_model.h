@@ -31,6 +31,7 @@
 //*********************************************************
 // put defines below here
 #define MESSAGEAREA_MIN_HEIGHT 4
+#define MESSAGEAREA_MAX_MESSAGES 3
 #define MESSAGEAREA_BLANKS_RESERVED_LEFT 1
 #define MESSAGEAREA_BLANKS_RESERVED_RIGHT 1
 
@@ -39,13 +40,17 @@
 //* enums
 //*********************************************************
 // put enums below here
-
+enum MessageCodes {
+    MC_STATUS,
+    MC_WON,
+    MC_ERROR,
+};
 
 //*********************************************************
 //* enum type definitions
 //*********************************************************
 // put typedefs for enums here
-
+typedef enum MessageCodes messagecodes_t;
 
 //*********************************************************
 //* structs
@@ -53,7 +58,8 @@
 // put structs below here
 struct MessageArea {
     int baseIndex;
-    message_t* messageLine[MESSAGEAREA_MIN_HEIGHT - 1];
+    messagecodes_t messageCode;
+    message_t* messageLine[MESSAGEAREA_MAX_MESSAGES];
 };
 
 
@@ -68,9 +74,18 @@ typedef struct MessageArea messagearea_t;
 //* function prototypes
 //*********************************************************
 // put prototypes below here
+// allocation & freeing
+messagearea_t* allocMessagearea(void);
+void freeMessagearea(messagearea_t* aMessagearea);
 
 // setters
+void setMessageareaBaseIndex(messagearea_t* aMessagearea, int lineIndex);
+void setMessagecode(messagearea_t* aMessagearea, messagecodes_t aMessagecode);
+void setMessageAtLine(messagearea_t* aMessagearea, message_t* aMessage, int lineNumber);
 
 // getters
+int getMessageareaBaseIndex(messagearea_t* aMessagearea);
+messagecodes_t getMessagecode(messagearea_t* aMessagearea);
+message_t* getMessageAtLine(messagearea_t* aMessagearea, int lineNumber);
 
 #endif  // #define _MESSAGEAREA_MODEL_H
