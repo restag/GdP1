@@ -35,6 +35,10 @@ board_t* createGameBoard()
     return theBoard;
 }
 
+void decrementNumberOfFoodItems(board_t* theboard)
+{
+    setNumberOfFoodItems(theboard, getNumberOfFoodItems(theboard) - 1);
+}
 //*********************************************************
 //* setters
 

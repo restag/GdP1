@@ -12,33 +12,33 @@
 
 # Please add all header files in ./ here
 HEADERS += debug.h
-HEADERS += message_model.h
-HEADERS += messagearea_model.h
-HEADERS += prep.h
-HEADERS += board_model.h
-HEADERS += worm_model.h
-HEADERS += message_controller.h
-HEADERS += worm_controller.h
-HEADERS += messagearea_controller.h
-HEADERS += board_controller.h
-HEADERS += game_controller.h
-HEADERS += userinteraction_controller.h
-#HEADERS += worm.h
+#HEADERS += message_model.h
+#HEADERS += messagearea_model.h
+#HEADERS += prep.h
+#HEADERS += board_model.h
+#HEADERS += worm_model.h
+#HEADERS += message_controller.h
+#HEADERS += worm_controller.h
+#HEADERS += messagearea_controller.h
+#HEADERS += board_controller.h
+#HEADERS += game_controller.h
+#HEADERS += userinteraction_controller.h
+HEADERS += worm.h
 
 # Please add all object files in ./ here
 OBJECTS += debug.o
-OBJECTS += message_model.o
-OBJECTS += messagearea_model.o
-OBJECTS += message_controller.o
-OBJECTS += prep.o
-OBJECTS += board_model.o
-OBJECTS += worm_model.o
-OBJECTS += messagearea_controller.o
-OBJECTS += worm_controller.o
-OBJECTS += board_controller.o
-OBJECTS += userinteraction_controller.o
+#OBJECTS += message_model.o
+#OBJECTS += messagearea_model.o
+#OBJECTS += message_controller.o
+#OBJECTS += prep.o
+#OBJECTS += board_model.o
+#OBJECTS += worm_model.o
+#OBJECTS += messagearea_controller.o
+#OBJECTS += worm_controller.o
+#OBJECTS += board_controller.o
+#OBJECTS += userinteraction_controller.o
 #OBJECTS += gamecontroller.o
-#OBJECTS += worm.o
+OBJECTS += worm.o
 
 # Please add THE target in ./bin here
 TARGET += $(BIN_DIR)/worm

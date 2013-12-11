@@ -47,8 +47,11 @@
 //* function prototypes
 //*********************************************************
 // put prototypes below here
+board_t* createGameBoard();
+void decrementNumberOfFoodItems(board_t* aboard);
 
-// setters
+// initializers
+rescodes_t initializeBoard();
 
 // getters
 #endif  // #define _BOARD_CONTROLLER_H
