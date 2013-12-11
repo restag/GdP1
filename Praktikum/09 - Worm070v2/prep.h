@@ -13,23 +13,30 @@
  * Franz Regensburger
  * Ingolstadt University of Applied Sciences
  * (C) 2011
+ * The "prep" files are used to check the window for the game requirements
+ * and setup the window for modification by the gameboard
  *
  */
 
-#ifndef _WORM_H
-#define _WORM_H
+
+#ifndef _PREP_H
+#define _PREP_H
 //*********************************************************
 //* header includes 
 //*********************************************************
 // put framework header includes below here
+#include <stdbool.h>
 
 // put custom header includes below here
+#include "messagearea_model.h"
+#include "board_model.h"
 
 
 //*********************************************************
 //* defines
 //*********************************************************
-// put defines below here
+// board dimensions
+#define WINDOW_MIN_HEIGHT (BOARD_MIN_HEIGHT + MESSAGEAREA_MIN_HEIGHT)    // The guaranteed number of rows available for the board
 
 
 //*********************************************************
@@ -43,7 +50,6 @@
 //*********************************************************
 // put typedefs for enums here
 
-
 //*********************************************************
 //* structs
 //*********************************************************
@@ -53,11 +59,19 @@
 //*********************************************************
 //* struct type definitions
 //*********************************************************
-// put struct typedefs below here
-
+// put typedefs for structs here
 
 //*********************************************************
 //* function prototypes
 //*********************************************************
-// put prototypes below here
-#endif  // #define _WORM_H
+// Standard curses initialization and cleanup
+void initializeCursesApp(void); 
+void cleanupCursesApp(void);
+
+// pregame checks
+bool windowFitsMessageArea(void);
+bool windowFitsMessageAreaAndBoard(void);
+
+// pre-game setup
+void initializeColors(void);
+#endif  // #define _PREP_H

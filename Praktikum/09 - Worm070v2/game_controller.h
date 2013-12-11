@@ -16,8 +16,8 @@
  *
  */
 
-#ifndef _WORM_H
-#define _WORM_H
+#ifndef _GAME_CONTROLER_H
+#define _GAME_CONTROLER_H
 //*********************************************************
 //* header includes 
 //*********************************************************
@@ -30,18 +30,35 @@
 //* defines
 //*********************************************************
 // put defines below here
+// game setting
+#define NAP_TIME 100            // Time in milliseconds to sleep between updates of display
 
 
 //*********************************************************
 //* enums
 //*********************************************************
 // put enums below here
-
-
+enum ResCodes {
+	RES_OK,
+	RES_FAILED,
+    RES_INTERNAL_ERROR,
+};
+/*
+// Game state codes
+enum GameStates {
+	WORM_GAME_ONGOING,
+    WORM_CRASH,         // Crashed into a barrier
+	WORM_OUT_OF_BOUNDS,	// left screen
+	WORM_GAME_QUIT,		// User likes to quit
+    WORM_CROSSING,      // Worm bit itself
+};
+*/
 //*********************************************************
 //* enum type definitions
 //*********************************************************
 // put typedefs for enums here
+typedef enum ResCodes rescodes_t;
+//typedef enum GameStates gamestates_t;
 
 
 //*********************************************************
@@ -60,4 +77,9 @@
 //* function prototypes
 //*********************************************************
 // put prototypes below here
-#endif  // #define _WORM_H
+// run the level
+//rescodes_t doLevel();
+
+
+#endif  // #define _GAME_CONTROLER_H
+

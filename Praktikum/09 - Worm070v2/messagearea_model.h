@@ -16,20 +16,23 @@
  *
  */
 
-#ifndef _WORM_H
-#define _WORM_H
+#ifndef _MESSAGEAREA_MODEL_H
+#define _MESSAGEAREA_MODEL_H
 //*********************************************************
 //* header includes 
 //*********************************************************
 // put framework header includes below here
 
 // put custom header includes below here
-
+#include "message_model.h"
 
 //*********************************************************
 //* defines
 //*********************************************************
 // put defines below here
+#define MESSAGEAREA_MIN_HEIGHT 4
+#define MESSAGEAREA_BLANKS_RESERVED_LEFT 1
+#define MESSAGEAREA_BLANKS_RESERVED_RIGHT 1
 
 
 //*********************************************************
@@ -48,16 +51,26 @@
 //* structs
 //*********************************************************
 // put structs below here
+struct MessageArea {
+    int baseIndex;
+    message_t* messageLine[MESSAGEAREA_MIN_HEIGHT - 1];
+};
 
 
 //*********************************************************
 //* struct type definitions
 //*********************************************************
 // put struct typedefs below here
+typedef struct MessageArea messagearea_t;
 
 
 //*********************************************************
 //* function prototypes
 //*********************************************************
 // put prototypes below here
-#endif  // #define _WORM_H
+
+// setters
+
+// getters
+
+#endif  // #define _MESSAGEAREA_MODEL_H

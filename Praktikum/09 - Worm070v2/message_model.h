@@ -1,23 +1,9 @@
-/* A simple variant of the game Snake
- * Used for teaching in classes
- *
- * This version is an alternativ version of the given code,
- * following a more strict approach of separation
- *
- *
- * Author:
- * Benjamin Ewert
- * (c) 2013
- *
- * Author of original version:
- * Franz Regensburger
- * Ingolstadt University of Applied Sciences
- * (C) 2011
+/* put a description in here 
  *
  */
 
-#ifndef _WORM_H
-#define _WORM_H
+#ifndef _MESSAGE_MODEL_H
+#define _MESSAGE_MODEL_H
 //*********************************************************
 //* header includes 
 //*********************************************************
@@ -48,16 +34,25 @@
 //* structs
 //*********************************************************
 // put structs below here
-
+struct Message {
+    char* msgString;
+};
 
 //*********************************************************
 //* struct type definitions
 //*********************************************************
 // put struct typedefs below here
-
+typedef struct Message message_t;
 
 //*********************************************************
 //* function prototypes
 //*********************************************************
 // put prototypes below here
-#endif  // #define _WORM_H
+// allocation & freeing
+
+// initializers
+
+// setters
+
+// getters
+#endif  // #define _MESSAGE_MODEL_H
