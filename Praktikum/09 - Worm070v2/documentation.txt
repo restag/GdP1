@@ -78,6 +78,17 @@ functions - message_model
 ********************************************
 functions - messagearea_controller
 ********************************************
+messagearea_t* initializeMessagearea()
+void freeMessageareaAndContent(messagearea_t* aMessagearea)
+void moveMessageareaToIndex(messagearea_t* aMessagearea, int lineIndex)
+void clearLineInMessageArea(messagearea_t* aMessagearea, int lineNumber)
+void setAllMessagesWithStrings(messagearea_t* aMessagearea, char* string1, char* string2, char* string3)
+void updateWormStatus(messagearea_t* aMessagearea, board_t* aBoard, worm_t* aWorm)
+void printMessagearea(messagearea_t* aMessagearea)
+int printDialog(messagearea_t* aMessagearea, char* promt1, char* prompt2, char* prompt3)
+void eraseMessagelineInDisplay(messagearea_t* aMessagearea, int lineNumber)
+void printMessageline(messagearea_t* aMessagearea, int lineNumber);
+AllMessage
 
 ********************************************
 * messagearea_model
