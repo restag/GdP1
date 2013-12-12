@@ -2,15 +2,15 @@
  *
  */
 
-#ifndef _MESSAGE_MODEL_H
-#define _MESSAGE_MODEL_H
+#ifndef _MESSAGE_CONTROLLER_H
+#define _MESSAGE_CONTROLLER_H
 //*********************************************************
 //* header includes 
 //*********************************************************
 // put framework header includes below here
 
 // put custom header includes below here
-
+#include "message_model.h"
 
 //*********************************************************
 //* defines
@@ -34,27 +34,28 @@
 //* structs
 //*********************************************************
 // put structs below here
-struct Message {
-    char* msgString;
-};
+
 
 //*********************************************************
 //* struct type definitions
 //*********************************************************
 // put struct typedefs below here
-typedef struct Message message_t;
+
 
 //*********************************************************
 //* function prototypes
 //*********************************************************
 // put prototypes below here
-// allocation & freeing
-message_t* allocMessage();
-void freeMessage(message_t* aMessage);
+// initalizing & freeing
+message_t* initializeMessage(void);
+message_t* initializeMessageWithString(char* aString);
+void freeMessageAndContent(message_t* aMessage);
 
-// initializers
 
+
+
+void alterMessage(message_t* aMessage, char* newString);
 // setters
 
 // getters
-#endif  // #define _MESSAGE_MODEL_H
+#endif  // #define _MESSAGE_CONTROLLER_H

@@ -1,4 +1,18 @@
-/* put a description in here 
+/* A simple variant of the game Snake
+ * Used for teaching in classes
+ *
+ * This version is an alternativ version of the given code,
+ * following a more strict approach of separation
+ *
+ *
+ * Author:
+ * Benjamin Ewert
+ * (c) 2013
+ *
+ * Author of original version:
+ * Franz Regensburger
+ * Ingolstadt University of Applied Sciences
+ * (C) 2011
  *
  */
 
@@ -11,6 +25,8 @@
 
 // put custom header includes below here
 #include "messagearea_model.h"
+#include "worm_model.h"
+#include "board_model.h"
 
 
 //*********************************************************
@@ -51,21 +67,22 @@
 messagearea_t* initializeMessagearea(void);
 void freeMessageareaAndContent(messagearea_t* aMessagearea);
 
-// management
+// area management
 void moveMessageareaToIndex(messagearea_t* aMessagearea, int lineIndex);
 
+// content management
+void clearLineInMessagearea(messagearea_t* aMessagearea, int lineNumber);
+void setAllMessagesWithStrings(messagearea_t* aMessagearea, char* string1, char* string2, char* string3);
+
+// prepping for output
+void updateWormStatus(messagearea_t* aMessagearea, board_t* aBoard, worm_t* aWorm);
+
+// display management
+void printMessagearea(messagearea_t* aMessagearea);
+int printDialog(messagearea_t* aMessagearea, char* prompt1, char* prompt2, char* prompt3);
+
 // display interaction
-void eraseMessageLineInDisplay(messagearea_t* aMessagearea, int lineNumber);
-void printMessageLine(messagearea_t* aMessageArea, int lineNumber);
+void eraseMessagelineInDisplay(messagearea_t* aMessagearea, int lineNumber);
+void printMessageline(messagearea_t* aMessagearea, int lineNumber);
 
-
-/*
-void clearLineInMessageArea(messagearea_t* aMessageArea, int lineNumber);
-void clearMessageArea(messagearea_t* aMessageArea);
-
-void printMessages(messagearea_t* aMessageArea);
-void updateStatus(messagearea_t* aMessageArea, board_t* aBoard, worm_t* aWorm);
-void setDialog(messagearea_t* aMessageArea, char* prompt1, char* prompt2);
-int printDialog(messagearea_t* aMessageArea, char* prompt1, char* prompt2);
-*/
 #endif  // #define _MESSAGEAREA_CONTROLLER_H
