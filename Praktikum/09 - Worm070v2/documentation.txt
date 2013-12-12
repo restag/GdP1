@@ -71,7 +71,11 @@ message_t
 ********************************************
 functions - message_model
 ********************************************
-
+message_t* allocMessage()
+void freeMessage(message_t* aMessage)
+void freeMsgString(char* aMsgString)
+void setMsgString(message_t* aMessage, char* aMsgString)
+char* getMsgString(message_t* aMessage)
 
 ********************************************
 * messagearea_controller
