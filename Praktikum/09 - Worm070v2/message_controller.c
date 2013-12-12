@@ -41,3 +41,17 @@ void alterMessage(message_t* aMessage, char* newString)
 {
     setMsgString(aMessage, newString);
 }
+
+
+void clearMsgString(message_t* aMessage)
+{
+    // check if exists
+    if (aMessage -> msgString != NULL) {
+        free(aMessage -> msgString);
+    }
+    // free the old one
+    clearMsgString(theMessage);
+
+
+}
+

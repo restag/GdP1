@@ -50,12 +50,4 @@
 message_t* initializeMessage(void);
 message_t* initializeMessageWithString(char* aString);
 void freeMessageAndContent(message_t* aMessage);
-
-
-
-
-void alterMessage(message_t* aMessage, char* newString);
-// setters
-
-// getters
 #endif  // #define _MESSAGE_CONTROLLER_H

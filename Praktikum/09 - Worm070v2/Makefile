@@ -30,7 +30,7 @@ HEADERS += worm.h
 # Please add all object files in ./ here
 OBJECTS += debug.o
 OBJECTS += prep.o
-#OBJECTS += message_model.o
+OBJECTS += message_model.o
 OBJECTS += messagearea_model.o
 #OBJECTS += board_model.o
 #OBJECTS += worm_model.o

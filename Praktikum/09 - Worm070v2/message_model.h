@@ -49,12 +49,13 @@ typedef struct Message message_t;
 //*********************************************************
 // put prototypes below here
 // allocation & freeing
-message_t* allocMessage();
+message_t* allocMessage(void);
 void freeMessage(message_t* aMessage);
-
-// initializers
+void freeMsgString(char* aMsgString);
 
 // setters
+void setMsgString(message_t* aMessage, char* aString);
 
 // getters
+char* getMsgString(message_t* aMessage);
 #endif  // #define _MESSAGE_MODEL_H
