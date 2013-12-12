@@ -58,6 +58,17 @@ functions - game_controller
 
 
 ********************************************
+********************************************
+* message_controller
+********************************************
+functions - message_controller
+********************************************
+message_t* initializeMessager()
+message_t* initializeMessageWithString(char* aString)
+void freeMessageAndContent(message_t* aMessage)
+void alterMessage(message_t* aMessage, char* newString)
+
+********************************************
 * message_model
 ********************************************
 defines - message_model

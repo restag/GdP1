@@ -1,4 +1,18 @@
-/* put a description in here 
+/* A simple variant of the game Snake
+ * Used for teaching in classes
+ *
+ * This version is an alternativ version of the given code,
+ * following a more strict approach of separation
+ *
+ *
+ * Author:
+ * Benjamin Ewert
+ * (c) 2013
+ *
+ * Author of original version:
+ * Franz Regensburger
+ * Ingolstadt University of Applied Sciences
+ * (C) 2011
  *
  */
 
@@ -21,37 +35,48 @@
 //* fuctions
 //*********************************************************
 // put function codes below here
-message_t* createMessage()
+//*********************************************************
+//* initializing & freeing
+message_t* initializeMessage()
 {
-    message_t* theMessage = allocBlankMessage();
+    // reserve memory
+    message_t* newMessage = allocMessage();
 
-    return theMessage;
+    // asign default value
+    setMsgString(newMessage, NULL);
+
+    return newMessage;
 }
 
-message_t* createMessageWithString(char* newString)
+message_t* initializeMessageWithString(char* newString)
 {
-    message_t* newMessage = createMessage();
+    message_t* newMessage = initializeMessage();
     
     alterMessage(newMessage, newString);
 
     return newMessage;
 }
 
-void alterMessage(message_t* aMessage, char* newString)
+void freeMessageAndContent(message_t* theMessage)
 {
-    setMsgString(aMessage, newString);
+    // free content
+    freeMsgString(theMessage -> msgString);
+
+    // free message
+    freeMessage(theMessage);
 }
 
 
-void clearMsgString(message_t* aMessage)
+//*********************************************************
+//* management
+void alterMessage(message_t* theMessage, char* newString)
 {
     // check if exists
-    if (aMessage -> msgString != NULL) {
-        free(aMessage -> msgString);
+    if (theMessage -> msgString != NULL) {
+        //free the old one
+        freeMsgString(theMessage -> msgString);
     }
-    // free the old one
-    clearMsgString(theMessage);
-
-
+    
+    // set the new one
+    setMsgString(theMessage, newString);
 }
-
