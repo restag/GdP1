@@ -72,25 +72,22 @@ typedef struct worm worm_t;
 //*********************************************************
 //* function prototypes
 //*********************************************************
-
-worm_t* allocWorm();
-void freeWorm(worm_t* aworm);
-
-// initializers
-void initializeDefaultWorm(worm_t*);
-void initializeWormWithValues(worm_t* aworm, pos_t startPos, colorpairs_t wcolor);
+// put function prototypes here
+//*********************************************************
+//* allocating & freeing
+worm_t* allocWorm(void);
+void freeWorm(worm_t* aWorm);
 
 // Setters
-void setCurLastIndex(worm_t* aworm, int LastIndex);
-void setMaxIndex(worm_t* aworm, int maxindex);
-void setHeadIndex(worm_t* aworm, int headindex);
-void setWormPos(worm_t* aworm, pos_t wormPos);
-void setNextStep(worm_t* aworm, pos_t nextStep);
-
-void setWormColor(worm_t* aworm, colorpairs_t wcolor);
+void setCurLastIndex(worm_t* aWorm, int lastindex);
+void setMaxIndex(worm_t* aWorm, int maxindex);
+void setHeadIndex(worm_t* aWorm, int headindex);
+void setWormpos(worm_t* aWorm, pos_t wormpos);
+void setNextStep(worm_t* aWorm, pos_t nextStep);
+void setWormColor(worm_t* aWorm, colorpairs_t wcolor);
 
 // Getters
-extern pos_t getWormHeadpos(worm_t* aworm);
-int getWormLength(worm_t* aworm);
+extern pos_t getWormHeadpos(worm_t* aWorm);
+int getWormLength(worm_t* aWorm);
 
 #endif  // #define _WORM_MODEL_H

@@ -182,14 +182,28 @@ worm_model
 ********************************************
 defines - worm_model
 ********************************************
+WORM_LENGTH
+WORM_INITIAL_LENGTH
 
 ********************************************
 typedef - worm_model
 ********************************************
+worm_t
+wormheading_t
 
 ********************************************
 functions - worm_model
 ********************************************
+worm_t* allocWorm()
+void freeWorm(worm_t* aWorm)
+void setCurLastIndex(worm_t* aWorm, int lastIndex)
+void setMaxIndex(worm_t* aWorm, int maxIndex)
+void setHeadIndex(worm_t* aWorm, int headIndex)
+void setWormpos(worm_t* aWorm, pos_t wormPos)
+void setNextStep(worm_t* aWorm, pos_t nextStep)
+void setWormColor(worm_t* aWorm, colorpairs_t wcolor)
+pos_t getWormHeadpos(worm_t* aWorm)
+int getWormLength(worm_t* aWorm)
 
 
 ********************************************

@@ -35,14 +35,13 @@
 //*********************************************************
 //* fuctions
 //*********************************************************
-worm_t* allocWorm()
+// allocating & freeing
+worm_t* allocWorm(void)
 {
     worm_t* newWorm = malloc(sizeof(worm_t));
 
     return newWorm;
 }
-
-
 
 void freeWorm(worm_t* theWorm)
 {
@@ -50,27 +49,10 @@ void freeWorm(worm_t* theWorm)
 }
 
 
-void initializeDefaultWorm(worm_t* theWorm)
-{
-    setCurLastIndex(theWorm, 0);
-    setMaxIndex(theWorm, WORM_LENGTH);
-    setHeadIndex(theWorm, 0);
-}
-
-void initializeWormWithValues(worm_t* theWorm, pos_t startPos, colorpairs_t wcolor)
-{
-    // initialize default Values
-    initializeDefaultWorm(theWorm);
-
-    // initialize custom values
-    setWormPos(theWorm, startPos);
-    setWormColor(theWorm, wcolor);
-}
-
 // Setters
-void setCurLastIndex(worm_t* theWorm, int LastIndex)
+void setCurLastIndex(worm_t* theWorm, int lastindex)
 {
-    theWorm -> cur_lastindex = LastIndex;
+    theWorm -> cur_lastindex = lastindex;
 }
 
 void setMaxIndex(worm_t* theWorm, int maxindex)
@@ -83,9 +65,9 @@ void setHeadIndex(worm_t* theWorm, int headindex)
     theWorm -> headindex = headindex;
 }
 
-void setWormPos(worm_t* theWorm, pos_t wormPos)
+void setWormpos(worm_t* theWorm, pos_t wormpos)
 {
-    theWorm -> wormpos[theWorm -> headindex] = wormPos;   
+    theWorm -> wormpos[theWorm -> headindex] = wormpos;   
 }
 
 void setNextStep(worm_t* theWorm, pos_t nextStep)
@@ -97,6 +79,7 @@ void setWormColor(worm_t* theWorm, colorpairs_t wcolor)
 {
     theWorm -> wcolor = wcolor;
 }
+
 
 // Getters
 extern pos_t getWormHeadPos(worm_t* theWorm)
