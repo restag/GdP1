@@ -50,7 +50,11 @@ void setMessagecode(messagearea_t* theMessagearea, messagecodes_t theMessagecode
 
 void setMessageAtLine(messagearea_t* theMessagearea, message_t* theMessage, int lineNumber)
 {
-    theMessagearea -> messageLine[lineNumber - 1] = theMessage;
+    if (theMessage != NULL) {
+        theMessagearea -> messageLine[lineNumber - 1] = theMessage;
+    } else {
+        theMessagearea -> messageLine[lineNumber - 1] = NULL;
+    }
 }
 
 //*********************************************************

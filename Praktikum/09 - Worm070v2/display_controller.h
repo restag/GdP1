@@ -16,17 +16,15 @@
  *
  */
 
-#ifndef _MESSAGEAREA_CONTROLLER_H
-#define _MESSAGEAREA_CONTROLLER_H
+#ifndef _DISPLAY_CONTROLLER_H
+#define _DISPLAY_CONTROLLER_H
 //*********************************************************
 //* header includes 
 //*********************************************************
 // put framework header includes below here
 
+
 // put custom header includes below here
-#include "messagearea_model.h"
-#include "worm_model.h"
-#include "board_model.h"
 
 
 //*********************************************************
@@ -63,28 +61,13 @@
 //* function prototypes
 //*********************************************************
 // put prototypes below here
-// initializing & freeing
-messagearea_t* initializeMessagearea(void);
-void freeMessageareaAndContent(messagearea_t* aMessagearea);
+// color detection
+colorpairs_t detectColor(char symbol);
 
-// area management
-void moveMessageareaToIndex(messagearea_t* aMessagearea, int lineIndex);
+// single item placement
+void placeItemInDisplay(pos_t index, char symbol);
 
-// content management
-void clearLineInMessagearea(messagearea_t* aMessagearea, int lineNumber);
-void setAllMessagesWithStrings(messagearea_t* aMessagearea, char* string1, char* string2, char* string3);
-
-// prepping for output
-void updateWormStatus(messagearea_t* aMessagearea, board_t* aBoard, worm_t* aWorm);
-
-// display management
-void printMessagearea(messagearea_t* aMessagearea);
-int printDialog(messagearea_t* aMessagearea, char* prompt1, char* prompt2);
-void printMessageareaBorder(messagearea_t* Messagearea);
-void eraseMessagelineInDisplay(messagearea_t* aMessagearea, int lineNumber);
-
-// display interaction
-void fillMessageareaLineWithSymbol(messagearea_t* aMessagearea, int lineNumber, char symbol);
-void printMessageline(messagearea_t* aMessagearea, int lineNumber);
+// line placement
+void fillDisplaylineWithSymbol(int lineIndex, char symbol);
 
 #endif  // #define _MESSAGEAREA_CONTROLLER_H

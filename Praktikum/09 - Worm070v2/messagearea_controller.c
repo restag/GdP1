@@ -27,9 +27,11 @@
 #include <stdlib.h>
 
 // put custom header includes below here
+#include "board_model.h"
 #include "messagearea_controller.h"
 #include "message_controller.h"
 #include "game_controller.h"
+#include "display_controller.h"
 
 //*********************************************************
 //* global vars
@@ -56,7 +58,9 @@ messagearea_t* initializeMessagearea(void)
 
     // set to default position
     setMessageareaBaseIndex(newMessagearea, 0);
-    newMessagearea -> baseIndex = 0;
+
+    //print border
+    printMessageareaBorder(newMessagearea);
 
     return newMessagearea;
 }
@@ -80,7 +84,14 @@ void freeMessageareaAndContent(messagearea_t* theMessagearea)
 //* area management
 void moveMessageareaToIndex(messagearea_t* theMessagearea, int lineIndex)
 {
+    // remove old border
+    eraseMessagelineInDisplay(theMessagearea, theMessagearea->baseIndex);
+
+    // set new position
     setMessageareaBaseIndex(theMessagearea, lineIndex);
+
+    // print new border
+    printMessageareaBorder(theMessagearea);
 }
 
 
@@ -122,8 +133,10 @@ void setAllMessagesWithStrings(messagearea_t* theMessagearea, char* string1, cha
 //* prepping for output
 void updateWormStatus(messagearea_t* theMessagearea, board_t* theBoard, worm_t* theWorm)
 {
+    pos_t headpos;
     
-    pos_t headpos = getWormHeadpos(theWorm);
+    headpos = getWormHeadpos(theWorm);
+
     char* statusMessage[MESSAGEAREA_MAX_MESSAGES];
     char* buff[MESSAGEAREA_MAX_MESSAGES];
 
@@ -170,12 +183,12 @@ void printMessagearea(messagearea_t* theMessagearea)
             printMessageline(theMessagearea, i + 1);
         } else {
             // messageline is blank, so make sure the displayline is empty
-            eraseMessagelineInDisplay(theMessagearea, i + 1);
+            eraseMessagelineInDisplay(theMessagearea, theMessagearea->baseIndex + i + 1);
         }
     }
 }
 
-int printDialog(messagearea_t* theMessagearea, char* prompt1, char* prompt2, char* prompt3)
+int printDialog(messagearea_t* theMessagearea, char* prompt1, char* prompt2)
 {
     // check if first prompt is present, otherwise return error
     if (prompt1 == NULL) {
@@ -183,7 +196,7 @@ int printDialog(messagearea_t* theMessagearea, char* prompt1, char* prompt2, cha
     }
 
     // assign messagestrings
-    setAllMessagesWithStrings(theMessagearea, prompt1, prompt2, prompt3);
+    setAllMessagesWithStrings(theMessagearea, prompt1, prompt2, "Bitte Taste drücken.");
     printMessagearea(theMessagearea);
 
     // refresh the display
@@ -195,32 +208,50 @@ int printDialog(messagearea_t* theMessagearea, char* prompt1, char* prompt2, cha
     nodelay(stdscr, TRUE);
 
     // clear messagearea
-    setAllMessagesWithStrings(theMessagearea, NULL, NULL, NULL);
-    printMessagearea(theMessagearea);
+    freeMessageareaAndContent(theMessagearea);
 
-    // refresh diisplay
+    // refresh display
     refresh();
 
     return ch;
 }
 
+void printMessageareaBorder(messagearea_t* theMessagearea)
+{
+    int i;
+    pos_t leftBorder;
+    pos_t rightBorder;
+
+    leftBorder.x = 0;
+    rightBorder.x = BOARD_MIN_WIDTH;
+
+    for ( i = 0; i < MESSAGEAREA_MIN_HEIGHT; i++) {
+        leftBorder.y = i;
+        rightBorder.y = i;
+        placeItemInDisplay(leftBorder, SYMBOL_BORDER_MESSAGEAREA);
+        placeItemInDisplay(rightBorder, SYMBOL_BORDER_MESSAGEAREA);
+
+        if ( i == 0 || i == MESSAGEAREA_MIN_HEIGHT - 1) {
+            fillMessageareaLineWithSymbol(theMessagearea, i, SYMBOL_BORDER_MESSAGEAREA);
+        }
+    }
+}
+
+void eraseMessagelineInDisplay(messagearea_t* theMessagearea, int lineNumber)
+{
+    // print to curses display buffer
+    fillMessageareaLineWithSymbol(theMessagearea, lineNumber, SYMBOL_FREE_CELL);
+}
+
 
 //*********************************************************
 //* display interaction
-void eraseMessagelineInDisplay(messagearea_t* theMessagearea, int lineNumber)
+void fillMessageareaLineWithSymbol(messagearea_t* theMessagearea, int lineNumber, char symbol)
 {
-    int i;
-
-    // move to line in curses display buffer
-    move(theMessagearea -> baseIndex + lineNumber, 0);
-
-    // print to curses display buffer
-    for (i = 1; i <= COLS; i++) {
-        addch(' ');
-    }
+    fillDisplaylineWithSymbol(theMessagearea->baseIndex + lineNumber, symbol);
 }
 
 void printMessageline(messagearea_t* theMessagearea, int lineNumber)
 {
-    mvaddstr(theMessagearea -> baseIndex + lineNumber, 1, theMessagearea -> messageLine[lineNumber] -> msgString);
+    mvaddstr(theMessagearea -> baseIndex + lineNumber, 1 + MESSAGEAREA_BLANKS_RESERVED_LEFT, theMessagearea -> messageLine[lineNumber -1] -> msgString);
 }

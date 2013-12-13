@@ -87,7 +87,12 @@ void setNextStep(worm_t* aWorm, pos_t nextStep);
 void setWormColor(worm_t* aWorm, colorpairs_t wcolor);
 
 // Getters
-extern pos_t getWormHeadpos(worm_t* aWorm);
+int getCurLastIndex(worm_t* aWorm);
+int getMaxIndex(worm_t* aWorm);
+int getHeadindex(worm_t* aWorm);
+pos_t getWormposAtIndex(worm_t* aWorm, int index);
+pos_t getNextStep(worm_t* aWorm);
+pos_t getWormHeadpos(worm_t* aWorm);
 int getWormLength(worm_t* aWorm);
 
 #endif  // #define _WORM_MODEL_H

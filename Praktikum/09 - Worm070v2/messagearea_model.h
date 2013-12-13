@@ -30,11 +30,14 @@
 //* defines
 //*********************************************************
 // put defines below here
-#define MESSAGEAREA_MIN_HEIGHT 4
+// dimensions
+#define MESSAGEAREA_MIN_HEIGHT 5
 #define MESSAGEAREA_MAX_MESSAGES 3
 #define MESSAGEAREA_BLANKS_RESERVED_LEFT 1
 #define MESSAGEAREA_BLANKS_RESERVED_RIGHT 1
 
+// symbols
+#define SYMBOL_BORDER_MESSAGEAREA '*'
 
 //*********************************************************
 //* enums

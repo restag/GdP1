@@ -44,18 +44,17 @@
 //* program main
 int main()
 {
+    // initialize curses
+    initializeCursesApp();
     // stops runtime of program and waits for user input
     #ifdef _DEBUG_H
     waitForUserInput();
     #endif
-    
+  
 
     //* starting point for wormApp
     // result code from functions
     rescodes_t res_code;
-
-    // initialize curses
-    initializeCursesApp();
 
     // * pregame checks
     // check the window dimesions
@@ -63,7 +62,7 @@ int main()
         // do visual setup
         initializeColors();
         messagearea_t* theMessagearea = initializeMessagearea();
-
+        
         // check if game can be run
         if (windowFitsMessageareaAndBoard()){
             // all good, do pre-game setup
@@ -74,8 +73,8 @@ int main()
             //res_code = doLevel();
         } else {
             // window too small for gameboard
-            // write error message
-
+            // print the Messagearea
+            printDialog(theMessagearea, "Das Fenster ist zu klein!", NULL);
             
             // set rescode
             res_code = RES_FAILED;

@@ -32,6 +32,14 @@
 // put defines below here
 #define BOARD_MIN_HEIGHT 26
 #define BOARD_MIN_WIDTH 70
+#define SYMBOL_FREE_CELL ' '
+#define SYMBOL_BORDER_BOARD '#'
+#define SYMBOL_FOOD_1 '2'
+#define SYMBOL_FOOD_2 '4'
+#define SYMBOL_FOOD_3 '6'
+#define SYMBOL_WORM_HEAD_ELEMENT '0'
+#define SYMBOL_WORM_INNER_ELEMENT 'o'
+#define SYMBOL_WORM_TAIL_ELEMENT '`'
 
 //*********************************************************
 //* enums
@@ -52,7 +60,8 @@ enum ColorPairs {
     COLP_FOOD_1,
     COLP_FOOD_2,
     COLP_FOOD_3,
-    COLP_BARRIER,
+    COLP_BORDER_BOARD,
+    COLP_BORDER_MESSAGEAREA,
 };
 
 //*********************************************************

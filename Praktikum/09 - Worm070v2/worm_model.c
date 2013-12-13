@@ -82,11 +82,36 @@ void setWormColor(worm_t* theWorm, colorpairs_t wcolor)
 
 
 // Getters
-extern pos_t getWormHeadPos(worm_t* theWorm)
+int getCurLastIndex(worm_t* theWorm)
+{
+    return theWorm -> cur_lastindex;
+}
+
+int getMaxIndex(worm_t* theWorm)
+{
+    return theWorm -> maxindex;
+}
+
+int getHeadindex(worm_t* theWorm)
+{
+    return theWorm -> headindex;
+}
+
+pos_t getWormposAtIndex(worm_t* theWorm, int index)
+{
+    return theWorm -> wormpos[index];
+}
+
+pos_t getNextStep(worm_t* theWorm)
+{
+    return theWorm -> nextStep;
+}
+
+pos_t getWormHeadpos(worm_t* theWorm)
 {
     // structures are passed by value!
     // -> we return a copy here
-    return theWorm -> wormpos[theWorm -> headindex];
+    return getWormposAtIndex(theWorm, getHeadindex(theWorm));
 
 
 }

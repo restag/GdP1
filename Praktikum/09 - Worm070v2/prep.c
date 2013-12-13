@@ -100,8 +100,9 @@ void initializeColors(void)
     start_color();
     init_pair(COLP_USER_WORM, COLOR_GREEN, COLOR_BLACK);
     init_pair(COLP_FREE_CELL, COLOR_BLACK, COLOR_BLACK);
-    init_pair(COLP_BARRIER, COLOR_RED, COLOR_BLACK);
-    //init_pair(COLP_FOOD_1, , COLOR_BLACK);
-    //init_pair(COLP_FOOD_2, , COLOR_BLACK);
-    //init_pair(COLP_FOOD_3, , COLOR_BLACK);
+    init_pair(COLP_BORDER_BOARD, COLOR_RED, COLOR_BLACK);
+    init_pair(COLP_BORDER_MESSAGEAREA, COLOR_BLUE, COLOR_BLACK);
+    init_pair(COLP_FOOD_1, COLOR_YELLOW, COLOR_BLACK);
+    init_pair(COLP_FOOD_2, COLOR_MAGENTA, COLOR_BLACK);
+    init_pair(COLP_FOOD_3, COLOR_CYAN, COLOR_BLACK);
 }

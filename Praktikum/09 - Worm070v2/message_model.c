@@ -48,21 +48,27 @@ message_t* allocMessage(void)
 
 void freeMessage(message_t* theMessage)
 {
-    freeMsgString(theMessage -> msgString);
-
-    free(theMessage);
+    if (theMessage != NULL) {
+        free(theMessage);
+    }
 }
 
 void freeMsgString(char* theMsgString)
 {
-    free(theMsgString);
+    if (theMsgString != NULL) {
+        free(theMsgString);
+    }
 }
 
 
 //* setters
 void setMsgString(message_t* theMessage, char* aString)
 {
-    theMessage -> msgString = strdup(aString);
+    if (aString != NULL) {
+        theMessage -> msgString = strdup(aString);
+    } else {
+        theMessage -> msgString = NULL;
+    }
 }
 
 
