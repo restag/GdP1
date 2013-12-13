@@ -1,53 +1,48 @@
-/* put a description in here 
+/* Put a description here 
  *
  */
 
-#ifndef _<HEADER_NAME>_H
-#define _<HEADER_NAME>_H
+
 //*********************************************************
-//* header includes 
+//* header includes
 //*********************************************************
 // put framework header includes below here
 
 // put custom header includes below here
 
-
 //*********************************************************
-//* defines
+//* global vars
 //*********************************************************
-// put defines below here
 
 
 //*********************************************************
-//* enums
+//* fuctions
 //*********************************************************
-// put enums below here
+// put function codes below here
 
-
 //*********************************************************
-//* enum type definitions
-//*********************************************************
-// put typedefs for enums here
+//* initialize module
 
 
 //*********************************************************
-//* structs
-//*********************************************************
-// put structs below here
+//* free module
 
 
 //*********************************************************
-//* struct type definitions
-//*********************************************************
-// put struct typedefs below here
+//* module management
 
 
 //*********************************************************
-//* function prototypes
+//* module content management
+
+
 //*********************************************************
-// put prototypes below here
+//* output management
 
-// setters
 
-// getters
-#endif  // #define _<HEADER_NAME>_H
+//*********************************************************
+//* display management
+
+
+//*********************************************************
+//* display interaction
