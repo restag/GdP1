@@ -73,7 +73,7 @@ typedef struct worm worm_t;
 //* function prototypes
 //*********************************************************
 
-worm_t* allocBlankWorm();
+worm_t* allocWorm();
 void freeWorm(worm_t* aworm);
 
 // initializers
