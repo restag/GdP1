@@ -98,21 +98,21 @@ typedef struct board board_t;
 //*********************************************************
 //* function prototypes
 //*********************************************************
+// allocating & freeing
+board_t* allocBoard(void);
+void freeBoard(board_t* aBoard);
 
-
-// initializers
 
 // setters
-void setLastRow(board_t* aboard);
-void setLastCol(board_t* aboard);
-void setCellContent(board_t* aboard, pos_t cellPos, boardcodes_t cellContent); 
-extern void setNumberOfFoodItems(board_t* aboard, int n);
+void setLastRow(board_t* aBoard);
+void setLastCol(board_t* aBoard);
+void setCellContent(board_t* aBoard, pos_t cellPos, boardcodes_t cellContent); 
+extern void setNumberOfFoodItems(board_t* Bboard, int n);
 
 // getters
-int getLastRowOnBoard(board_t* aboard);
-int getLastColOnBoard(board_t* aboard);
-extern boardcodes_t getContentAt(board_t* aboard, pos_t pos);
-int getNumberOfFoodItems(board_t* aboard);
-boardcodes_t getContentAt(board_t* aboard, pos_t position);
+int getLastRowOnBoard(board_t* aBoard);
+int getLastColOnBoard(board_t* aBoard);
+boardcodes_t getContentAt(board_t* aBoard, pos_t pos);
+int getNumberOfFoodItems(board_t* aBoard);
 
 #endif  // #define _BOARD_MODEL_H
