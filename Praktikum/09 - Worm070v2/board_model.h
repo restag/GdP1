@@ -107,7 +107,7 @@ void freeBoard(board_t* aBoard);
 void setLastRow(board_t* aBoard);
 void setLastCol(board_t* aBoard);
 void setCellContent(board_t* aBoard, pos_t cellPos, boardcodes_t cellContent); 
-extern void setNumberOfFoodItems(board_t* Bboard, int n);
+extern void setNumberOfFoodItems(board_t* aBoard, int n);
 
 // getters
 int getLastRowOnBoard(board_t* aBoard);
