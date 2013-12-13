@@ -181,9 +181,6 @@ void printMessagearea(messagearea_t* theMessagearea)
         if (theMessagearea -> messageLine[i] != NULL) {
             // messageline is set
             printMessageline(theMessagearea, i + 1);
-        } else {
-            // messageline is blank, so make sure the displayline is empty
-            eraseMessagelineInDisplay(theMessagearea, theMessagearea->baseIndex + i + 1);
         }
     }
 }
@@ -193,6 +190,12 @@ int printDialog(messagearea_t* theMessagearea, char* prompt1, char* prompt2)
     // check if first prompt is present, otherwise return error
     if (prompt1 == NULL) {
         return RES_FAILED;
+    }
+
+    // clean Messagearea
+    int i;
+    for (i=1; i<=MESSAGEAREA_MAX_MESSAGES;i++){
+        eraseMessagelineInDisplay(theMessagearea, i);
     }
 
     // assign messagestrings

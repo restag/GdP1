@@ -86,18 +86,19 @@ void fillDisplaylineWithSymbol(int lineIndex, char symbol)
     // detect the color to use
     colorpairs_t color = detectColor(symbol);
 
-   
+    // activate the color
+    attron(COLOR_PAIR(color)); 
+
     // fill line with symbol
     for (i = 1; i < BOARD_MIN_WIDTH && i < COLS; i++) {
         
         move(lineIndex, i);
-        // activate the color
-        attron(COLOR_PAIR(color));
         
         // place symbol
         addch(symbol);
-        
-        //deactivate the color
-        attroff(COLOR_PAIR(color));
     }
+
+    //deactivate the color
+    attroff(COLOR_PAIR(color));
+
 }
