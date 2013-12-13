@@ -16,12 +16,12 @@ HEADERS += board_model.h
 HEADERS += message_model.h
 HEADERS += messagearea_model.h
 HEADERS += prep.h
+HEADERS += worm_model.h
 HEADERS += message_controller.h
 HEADERS += messagearea_controller.h
 HEADERS += game_controller.h
 HEADERS += worm.h
 
-##HEADERS += worm_model.h
 ##HEADERS += worm_controller.h
 ##HEADERS += messagearea_controller.h
 ##HEADERS += board_controller.h
