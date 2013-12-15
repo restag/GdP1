@@ -51,7 +51,6 @@ void initializeColors(void)
     // define colors for the game
     start_color();
     init_pair(COLP_BOARD_BARRIER, COLOR_RED, COLOR_BLACK);
-    init_pair(COLP_BOARD_BORDER, COLOR_RED, COLOR_BLACK);
     init_pair(COLP_MESSAGEAREA_BORDER, COLOR_BLUE, COLOR_BLACK);
     init_pair(COLP_FOOD_1, COLOR_YELLOW, COLOR_BLACK);
     init_pair(COLP_FOOD_2, COLOR_MAGENTA, COLOR_BLACK);
@@ -110,9 +109,6 @@ colorpairs_t detectColor(char symbol)
     switch (symbol){
         case SYMBOL_BOARD_BARRIER:
             color_pair = COLP_BOARD_BARRIER;
-            break;
-        case SYMBOL_BOARD_BORDER:
-            color_pair = COLP_BOARD_BORDER;
             break;
         case SYMBOL_MESSAGEAREA_BORDER:
             color_pair = COLP_MESSAGEAREA_BORDER;

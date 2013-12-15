@@ -46,7 +46,6 @@
 // put enums below here
 enum ColorPairs {
     COLP_BOARD_BARRIER,
-    COLP_BOARD_BORDER,
     COLP_MESSAGEAREA_BORDER,
     COLP_FOOD_1,
     COLP_FOOD_2,

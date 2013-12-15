@@ -25,6 +25,7 @@
 
 // put custom header includes below here
 #include "worm.h"
+#include "board_controller.h"
 #include "display_controller.h"
 #include "game_controller.h"
 #include "pregame_controller.h"
@@ -68,7 +69,15 @@ int main()
         if (windowCanContainMessageareaAndBoard()){
             // all good, do pre-game setup
             moveMessageareaToIndex(theMessagearea, BOARD_MIN_HEIGHT);
+
+            // initialize the gameboard
+            board_t* theBoard = initializeBoard();
+            refreshDisplay();
+
+
 printDialog(theMessagearea, "wuerde passen, los gehts", NULL);
+
+
             // run game
             //res_code = doLevel();
         } else {
