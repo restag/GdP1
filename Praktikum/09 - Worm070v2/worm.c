@@ -72,6 +72,7 @@ int main()
 
             // initialize the gameboard
             board_t* theBoard = initializeBoard();
+            initializeLevel(theBoard);
             refreshDisplay();
 
 

@@ -70,12 +70,14 @@
 
 //* initialize module
 board_t* initializeBoard(void);
-
+void initializeLevel(board_t* aBoard);
 //* free module
 
 //* module management
 
 //* module content management
+void placeBarrier(board_t* aBoard, pos_t position);
+void placeFreeCell(board_t* aBoard, pos_t position);
 
 //* output management
 

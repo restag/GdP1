@@ -70,26 +70,41 @@ board_t* initializeBoard(void)
 
             // check for board border
             if (colIndex == lastCol || lineIndex == lastRow){
-                // place boarder
-                setCellContent(newBoard, curPos, BC_BARRIER);
-
-                // place item in display
-                printItem(curPos, SYMBOL_BOARD_BARRIER, COLP_BOARD_BARRIER);
+                // place barrier
+                placeBarrier(newBoard, curPos);
             } else {
                 // place free cell
-                setCellContent(newBoard, curPos, BC_FREE_CELL);
-
-                // place item in display
-                printItem(curPos, SYMBOL_FREE_CELL, COLP_FREE_CELL);
+                placeFreeCell(newBoard, curPos);
             }
         }
     }
 
     // setNumber of Food items
-    setNumberOfFoodItems(newBoard, 5);
+    setNumberOfFoodItems(newBoard, 10);
     
     // return pointer to board
     return newBoard;
+}
+
+void initializeLevel(board_t* theBoard)
+{
+    // initialize barriers
+    int i;
+    pos_t curPos;
+
+    // set position to left third of the board
+    curPos.x = BOARD_MIN_WIDTH / 3;
+    for (i = 0; i < 12; i++){
+        curPos.y = BOARD_MIN_HEIGHT / 3 + i;
+        placeBarrier(theBoard, curPos);
+    }
+
+    // set porition the right third of the board
+    curPos.x *= 2;
+    for (i = 0; i < 12; i++){
+        curPos.y = BOARD_MIN_HEIGHT / 4 + i;
+        placeBarrier(theBoard, curPos);
+    }
 }
 
 
@@ -103,6 +118,23 @@ board_t* initializeBoard(void)
 
 //*********************************************************
 //* module content management
+void placeBarrier(board_t* theBoard, pos_t position)
+{
+    // set cell content
+    setCellContent(theBoard, position, BC_BARRIER);
+
+    // print to display
+    printItem(position, SYMBOL_BOARD_BARRIER, COLP_BOARD_BARRIER);
+}
+
+void placeFreeCell(board_t* theBoard, pos_t position)
+{
+    // set cell content
+    setCellContent(theBoard, position, BC_FREE_CELL);
+
+    // print to display
+    printItem(position, SYMBOL_FREE_CELL, COLP_FREE_CELL);
+}
 
 
 //*********************************************************

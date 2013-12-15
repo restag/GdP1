@@ -50,6 +50,7 @@ void initializeColors(void)
 {
     // define colors for the game
     start_color();
+    init_pair(COLP_BARRIER, COLOR_BLUE, COLOR_BLACK);
     init_pair(COLP_BOARD_BARRIER, COLOR_RED, COLOR_BLACK);
     init_pair(COLP_MESSAGEAREA_BORDER, COLOR_BLUE, COLOR_BLACK);
     init_pair(COLP_FOOD_1, COLOR_YELLOW, COLOR_BLACK);
