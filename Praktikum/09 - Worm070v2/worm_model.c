@@ -63,9 +63,9 @@ void freeWorm(worm_t* theWorm)
 
 //*********************************************************
 //* setters
-void setCurLastIndex(worm_t* theWorm, int lastindex)
+void setWormLength(worm_t* theWorm, int length)
 {
-    theWorm -> cur_lastindex = lastindex;
+    theWorm -> cur_len = length;
 }
 
 void setMaxIndex(worm_t* theWorm, int maxindex)
@@ -98,7 +98,7 @@ void setWormColor(worm_t* theWorm, colorpairs_t wcolor)
 //* getters
 int getWormLength(worm_t* theWorm)
 {
-    return theWorm -> cur_lastindex;
+    return theWorm -> cur_len;
 }
 
 int getMaxIndex(worm_t* theWorm)

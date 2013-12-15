@@ -14,11 +14,10 @@
  * Ingolstadt University of Applied Sciences
  * (C) 2011
  *
- * The wormcontroller is used for worm interaction
- *
  * Tasks:
- *      * initialization
- *      * movement
+ *      * Level initialization
+ *      * run game
+ *
  */
 
 
@@ -28,8 +27,10 @@
 // put framework header includes below here
 
 // put custom header includes below here
-#include "worm_controller.h"
+#include "game_controller.h"
 #include "board_controller.h"
+#include "worm_controller.h"
+
 
 //*********************************************************
 //* global vars
@@ -43,35 +44,13 @@
 
 //*********************************************************
 //* initialize module
-worm_t* initializeWorm(board_t* theBoard, pos_t startPos, wormheading_t dir, colorpairs_t color)
+void initializeLevel(board_t* theBoard)
 {
-    // reserve memory
-    worm_t* newWorm = allocWorm();
+    // initialize barriers
+    initializeBarriers(theBoard);
 
-    // set default values
-    setWormLength(newWorm, 4);
-    setHeadIndex(newWorm, 0);
-    setMaxIndex(newWorm, WORM_MAX_LENGTH);
-    setWormpos(newWorm, startPos);
-    setWormColor(newWorm, color);
-
-    // place Worm on Board
-    placeItem(theBoard, startPos, SYMBOL_WORM_HEAD_ELEMENT, BC_USED_BY_WORM, color);
-
-    // return pointer
-    return newWorm;
-}
-
-worm_t* initializeUserWorm(board_t* theBoard)
-{
-    // set default Values for userworm
-    pos_t startPos;
-
-    // set startpos to bottom left
-    startPos.x = 0;
-    startPos.y = BOARD_MIN_HEIGHT - 2;
-
-    return initializeWorm(theBoard, startPos, WORM_RIGHT, COLP_WORM_USER);
+    // initialize userworm
+    initializeUserWorm(theBoard);
 }
 
 //*********************************************************
@@ -84,14 +63,7 @@ worm_t* initializeUserWorm(board_t* theBoard)
 
 //*********************************************************
 //* module content management
-pos_t getWormHeadpos(worm_t* theWorm)
-{
-    // structures are passed by value!
-    // -> we return a copy here
-    return getWormposAtIndex(theWorm, getHeadindex(theWorm));
 
-
-}
 
 //*********************************************************
 //* output management

@@ -71,10 +71,10 @@ board_t* initializeBoard(void)
             // check for board border
             if (colIndex == lastCol || lineIndex == lastRow){
                 // place barrier
-                placeBarrier(newBoard, curPos);
+                placeItem(newBoard, curPos, SYMBOL_BOARD_BARRIER, BC_BARRIER, COLP_BOARD_BARRIER);
             } else {
                 // place free cell
-                placeFreeCell(newBoard, curPos);
+                placeItem(newBoard, curPos, SYMBOL_FREE_CELL, BC_FREE_CELL,COLP_FREE_CELL);
             }
         }
     }
@@ -86,9 +86,8 @@ board_t* initializeBoard(void)
     return newBoard;
 }
 
-void initializeLevel(board_t* theBoard)
+void initializeBarriers(board_t* theBoard)
 {
-    // initialize barriers
     int i;
     pos_t curPos;
 
@@ -96,14 +95,14 @@ void initializeLevel(board_t* theBoard)
     curPos.x = BOARD_MIN_WIDTH / 3;
     for (i = 0; i < 12; i++){
         curPos.y = BOARD_MIN_HEIGHT / 3 + i;
-        placeBarrier(theBoard, curPos);
+        placeItem(theBoard, curPos, SYMBOL_BOARD_BARRIER, BC_BARRIER, COLP_BOARD_BARRIER);
     }
 
     // set porition the right third of the board
     curPos.x *= 2;
     for (i = 0; i < 12; i++){
         curPos.y = BOARD_MIN_HEIGHT / 4 + i;
-        placeBarrier(theBoard, curPos);
+        placeItem(theBoard, curPos, SYMBOL_BOARD_BARRIER, BC_BARRIER, COLP_BOARD_BARRIER);
     }
 }
 
@@ -118,22 +117,13 @@ void initializeLevel(board_t* theBoard)
 
 //*********************************************************
 //* module content management
-void placeBarrier(board_t* theBoard, pos_t position)
+void placeItem(board_t* theBoard, pos_t position, char symbol, boardcodes_t boardcode, colorpairs_t color)
 {
     // set cell content
-    setCellContent(theBoard, position, BC_BARRIER);
+    setCellContent(theBoard, position, boardcode);
 
     // print to display
-    printItem(position, SYMBOL_BOARD_BARRIER, COLP_BOARD_BARRIER);
-}
-
-void placeFreeCell(board_t* theBoard, pos_t position)
-{
-    // set cell content
-    setCellContent(theBoard, position, BC_FREE_CELL);
-
-    // print to display
-    printItem(position, SYMBOL_FREE_CELL, COLP_FREE_CELL);
+    printItem(position, symbol, color);
 }
 
 

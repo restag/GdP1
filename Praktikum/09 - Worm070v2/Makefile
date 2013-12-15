@@ -22,7 +22,7 @@ HEADERS += worm_controller.h
 HEADERS += messagearea_controller.h
 HEADERS += board_controller.h
 #HEADERS += userinteraction_controller.h
-#HEADERS += game_controller.h
+HEADERS += game_controller.h
 HEADERS += worm.h
 
 
@@ -39,7 +39,7 @@ OBJECTS += messagearea_model.o
 OBJECTS += messagearea_controller.o
 OBJECTS += board_controller.o
 #OBJECTS += userinteraction_controller.o
-#OBJECTS += game_controller.o
+OBJECTS += game_controller.o
 OBJECTS += worm.o
 
 # Please add THE target in ./bin here

@@ -15,7 +15,8 @@
  * (C) 2011
  *
  * Tasks:
- *      * 
+ *      * Level initialization
+ *      * run game
  *
  */
 
@@ -28,6 +29,7 @@
 // put framework header includes below here
 
 // put custom header includes below here
+#include "board_model.h"
 
 
 //*********************************************************
@@ -79,6 +81,8 @@ typedef enum GameStates gamestates_t;
 // put prototypes below here
 
 //* initialize module
+void initializeLevel(board_t* aBoard);
+
 
 //* free module
 

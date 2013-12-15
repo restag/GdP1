@@ -32,6 +32,7 @@
 // put custom header includes below here
 #include "worm_model.h"
 #include "board_model.h"
+#include "display_controller.h"
 
 //*********************************************************
 //* defines
@@ -69,7 +70,8 @@
 // put prototypes below here
 
 //* initialize module
-
+worm_t* initializeWorm(board_t* aBoard, pos_t startPos, wormheading_t dir, colorpairs_t);
+worm_t* initializeUserWorm(board_t* aBoard);
 //* free module
 
 //* module management
