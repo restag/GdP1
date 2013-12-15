@@ -93,6 +93,37 @@ pos_t getWormHeadpos(worm_t* theWorm)
 
 }
 
+void setWormHeading(worm_t* theWorm, wormheading_t dir)
+{
+    pos_t nextStep;
+
+    switch(dir){
+        case WORM_UP:
+            // user wants to move up
+            nextStep.x = 0;
+            nextStep.y = -1;
+            break;
+        case WORM_DOWN:
+            // user wants to move down
+            nextStep.x = 0;
+            nextStep.y = 1;
+            break;
+        case WORM_LEFT:
+            // user wants to move left
+            nextStep.x = -1;
+            nextStep.y = 0;
+            break;
+        case WORM_RIGHT:
+            // user wants to move right
+            nextStep.x = 1;
+            nextStep.y = 0;
+            break;
+    }
+
+    setNextStep(theWorm, nextStep);
+}
+
+
 //*********************************************************
 //* output management
 

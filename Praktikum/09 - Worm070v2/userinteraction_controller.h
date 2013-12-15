@@ -14,16 +14,16 @@
  * Ingolstadt University of Applied Sciences
  * (C) 2011
  *
- * The wormcontroller is used for worm interaction
+ * The userinteractioncontroller is used for user interaction
  *
  * Tasks:
- *      * initialization
- *      * movement
+ *      * reading the keyboard input
+ *
  */
 
 
-#ifndef _WORM_CONTROLLER_H
-#define _WORM_CONTROLLER_H
+#ifndef _USERINTERACTION_CONTROLLER_H
+#define _USERINTERACTION_CONTROLLER_H
 //*********************************************************
 //* header includes 
 //*********************************************************
@@ -31,8 +31,7 @@
 
 // put custom header includes below here
 #include "worm_model.h"
-#include "board_model.h"
-#include "display_controller.h"
+#include "game_controller.h"
 
 //*********************************************************
 //* defines
@@ -70,20 +69,18 @@
 // put prototypes below here
 
 //* initialize module
-worm_t* initializeWorm(board_t* aBoard, pos_t startPos, wormheading_t dir, colorpairs_t);
-worm_t* initializeUserWorm(board_t* aBoard);
+
 //* free module
 
 //* module management
 
 //* module content management
-pos_t getWormHeadpos(worm_t* aWorm);
-void setWormHeading(worm_t* aWorm, wormheading_t dir);
 
-//* output management
+//* input management
+void readUserInput(worm_t* aWorm, gamestates_t* agame_state);
 
 //* display management
 
 //* display interaction
 
-#endif  // #define _<MODULE-NAME>_CONTROLLER_H
+#endif  // #define _USERINTERACTION_CONTROLLER_H
