@@ -14,7 +14,14 @@
  * Ingolstadt University of Applied Sciences
  * (C) 2011
  *
+ * The wormmodel contains the data needed for worm creation and modification
+ *
+ * Tasks:
+ *      * memory allocation & freeing
+ *      * value modification
+ *
  */
+
 
 //*********************************************************
 //* header includes
@@ -24,18 +31,20 @@
 
 // put custom header includes below here
 #include "worm_model.h"
-#include "board_model.h"
+
 
 //*********************************************************
 //* global vars
 //*********************************************************
 
 
-
 //*********************************************************
 //* fuctions
 //*********************************************************
-// allocating & freeing
+// put function codes below here
+
+//*********************************************************
+//* model allocation
 worm_t* allocWorm(void)
 {
     worm_t* newWorm = malloc(sizeof(worm_t));
@@ -43,13 +52,17 @@ worm_t* allocWorm(void)
     return newWorm;
 }
 
+
+//*********************************************************
+//* free model
 void freeWorm(worm_t* theWorm)
 {
     free(theWorm);
 }
 
 
-// Setters
+//*********************************************************
+//* setters
 void setCurLastIndex(worm_t* theWorm, int lastindex)
 {
     theWorm -> cur_lastindex = lastindex;
@@ -81,8 +94,9 @@ void setWormColor(worm_t* theWorm, colorpairs_t wcolor)
 }
 
 
-// Getters
-int getCurLastIndex(worm_t* theWorm)
+//*********************************************************
+//* getters
+int getWormLength(worm_t* theWorm)
 {
     return theWorm -> cur_lastindex;
 }
@@ -105,18 +119,4 @@ pos_t getWormposAtIndex(worm_t* theWorm, int index)
 pos_t getNextStep(worm_t* theWorm)
 {
     return theWorm -> nextStep;
-}
-
-pos_t getWormHeadpos(worm_t* theWorm)
-{
-    // structures are passed by value!
-    // -> we return a copy here
-    return getWormposAtIndex(theWorm, getHeadindex(theWorm));
-
-
-}
-
-int getWormLength(worm_t* theWorm)
-{
-    return theWorm -> cur_lastindex;
 }

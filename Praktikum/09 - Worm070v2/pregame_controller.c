@@ -1,7 +1,4 @@
-/* A simple variant of the game Snake
- * Used for teaching in classes
- *
- * This version is an alternativ version of the given code,
+ /* This version is an alternativ version of the given code,
  * following a more strict approach of separation
  *
  *
@@ -13,12 +10,11 @@
  * Franz Regensburger
  * Ingolstadt University of Applied Sciences
  * (C) 2011
- *
- * The messagecontroller is used for message interaction
+ * 
+ * The pregamecontroller is used to do pregame checks.
  *
  * Tasks:
- *      * initialization
- *      * handling
+ *      * size of the terminal window
  */
 
 
@@ -26,11 +22,12 @@
 //* header includes
 //*********************************************************
 // put framework header includes below here
-#include <string.h>
+#include <curses.h>
 
 // put custom header includes below here
-#include "message_controller.h"
-
+#include "pregame_controller.h"
+#include "board_model.h"
+#include "messagearea_model.h"
 
 //*********************************************************
 //* global vars
@@ -44,34 +41,35 @@
 
 //*********************************************************
 //* initialize module
-message_t* initializeMessageWithString(char* theString)
-{
-    // reserve memory
-    message_t* newMessage = allocMessage();
 
-    // set message string
-    setMsgString(newMessage, theString);
-
-    // return pointer
-    return newMessage;
-}
 
 //*********************************************************
 //* free module
-void freeMessageAndContent(message_t* theMessage)
-{
-    if (theMessage != NULL){
-        // free content
-        freeMsgString(theMessage -> msgString);
 
-        // free message
-        freeMessage(theMessage);
-    }
-}
 
 //*********************************************************
 //* module management
+bool windowCanContainMessagearea(void)
+{
+    if (LINES < MESSAGEAREA_MIN_HEIGHT || COLS < BOARD_MIN_WIDTH){
+        // window is too small for messagearea
+        return false;
+    }
 
+    // window is big enough to fit the messagearea
+    return true;
+}
+
+bool windowCanContainMessageareaAndBoard(void)
+{
+    if (LINES < WINDOW_MIN_HEIGHT || COLS < BOARD_MIN_WIDTH){
+        // window is too small to fit the messagearea and the gameboard
+        return false;
+    }
+
+    // window is big enough to fit the messagearea and the gameboard
+    return true;
+}
 
 //*********************************************************
 //* module content management

@@ -14,6 +14,13 @@
  * Ingolstadt University of Applied Sciences
  * (C) 2011
  *
+ * The displaycontroller is used to handle the display interaction for the app.
+ * 
+ * Tasks:
+ *      * display intitialization & cleanup
+ *      * colormanagement
+ *      * writing to display
+ *
  */
 
 #ifndef _DISPLAY_CONTROLLER_H
@@ -23,9 +30,9 @@
 //*********************************************************
 // put framework header includes below here
 
-
 // put custom header includes below here
-
+#include "board_model.h"
+#include "messagearea_model.h"
 
 //*********************************************************
 //* defines
@@ -37,13 +44,24 @@
 //* enums
 //*********************************************************
 // put enums below here
+enum ColorPairs {
+    COLP_BOARD_BARRIER,
+    COLP_BOARD_BORDER,
+    COLP_MESSAGEAREA_BORDER,
+    COLP_FOOD_1,
+    COLP_FOOD_2,
+    COLP_FOOD_3,
+    COLP_FREE_CELL,
+    COLP_WORM_USER,
+    COLP_DEFAULT,
+};
 
 
 //*********************************************************
 //* enum type definitions
 //*********************************************************
 // put typedefs for enums here
-
+typedef enum ColorPairs colorpairs_t;
 
 //*********************************************************
 //* structs
@@ -61,13 +79,27 @@
 //* function prototypes
 //*********************************************************
 // put prototypes below here
-// color detection
+
+//* initialize module
+void initializeColors(void);
+void initializeCursesApp(void);
+
+//* free module
+void cleanupCursesApp(void);
+
+//* module management
+
+//* module content management
+
+//* output management
 colorpairs_t detectColor(char symbol);
-
-// single item placement
-void placeItemInDisplay(pos_t index, char symbol);
-
-// line placement
 void fillDisplaylineWithSymbol(int lineIndex, char symbol);
+void fillPartialDisplaylineWithSymbol(int lineIndex, char symbol, int startIndex, int endIndex);
 
-#endif  // #define _MESSAGEAREA_CONTROLLER_H
+//* display management
+
+//* display interaction
+void placeItemInDisplay(int xindex, int yindex, char symbol, colorpairs_t color);
+void refreshDisplay(void);
+
+#endif  // #define _DISPLAY_CONTROLLER_H

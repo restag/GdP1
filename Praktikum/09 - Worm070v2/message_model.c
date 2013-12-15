@@ -14,6 +14,13 @@
  * Ingolstadt University of Applied Sciences
  * (C) 2011
  *
+ * The messagwmodel contains the data needed for
+ * message creation and handling
+ *
+ * Tasks:
+ *      * memory allocation & freeing
+ *      * value modification
+ *
  */
 
 
@@ -21,8 +28,8 @@
 //* header includes
 //*********************************************************
 // put framework header includes below here
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
 
 // put custom header includes below here
 #include "message_model.h"
@@ -38,7 +45,7 @@
 // put function codes below here
 
 //*********************************************************
-//* allocation & freeing
+//* model allocation
 message_t* allocMessage(void)
 {
     message_t* newMessage = malloc(sizeof(message_t));
@@ -46,9 +53,12 @@ message_t* allocMessage(void)
     return newMessage;
 }
 
+//*********************************************************
+//* free model
 void freeMessage(message_t* theMessage)
 {
     if (theMessage != NULL) {
+        // free self
         free(theMessage);
     }
 }
@@ -56,21 +66,22 @@ void freeMessage(message_t* theMessage)
 void freeMsgString(char* theMsgString)
 {
     if (theMsgString != NULL) {
+        // free self
         free(theMsgString);
     }
 }
 
 
+//*********************************************************
 //* setters
-void setMsgString(message_t* theMessage, char* aString)
+void setMsgString(message_t* theMessage, char* theString)
 {
-    if (aString != NULL) {
-        theMessage -> msgString = strdup(aString);
+    if (theString != NULL) {
+        theMessage -> msgString = strdup(theString);
     } else {
         theMessage -> msgString = NULL;
     }
 }
-
 
 //*********************************************************
 //* getters

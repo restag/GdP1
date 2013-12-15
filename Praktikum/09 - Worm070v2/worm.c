@@ -25,10 +25,11 @@
 
 // put custom header includes below here
 #include "worm.h"
-#include "prep.h"
+#include "display_controller.h"
 #include "game_controller.h"
-#include "board_model.h"
+#include "pregame_controller.h"
 #include "messagearea_controller.h"
+
 
 //*********************************************************
 //* global vars
@@ -58,24 +59,23 @@ int main()
 
     // * pregame checks
     // check the window dimesions
-    if (windowFitsMessagearea()){
+    if (windowCanContainMessagearea()){
         // do visual setup
         initializeColors();
         messagearea_t* theMessagearea = initializeMessagearea();
         
         // check if game can be run
-        if (windowFitsMessageareaAndBoard()){
+        if (windowCanContainMessageareaAndBoard()){
             // all good, do pre-game setup
             moveMessageareaToIndex(theMessagearea, BOARD_MIN_HEIGHT);
-
-
+printDialog(theMessagearea, "wuerde passen, los gehts", NULL);
             // run game
             //res_code = doLevel();
         } else {
             // window too small for gameboard
             // print the Messagearea
             printDialog(theMessagearea, "Das Fenster ist zu klein!", NULL);
-            
+
             // set rescode
             res_code = RES_FAILED;
         }
@@ -87,7 +87,8 @@ int main()
         // so we print a message to the terminal and set the resultcode
         // to failed
         cleanupCursesApp();
-        printf("Das Fenster ist zu klein! Wir brauchen mindestens %dx%d\n", BOARD_MIN_WIDTH, WINDOW_MIN_HEIGHT);
+        //printf("Das Fenster ist zu klein! Wir brauchen mindestens %dx%d\n", BOARD_MIN_WIDTH, WINDOW_MIN_HEIGHT);
+        puts("window is too small for messagearea");
         res_code = RES_FAILED;
     }
     

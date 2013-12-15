@@ -14,7 +14,13 @@
  * Ingolstadt University of Applied Sciences
  * (C) 2011
  *
+ * The messagecontroller is used for message interaction
+ *
+ * Tasks:
+ *      * initialization
+ *      * handling
  */
+
 
 #ifndef _MESSAGE_CONTROLLER_H
 #define _MESSAGE_CONTROLLER_H
@@ -60,12 +66,21 @@
 //* function prototypes
 //*********************************************************
 // put prototypes below here
-// initalizing & freeing
-message_t* initializeMessage(void);
+
+//* initialize module
 message_t* initializeMessageWithString(char* aString);
+
+//* free module
 void freeMessageAndContent(message_t* aMessage);
 
-// management
-void alterMessage(message_t* aMessage, char* newString);
+//* module management
+
+//* module content management
+
+//* output management
+
+//* display management
+
+//* display interaction
 
 #endif  // #define _MESSAGE_CONTROLLER_H

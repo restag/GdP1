@@ -14,11 +14,11 @@
  * Ingolstadt University of Applied Sciences
  * (C) 2011
  *
- * The messagecontroller is used for message interaction
+ * The wormcontroller is used for worm interaction
  *
  * Tasks:
  *      * initialization
- *      * handling
+ *      * movement
  */
 
 
@@ -26,11 +26,9 @@
 //* header includes
 //*********************************************************
 // put framework header includes below here
-#include <string.h>
 
 // put custom header includes below here
-#include "message_controller.h"
-
+#include "worm_controller.h"
 
 //*********************************************************
 //* global vars
@@ -44,30 +42,11 @@
 
 //*********************************************************
 //* initialize module
-message_t* initializeMessageWithString(char* theString)
-{
-    // reserve memory
-    message_t* newMessage = allocMessage();
 
-    // set message string
-    setMsgString(newMessage, theString);
-
-    // return pointer
-    return newMessage;
-}
 
 //*********************************************************
 //* free module
-void freeMessageAndContent(message_t* theMessage)
-{
-    if (theMessage != NULL){
-        // free content
-        freeMsgString(theMessage -> msgString);
 
-        // free message
-        freeMessage(theMessage);
-    }
-}
 
 //*********************************************************
 //* module management
@@ -75,7 +54,14 @@ void freeMessageAndContent(message_t* theMessage)
 
 //*********************************************************
 //* module content management
+pos_t getWormHeadpos(worm_t* theWorm)
+{
+    // structures are passed by value!
+    // -> we return a copy here
+    return getWormposAtIndex(theWorm, getHeadindex(theWorm));
 
+
+}
 
 //*********************************************************
 //* output management

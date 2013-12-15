@@ -14,6 +14,11 @@
  * Ingolstadt University of Applied Sciences
  * (C) 2011
  *
+ * The messagearea_controller is used for messagearea interaction
+ *
+ * Tasks:
+ *      * initialization
+ *      * handling
  */
 
 
@@ -23,15 +28,16 @@
 // put framework header includes below here
 #include <curses.h>
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
 
 // put custom header includes below here
-#include "board_model.h"
 #include "messagearea_controller.h"
-#include "message_controller.h"
-#include "game_controller.h"
 #include "display_controller.h"
+#include "game_controller.h"
+#include "message_controller.h"
+#include "worm_controller.h"
+
 
 //*********************************************************
 //* global vars
@@ -42,95 +48,123 @@
 //* fuctions
 //*********************************************************
 // put function codes below here
+
 //*********************************************************
-//* initializing & freeing
+//* initialize module
 messagearea_t* initializeMessagearea(void)
 {
     // reserve memory
     messagearea_t* newMessagearea = allocMessagearea();
 
-    // fill with default messages
+    // set default values
+    setMessageareaBaseIndex(newMessagearea, 0);
+    setMessagecode(newMessagearea, MC_STATUS);
+
     int i;
-    for (i = 0; i < MESSAGEAREA_MAX_MESSAGES; i++) {
-        // assign default message value
-        newMessagearea -> messageLine[i] = initializeMessage();
+    for (i = 1; i <= MESSAGEAREA_MAX_MESSAGES; i++){
+        setMessageAtLine(newMessagearea, NULL, i);
     }
 
-    // set to default position
-    setMessageareaBaseIndex(newMessagearea, 0);
+    // print messagearea
+    printCompleteMessagearea(newMessagearea);
 
-    //print border
-    printMessageareaBorder(newMessagearea);
-
+    // return pointer
     return newMessagearea;
 }
 
+
+//*********************************************************
+//* free module
 void freeMessageareaAndContent(messagearea_t* theMessagearea)
 {
-    // free the content
-    int i;
-    for (i = 0; i < MESSAGEAREA_MAX_MESSAGES; i++){
-        if (theMessagearea -> messageLine[i] != NULL) {
+    if (theMessagearea != NULL){
+        // free messages
+        int i;
+        for (i = 0; i < MESSAGEAREA_MAX_MESSAGES; i++) {
             freeMessageAndContent(theMessagearea -> messageLine[i]);
         }
     }
-    
-    // free the messagearea
+
+    // free self
     freeMessagearea(theMessagearea);
 }
 
 
 //*********************************************************
-//* area management
-void moveMessageareaToIndex(messagearea_t* theMessagearea, int lineIndex)
+//* module management
+void moveMessageareaToIndex(messagearea_t* theMessagearea, int lineNumber)
 {
-    // remove old border
-    eraseMessagelineInDisplay(theMessagearea, theMessagearea->baseIndex);
+    // remove old messagearea
+    removeMessageareaFromDisplay(theMessagearea);
 
-    // set new position
-    setMessageareaBaseIndex(theMessagearea, lineIndex);
+    // set new base index
+    setMessageareaBaseIndex(theMessagearea, lineNumber);
 
-    // print new border
-    printMessageareaBorder(theMessagearea);
+    // draw new messagearea
+    printCompleteMessagearea(theMessagearea);
 }
 
 
 //*********************************************************
-//* content management
-void clearLineInMessagearea(messagearea_t* theMessagearea, int lineNumber)
+//* module content management
+void clearMessagelineInMessagearea(messagearea_t* theMessagearea, int lineNumber)
 {
-    // free messageline content
+    // free the old message
     freeMessageAndContent(theMessagearea -> messageLine[lineNumber - 1]);
 
-    // set blank messageline
+    // set default value
     setMessageAtLine(theMessagearea, NULL, lineNumber);
 
-    // erase messageline in display
-    eraseMessagelineInDisplay(theMessagearea, lineNumber);
+    // remove from display
+    eraseMessageareaLineInDisplay(theMessagearea, lineNumber);
+}
+
+void setMessageAtLineWithString(messagearea_t* theMessagearea,int lineNumber, char* theString)
+{
+    // free old message
+    clearMessagelineInMessagearea(theMessagearea, lineNumber);
+
+    // set new message
+    if (theString != NULL){
+        setMessageAtLine(theMessagearea, initializeMessageWithString(theString), lineNumber);
+    }
+
+    // write to display
+    printMessagelineToDisplay(theMessagearea, lineNumber);
 }
 
 void setAllMessagesWithStrings(messagearea_t* theMessagearea, char* string1, char* string2, char* string3)
 {
-    char* ar[MESSAGEAREA_MAX_MESSAGES];
-
-    // assign prompts
+    char* ar[3];
     ar[0] = string1;
     ar[1] = string2;
     ar[2] = string3;
 
-
-    // set messages
     int i;
-
     for (i = 1; i <= MESSAGEAREA_MAX_MESSAGES; i++){
-        clearLineInMessagearea(theMessagearea, i);
-        setMessageAtLine(theMessagearea, initializeMessageWithString(ar[i - 1]), i);
+        setMessageAtLineWithString(theMessagearea, i, ar[i -1]);
     }
 }
 
 
 //*********************************************************
-//* prepping for output
+//* output management
+
+
+//*********************************************************
+//* display management
+void printCompleteMessagearea(messagearea_t* theMessagearea)
+{
+    // print the boarder
+    printMessageareaBorder(theMessagearea);
+
+    // print contents
+    int i;
+    for (i = 1; i <= MESSAGEAREA_MAX_MESSAGES; i++){
+        printMessagelineToDisplay(theMessagearea, i);
+    }
+}
+
 void updateWormStatus(messagearea_t* theMessagearea, board_t* theBoard, worm_t* theWorm)
 {
     pos_t headpos;
@@ -169,22 +203,6 @@ void updateWormStatus(messagearea_t* theMessagearea, board_t* theBoard, worm_t* 
     }
 }
 
-
-//*********************************************************
-//* display management
-void printMessagearea(messagearea_t* theMessagearea)
-{
-    int i;
-
-    // print lines
-    for (i = 0; i < MESSAGEAREA_MAX_MESSAGES; i++){
-        if (theMessagearea -> messageLine[i] != NULL) {
-            // messageline is set
-            printMessageline(theMessagearea, i + 1);
-        }
-    }
-}
-
 int printDialog(messagearea_t* theMessagearea, char* prompt1, char* prompt2)
 {
     // check if first prompt is present, otherwise return error
@@ -195,15 +213,14 @@ int printDialog(messagearea_t* theMessagearea, char* prompt1, char* prompt2)
     // clean Messagearea
     int i;
     for (i=1; i<=MESSAGEAREA_MAX_MESSAGES;i++){
-        eraseMessagelineInDisplay(theMessagearea, i);
+        eraseMessageareaLineInDisplay(theMessagearea, i);
     }
 
     // assign messagestrings
-    setAllMessagesWithStrings(theMessagearea, prompt1, prompt2, "Bitte Taste drücken.");
-    printMessagearea(theMessagearea);
+    setAllMessagesWithStrings(theMessagearea, prompt1, prompt2, "Bitte Taste druecken.");
 
     // refresh the display
-    refresh();
+    refreshDisplay();
 
     // wait for userinput
     nodelay(stdscr, FALSE);
@@ -214,47 +231,76 @@ int printDialog(messagearea_t* theMessagearea, char* prompt1, char* prompt2)
     freeMessageareaAndContent(theMessagearea);
 
     // refresh display
-    refresh();
+    refreshDisplay();
 
     return ch;
-}
-
-void printMessageareaBorder(messagearea_t* theMessagearea)
-{
-    int i;
-    pos_t leftBorder;
-    pos_t rightBorder;
-
-    leftBorder.x = 0;
-    rightBorder.x = BOARD_MIN_WIDTH;
-
-    for ( i = 0; i < MESSAGEAREA_MIN_HEIGHT; i++) {
-        leftBorder.y = i;
-        rightBorder.y = i;
-        placeItemInDisplay(leftBorder, SYMBOL_BORDER_MESSAGEAREA);
-        placeItemInDisplay(rightBorder, SYMBOL_BORDER_MESSAGEAREA);
-
-        if ( i == 0 || i == MESSAGEAREA_MIN_HEIGHT - 1) {
-            fillMessageareaLineWithSymbol(theMessagearea, i, SYMBOL_BORDER_MESSAGEAREA);
-        }
-    }
-}
-
-void eraseMessagelineInDisplay(messagearea_t* theMessagearea, int lineNumber)
-{
-    // print to curses display buffer
-    fillMessageareaLineWithSymbol(theMessagearea, lineNumber, SYMBOL_FREE_CELL);
 }
 
 
 //*********************************************************
 //* display interaction
-void fillMessageareaLineWithSymbol(messagearea_t* theMessagearea, int lineNumber, char symbol)
+void fillMessagearealineWithSymbol(messagearea_t* theMessagearea, int lineNumber, char symbol)
 {
-    fillDisplaylineWithSymbol(theMessagearea->baseIndex + lineNumber, symbol);
+    fillPartialDisplaylineWithSymbol(theMessagearea -> baseIndex + lineNumber, symbol, 1 + MESSAGEAREA_BLANKS_RESERVED_LEFT, BOARD_MIN_WIDTH - 2 - MESSAGEAREA_BLANKS_RESERVED_RIGHT);
 }
 
-void printMessageline(messagearea_t* theMessagearea, int lineNumber)
+void eraseMessageareaLineInDisplay(messagearea_t* theMessagearea, int lineNumber)
 {
-    mvaddstr(theMessagearea -> baseIndex + lineNumber, 1 + MESSAGEAREA_BLANKS_RESERVED_LEFT, theMessagearea -> messageLine[lineNumber -1] -> msgString);
+    fillMessagearealineWithSymbol(theMessagearea, lineNumber, SYMBOL_FREE_CELL);
+}
+
+void printMessagelineToDisplay(messagearea_t* theMessagearea, int lineNumber)
+{
+    if (theMessagearea -> messageLine[lineNumber - 1] != NULL){
+        // print message
+        printStringToMessagearea(theMessagearea, lineNumber, theMessagearea -> messageLine[lineNumber - 1] -> msgString);
+    } else {
+        // erase line in Display
+        eraseMessageareaLineInDisplay(theMessagearea, lineNumber);
+    }
+}
+
+void printStringToMessagearea(messagearea_t* theMessagearea, int lineNumber, char* theString){
+    // set line to write to
+    int displaylineIndex = theMessagearea -> baseIndex + lineNumber;
+
+    // variable blanks on left side
+    fillPartialDisplaylineWithSymbol(displaylineIndex, SYMBOL_FREE_CELL, 1, 1 + MESSAGEAREA_BLANKS_RESERVED_LEFT);
+
+    // calc the max stringlength
+    int maxIndex = BOARD_MIN_WIDTH - 1 - MESSAGEAREA_BLANKS_RESERVED_RIGHT;
+
+    // write string to display
+    int curIndex;
+    int curPos = 1 + MESSAGEAREA_BLANKS_RESERVED_LEFT;
+    for (curIndex = 0; curPos <= maxIndex && theString[curIndex] != '\0'; curPos++, curIndex++){
+        placeItemInDisplay(curPos, displaylineIndex, theString[curIndex], COLP_DEFAULT);
+    }
+
+    // fill remaining space with blanks
+    fillPartialDisplaylineWithSymbol(displaylineIndex, SYMBOL_FREE_CELL, curPos, maxIndex);
+}
+
+void printMessageareaBorder(messagearea_t* theMessagearea)
+{
+    int lineIndex = theMessagearea -> baseIndex;
+    int i;
+
+    for (i = 0; i < MESSAGEAREA_MIN_HEIGHT; i++) {
+        if ( i == 0 || i == MESSAGEAREA_MIN_HEIGHT - 1) {
+            fillDisplaylineWithSymbol(lineIndex + i, SYMBOL_MESSAGEAREA_BORDER);
+        } else {
+            placeItemInDisplay(0, lineIndex + i, SYMBOL_MESSAGEAREA_BORDER, COLP_MESSAGEAREA_BORDER);
+            placeItemInDisplay(BOARD_MIN_WIDTH - 1,lineIndex + i, SYMBOL_MESSAGEAREA_BORDER, COLP_MESSAGEAREA_BORDER);
+        }
+    }
+}
+
+void removeMessageareaFromDisplay(messagearea_t* theMessagearea)
+{
+    int i;
+
+    for (i = 0; i < MESSAGEAREA_MIN_HEIGHT; i++){
+        fillPartialDisplaylineWithSymbol(theMessagearea -> baseIndex + i, SYMBOL_FREE_CELL, 0, BOARD_MIN_WIDTH - 1);
+    }
 }

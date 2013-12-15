@@ -14,7 +14,15 @@
  * Ingolstadt University of Applied Sciences
  * (C) 2011
  *
+ * The messageareamodel contains the data needed for
+ * messagearea creation and handling
+ *
+ * Tasks:
+ *      * memory allocation & freeing
+ *      * value modification
+ *
  */
+
 
 #ifndef _MESSAGEAREA_MODEL_H
 #define _MESSAGEAREA_MODEL_H
@@ -37,16 +45,17 @@
 #define MESSAGEAREA_BLANKS_RESERVED_RIGHT 1
 
 // symbols
-#define SYMBOL_BORDER_MESSAGEAREA '*'
+#define SYMBOL_MESSAGEAREA_BORDER '*'
+
 
 //*********************************************************
 //* enums
 //*********************************************************
 // put enums below here
 enum MessageCodes {
+    MC_ERROR,
     MC_STATUS,
     MC_WON,
-    MC_ERROR,
 };
 
 //*********************************************************
@@ -77,16 +86,19 @@ typedef struct MessageArea messagearea_t;
 //* function prototypes
 //*********************************************************
 // put prototypes below here
-// allocation & freeing
+
+//* model allocation
 messagearea_t* allocMessagearea(void);
+
+//* free model
 void freeMessagearea(messagearea_t* aMessagearea);
 
-// setters
+//* model setters
 void setMessageareaBaseIndex(messagearea_t* aMessagearea, int lineIndex);
 void setMessagecode(messagearea_t* aMessagearea, messagecodes_t aMessagecode);
 void setMessageAtLine(messagearea_t* aMessagearea, message_t* aMessage, int lineNumber);
 
-// getters
+//* getters
 int getMessageareaBaseIndex(messagearea_t* aMessagearea);
 messagecodes_t getMessagecode(messagearea_t* aMessagearea);
 message_t* getMessageAtLine(messagearea_t* aMessagearea, int lineNumber);

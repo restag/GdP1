@@ -1,4 +1,25 @@
-/* put a description in here 
+/* A simple variant of the game Snake
+ * Used for teaching in classes
+ *
+ * This version is an alternativ version of the given code,
+ * following a more strict approach of separation
+ *
+ *
+ * Author:
+ * Benjamin Ewert
+ * (c) 2013
+ *
+ * Author of original version:
+ * Franz Regensburger
+ * Ingolstadt University of Applied Sciences
+ * (C) 2011
+ *
+ * The messageareamodel contains the data needed for
+ * messagearea creation and handling
+ *
+ * Tasks:
+ *      * memory allocation & freeing
+ *      * value modification
  *
  */
 
@@ -12,6 +33,7 @@
 // put custom header includes below here
 #include "messagearea_model.h"
 
+
 //*********************************************************
 //* global vars
 //*********************************************************
@@ -23,18 +45,22 @@
 // put function codes below here
 
 //*********************************************************
-//* allocation & freeing
+//* model allocation
 messagearea_t* allocMessagearea(void)
 {
-    messagearea_t* theMessagearea = malloc(sizeof(messagearea_t));
+    messagearea_t* newMessagearea = malloc(sizeof(messagearea_t));
 
-    return theMessagearea;
+    return newMessagearea;
 }
 
+
+//*********************************************************
+//* free model
 void freeMessagearea(messagearea_t* theMessagearea)
 {
     free(theMessagearea);
 }
+
 
 //*********************************************************
 //* setters
@@ -56,6 +82,7 @@ void setMessageAtLine(messagearea_t* theMessagearea, message_t* theMessage, int 
         theMessagearea -> messageLine[lineNumber - 1] = NULL;
     }
 }
+
 
 //*********************************************************
 //* getters

@@ -14,7 +14,14 @@
  * Ingolstadt University of Applied Sciences
  * (C) 2011
  *
+ * The boardmodel contains the data needed for board creation and handling
+ *
+ * Tasks:
+ *      * memory allocation & freeing
+ *      * value modification
+ *
  */
+
 
 //*********************************************************
 //* header includes
@@ -25,16 +32,19 @@
 // put custom header includes below here
 #include "board_model.h"
 
+
 //*********************************************************
 //* global vars
 //*********************************************************
 
 
-
 //*********************************************************
 //* fuctions
 //*********************************************************
-// allocating & freeing
+// put function codes below here
+
+//*********************************************************
+//* model allocation
 board_t* allocBoard(void)
 {
     board_t* newBoard = malloc(sizeof(board_t));
@@ -42,12 +52,15 @@ board_t* allocBoard(void)
     return newBoard;
 }
 
+//*********************************************************
+//* free model
 void freeBoard(board_t* theBoard)
 {
     free(theBoard);
 }
 
-// Setters
+//*********************************************************
+//* setters
 void setLastRow(board_t* theBoard)
 {
     theBoard -> last_row = BOARD_MIN_HEIGHT - 1;
@@ -55,7 +68,7 @@ void setLastRow(board_t* theBoard)
 
 void setLastCol(board_t* theBoard)
 {
-    theBoard -> last_col = BOARD_MIN_WIDTH -1;
+    theBoard -> last_col = BOARD_MIN_WIDTH - 1;
 }
 
 void setCellContent(board_t* theBoard, pos_t cellPos, boardcodes_t cellContent)
@@ -63,7 +76,13 @@ void setCellContent(board_t* theBoard, pos_t cellPos, boardcodes_t cellContent)
     theBoard -> cells[cellPos.y][cellPos.x] = cellContent;
 }
 
-// Getters
+void setNumberOfFoodItems(board_t* theBoard, int n)
+{
+    theBoard -> food_items = n;
+}
+
+//*********************************************************
+//* getters
 int getLastRowOnBoard(board_t* theBoard)
 {
     return theBoard -> last_row;

@@ -14,7 +14,15 @@
  * Ingolstadt University of Applied Sciences
  * (C) 2011
  *
+ * The messagwmodel contains the data needed for
+ * message creation and handling
+ *
+ * Tasks:
+ *      * memory allocation & freeing
+ *      * value modification
+ *
  */
+
 
 #ifndef _MESSAGE_MODEL_H
 #define _MESSAGE_MODEL_H
@@ -52,24 +60,30 @@ struct Message {
     char* msgString;
 };
 
+
 //*********************************************************
 //* struct type definitions
 //*********************************************************
 // put struct typedefs below here
 typedef struct Message message_t;
 
+
 //*********************************************************
 //* function prototypes
 //*********************************************************
 // put prototypes below here
-// allocation & freeing
+
+//* model allocation
 message_t* allocMessage(void);
+
+//* free model
 void freeMessage(message_t* aMessage);
 void freeMsgString(char* aMsgString);
 
-// setters
+//* model setters
 void setMsgString(message_t* aMessage, char* aString);
 
-// getters
+//* getters
 char* getMsgString(message_t* aMessage);
-#endif  // #define _MESSAGE_MODEL_H
+
+#endif  // #define _<MODULE-NAME>_MODEL_H

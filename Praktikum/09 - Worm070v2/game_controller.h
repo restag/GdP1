@@ -14,10 +14,14 @@
  * Ingolstadt University of Applied Sciences
  * (C) 2011
  *
+ * Tasks:
+ *      * 
+ *
  */
 
-#ifndef _GAME_CONTROLER_H
-#define _GAME_CONTROLER_H
+
+#ifndef _GAME_CONTROLLER_H
+#define _GAME_CONTROLLER_H
 //*********************************************************
 //* header includes 
 //*********************************************************
@@ -30,36 +34,32 @@
 //* defines
 //*********************************************************
 // put defines below here
-// game setting
-#define NAP_TIME 100            // Time in milliseconds to sleep between updates of display
-
+#define NAP_TIME 100
 
 //*********************************************************
 //* enums
 //*********************************************************
 // put enums below here
 enum ResCodes {
-	RES_OK,
-	RES_FAILED,
+    RES_OK,
+    RES_FAILED,
     RES_INTERNAL_ERROR,
 };
-/*
-// Game state codes
+
 enum GameStates {
-	WORM_GAME_ONGOING,
-    WORM_CRASH,         // Crashed into a barrier
-	WORM_OUT_OF_BOUNDS,	// left screen
-	WORM_GAME_QUIT,		// User likes to quit
-    WORM_CROSSING,      // Worm bit itself
+    WORM_CRASH,             // crashed into barrier
+    WORM_CROSSING,          // worm bit itself
+    WORM_GAME_ONGOING,      // all good
+    WORM_GAME_QUIT,         // user likes to quit
+    WORM_OUT_OF_BOUNDS,     // left gameboard
 };
-*/
+
 //*********************************************************
 //* enum type definitions
 //*********************************************************
 // put typedefs for enums here
 typedef enum ResCodes rescodes_t;
-//typedef enum GameStates gamestates_t;
-
+typedef enum GameStates gamestates_t;
 
 //*********************************************************
 //* structs
@@ -77,9 +77,19 @@ typedef enum ResCodes rescodes_t;
 //* function prototypes
 //*********************************************************
 // put prototypes below here
-// run the level
-//rescodes_t doLevel();
 
+//* initialize module
 
-#endif  // #define _GAME_CONTROLER_H
+//* free module
 
+//* module management
+
+//* module content management
+
+//* output management
+
+//* display management
+
+//* display interaction
+
+#endif  // #define _GAME_CONTROLLER_H

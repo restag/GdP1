@@ -14,6 +14,12 @@
  * Ingolstadt University of Applied Sciences
  * (C) 2011
  *
+ * The boardmodel contains the data needed for board creation and handling
+ *
+ * Tasks:
+ *      * memory allocation & freeing
+ *      * value modification
+ *
  */
 
 #ifndef _BOARD_MODEL_H
@@ -22,24 +28,29 @@
 //* header includes 
 //*********************************************************
 // put framework header includes below here
-#include <curses.h>             // for chtype
 
 // put custom header includes below here
+
 
 //*********************************************************
 //* defines
 //*********************************************************
 // put defines below here
+// board dimensions
 #define BOARD_MIN_HEIGHT 26
 #define BOARD_MIN_WIDTH 70
+
+// symbols placed on gameboard
 #define SYMBOL_FREE_CELL ' '
-#define SYMBOL_BORDER_BOARD '#'
+#define SYMBOL_BOARD_BARRIER '#'
+#define SYMBOL_BOARD_BORDER '='
 #define SYMBOL_FOOD_1 '2'
 #define SYMBOL_FOOD_2 '4'
 #define SYMBOL_FOOD_3 '6'
 #define SYMBOL_WORM_HEAD_ELEMENT '0'
 #define SYMBOL_WORM_INNER_ELEMENT 'o'
 #define SYMBOL_WORM_TAIL_ELEMENT '`'
+
 
 //*********************************************************
 //* enums
@@ -54,28 +65,18 @@ enum BoardCodes {
     BC_BARRIER,         // a barrier; if hit => game over
 };
 
-enum ColorPairs {
-    COLP_FREE_CELL,
-    COLP_USER_WORM,
-    COLP_FOOD_1,
-    COLP_FOOD_2,
-    COLP_FOOD_3,
-    COLP_BORDER_BOARD,
-    COLP_BORDER_MESSAGEAREA,
-};
 
 //*********************************************************
 //* enum type definitions
 //*********************************************************
 // put typedefs for enums here
 typedef enum BoardCodes boardcodes_t;
-typedef enum ColorPairs colorpairs_t;
+
 
 //*********************************************************
 //* structs
 //*********************************************************
 // put structs below here
-// position on the board
 struct pos {
     int y;  // y-coordinate (row)
     int x;  // x-coordinate (col)
@@ -96,6 +97,7 @@ struct board {
     int food_items; // number of food items left in the current level
 };
 
+
 //*********************************************************
 //* struct type definitions
 //*********************************************************
@@ -107,18 +109,21 @@ typedef struct board board_t;
 //*********************************************************
 //* function prototypes
 //*********************************************************
-// allocating & freeing
+// put prototypes below here
+
+//* model allocation
 board_t* allocBoard(void);
+
+//* free model
 void freeBoard(board_t* aBoard);
 
-
-// setters
+//* model setters
 void setLastRow(board_t* aBoard);
 void setLastCol(board_t* aBoard);
 void setCellContent(board_t* aBoard, pos_t cellPos, boardcodes_t cellContent); 
-extern void setNumberOfFoodItems(board_t* aBoard, int n);
+void setNumberOfFoodItems(board_t* aBoard, int n);
 
-// getters
+//* model getters
 int getLastRowOnBoard(board_t* aBoard);
 int getLastColOnBoard(board_t* aBoard);
 boardcodes_t getContentAt(board_t* aBoard, pos_t pos);

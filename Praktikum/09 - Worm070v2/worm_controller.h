@@ -13,30 +13,30 @@
  * Franz Regensburger
  * Ingolstadt University of Applied Sciences
  * (C) 2011
- * The "prep" files are used to check the window for the game requirements
- * and setup the window for modification by the gameboard
  *
+ * The wormcontroller is used for worm interaction
+ *
+ * Tasks:
+ *      * initialization
+ *      * movement
  */
 
 
-#ifndef _PREP_H
-#define _PREP_H
+#ifndef _WORM_CONTROLLER_H
+#define _WORM_CONTROLLER_H
 //*********************************************************
 //* header includes 
 //*********************************************************
 // put framework header includes below here
-#include <stdbool.h>
 
 // put custom header includes below here
-#include "messagearea_model.h"
+#include "worm_model.h"
 #include "board_model.h"
-
 
 //*********************************************************
 //* defines
 //*********************************************************
-// board dimensions
-#define WINDOW_MIN_HEIGHT (BOARD_MIN_HEIGHT + MESSAGEAREA_MIN_HEIGHT)    // The guaranteed number of rows available for the board
+// put defines below here
 
 
 //*********************************************************
@@ -50,6 +50,7 @@
 //*********************************************************
 // put typedefs for enums here
 
+
 //*********************************************************
 //* structs
 //*********************************************************
@@ -59,19 +60,27 @@
 //*********************************************************
 //* struct type definitions
 //*********************************************************
-// put typedefs for structs here
+// put struct typedefs below here
+
 
 //*********************************************************
 //* function prototypes
 //*********************************************************
-// Standard curses initialization and cleanup
-void initializeCursesApp(void); 
-void cleanupCursesApp(void);
+// put prototypes below here
 
-// pregame checks
-bool windowFitsMessagearea(void);
-bool windowFitsMessageareaAndBoard(void);
+//* initialize module
 
-// pre-game setup
-void initializeColors(void);
-#endif  // #define _PREP_H
+//* free module
+
+//* module management
+
+//* module content management
+pos_t getWormHeadpos(worm_t* aWorm);
+
+//* output management
+
+//* display management
+
+//* display interaction
+
+#endif  // #define _<MODULE-NAME>_CONTROLLER_H
