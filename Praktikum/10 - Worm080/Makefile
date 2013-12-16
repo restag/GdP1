@@ -11,8 +11,7 @@
 #
 
 # Please add all header files in ./ here
-#HEADERS += debug.h
-#HEADERS += board_model.h
+HEADERS += board_model.h
 #HEADERS += display_controller.h
 #HEADERS += message_model.h
 #HEADERS += messagearea_model.h
@@ -27,11 +26,10 @@
 
 
 # Please add all object files in ./ here
-#OBJECTS += debug.o
+OBJECTS += board_model.o
 #OBJECTS += display_controller.o
 #OBJECTS += pregame_controller.o
 #OBJECTS += message_model.o
-#OBJECTS += board_model.o
 #OBJECTS += worm_model.o
 #OBJECTS += message_controller.o
 #OBJECTS += worm_controller.o
