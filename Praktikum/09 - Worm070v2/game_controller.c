@@ -97,6 +97,12 @@ rescodes_t doLevel(board_t* theBoard, messagearea_t* theMessagearea, worm_t* the
         // now move the worm for one step
         moveWorm(theBoard, userworm, &game_state);
 
+        //quit when worm leaves the board
+        if(game_state == WORM_OUT_OF_BOUNDS){
+            end_level_loop = true;
+            continue;
+        }
+
         // quit when user crashed
         if (game_state == WORM_CRASH){
             end_level_loop = true;
@@ -133,6 +139,9 @@ rescodes_t doLevel(board_t* theBoard, messagearea_t* theMessagearea, worm_t* the
 
     // print game summary
     switch (game_state){
+        case WORM_OUT_OF_BOUNDS:
+            printDialog(theMessagearea, "Sie haben verloren!", "Sie haben das Spielfeld verlassen...");
+            break;
         case WORM_CRASH:
             printDialog(theMessagearea, "Sie haben verloren!", "Sie sind in ein Hinderniss gefahren...");
             break;
