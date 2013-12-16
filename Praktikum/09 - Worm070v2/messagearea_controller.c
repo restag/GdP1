@@ -177,7 +177,7 @@ void updateWormStatus(messagearea_t* theMessagearea, board_t* theBoard, worm_t* 
     // define status messages
     statusMessage[0] = "Anzahl verbleibender Futterbrocken: %2d";
     statusMessage[1] = "Der Wurm ist an Position: x= %3d y=%3d";
-    statusMessage[2] = "Länge des Wurms: %3d";
+    statusMessage[2] = "Laenge des Wurms: %3d";
 
 
     // reserve mem for buffer

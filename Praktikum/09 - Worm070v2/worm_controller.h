@@ -33,6 +33,7 @@
 #include "worm_model.h"
 #include "board_model.h"
 #include "display_controller.h"
+#include "game_controller.h"
 
 //*********************************************************
 //* defines
@@ -75,15 +76,19 @@ worm_t* initializeUserWorm(board_t* aBoard);
 //* free module
 
 //* module management
+void moveWorm(board_t* aBoard, worm_t* aWorm, gamestates_t* aGamestate);
+void growWorm(worm_t* aWorm, bonus_t growth);
 
 //* module content management
 pos_t getWormHeadpos(worm_t* aWorm);
+pos_t getWormTailpos(worm_t* aWorm);
 void setWormHeading(worm_t* aWorm, wormheading_t dir);
-
+void cleanWormTail(board_t* aBoard, worm_t* aWorm);
 //* output management
 
 //* display management
 
 //* display interaction
+void showWorm(board_t* aBoard, worm_t* aWorm);
 
 #endif  // #define _<MODULE-NAME>_CONTROLLER_H

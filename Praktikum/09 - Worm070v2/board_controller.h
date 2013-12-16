@@ -32,6 +32,7 @@
 // put custom header includes below here
 #include "board_model.h"
 #include "display_controller.h"
+#include "game_controller.h"
 
 //*********************************************************
 //* defines
@@ -71,6 +72,7 @@
 //* initialize module
 board_t* initializeBoard(void);
 void initializeBarriers(board_t* aBoard);
+void initializeFoodItems(board_t* aBoard);
 
 //* free module
 
@@ -78,6 +80,7 @@ void initializeBarriers(board_t* aBoard);
 
 //* module content management
 void placeItem(board_t* aBoard, pos_t position, char symbol, boardcodes_t boardcode, colorpairs_t color);
+gamestates_t decrementNumberOfFoodItems(board_t* aBoard, gamestates_t* aGamestate);
 
 //* output management
 

@@ -30,6 +30,8 @@
 
 // put custom header includes below here
 #include "board_model.h"
+#include "worm_model.h"
+#include "messagearea_model.h"
 
 
 //*********************************************************
@@ -37,6 +39,12 @@
 //*********************************************************
 // put defines below here
 #define NAP_TIME 100
+
+// game settings
+#define GAME_FOOD_ITEMS_1 2
+#define GAME_FOOD_ITEMS_2 4
+#define GAME_FOOD_ITEMS_3 4
+#define GAME_INITIAL_FOOD_ITEMS (GAME_FOOD_ITEMS_1 + GAME_FOOD_ITEMS_2 + GAME_FOOD_ITEMS_3)
 
 //*********************************************************
 //* enums
@@ -46,9 +54,13 @@ enum ResCodes {
     RES_OK,
     RES_FAILED,
     RES_INTERNAL_ERROR,
+    RES_CRASHED,
+    RES_CROSSING,
+    res_BOARD_EMPTY,
 };
 
 enum GameStates {
+    BOARD_NO_FOOD_LEFT,     // all food items are gone
     WORM_CRASH,             // crashed into barrier
     WORM_CROSSING,          // worm bit itself
     WORM_GAME_ONGOING,      // all good
@@ -87,6 +99,7 @@ void initializeLevel(board_t* aBoard);
 //* free module
 
 //* module management
+rescodes_t doLevel(board_t* aBoard, messagearea_t* aMessagearea, worm_t* aWorm);
 
 //* module content management
 

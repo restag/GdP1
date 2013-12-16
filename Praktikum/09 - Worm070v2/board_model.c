@@ -93,7 +93,7 @@ int getLastColOnBoard(board_t* theBoard)
     return theBoard -> last_col;
 }
 
-boardcodes_t getCellContentAt(board_t* theBoard, pos_t pos)
+boardcodes_t getContentAt(board_t* theBoard, pos_t pos)
 {
     return theBoard -> cells[pos.y][pos.x];
 }

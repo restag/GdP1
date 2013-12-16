@@ -65,13 +65,19 @@ enum BoardCodes {
     BC_BARRIER,         // a barrier; if hit => game over
 };
 
+enum Boni {
+    BONUS_1 = 2,        // additional length for the worm when consuming
+    BONUS_2 = 4,
+    BONUS_3 = 6,
+};
+
 
 //*********************************************************
 //* enum type definitions
 //*********************************************************
 // put typedefs for enums here
 typedef enum BoardCodes boardcodes_t;
-
+typedef enum Boni bonus_t;
 
 //*********************************************************
 //* structs

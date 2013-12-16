@@ -30,6 +30,7 @@
 #include "game_controller.h"
 #include "pregame_controller.h"
 #include "messagearea_controller.h"
+#include "worm_controller.h"
 
 
 //*********************************************************
@@ -72,15 +73,15 @@ int main()
 
             // initialize the gameboard
             board_t* theBoard = initializeBoard();
+            worm_t* userworm = initializeUserWorm(theBoard);
             initializeLevel(theBoard);
             refreshDisplay();
 
 
-printDialog(theMessagearea, "wuerde passen, los gehts", NULL);
 
 
             // run game
-            //res_code = doLevel();
+            res_code = doLevel(theBoard, theMessagearea, userworm);
         } else {
             // window too small for gameboard
             // print the Messagearea

@@ -26,6 +26,7 @@
 //* header includes
 //*********************************************************
 // put framework header includes below here
+#include <stdlib.h>
 
 // put custom header includes below here
 #include "worm_controller.h"
@@ -48,12 +49,22 @@ worm_t* initializeWorm(board_t* theBoard, pos_t startPos, wormheading_t dir, col
     // reserve memory
     worm_t* newWorm = allocWorm();
 
+    // set wormposarray to unusedPos
+    int i;
+    pos_t unusedPos;
+    unusedPos.x = -1;
+    unusedPos.y = -1;
+    for (i = 0; i < WORM_MAX_LENGTH; i++){
+        newWorm -> wormpos[i] = unusedPos;
+    }
+
     // set default values
-    setWormLength(newWorm, 4);
+    setWormInitialLength(newWorm);
     setHeadIndex(newWorm, 0);
     setMaxIndex(newWorm, WORM_MAX_LENGTH);
     setWormpos(newWorm, startPos);
     setWormColor(newWorm, color);
+    setWormHeading(newWorm, dir);
 
     // place Worm on Board
     placeItem(theBoard, startPos, SYMBOL_WORM_HEAD_ELEMENT, BC_USED_BY_WORM, color);
@@ -80,6 +91,74 @@ worm_t* initializeUserWorm(board_t* theBoard)
 
 //*********************************************************
 //* module management
+void moveWorm(board_t* theBoard, worm_t* theWorm, gamestates_t* theGamestate)
+{
+    // get worm's headpos
+    pos_t headpos = getWormHeadpos(theWorm);
+    headpos.x += theWorm -> nextStep.x;
+    headpos.y += theWorm -> nextStep.y;
+
+    // check if we hit something
+    if (headpos.x < 0) {
+        *theGamestate = WORM_OUT_OF_BOUNDS;
+    } else if (headpos.x > getLastColOnBoard(theBoard)) {
+        *theGamestate = WORM_OUT_OF_BOUNDS;
+    } else if (headpos.y < 0){
+        *theGamestate = WORM_OUT_OF_BOUNDS;
+    } else if (headpos.y > getLastRowOnBoard(theBoard)) {
+        *theGamestate = WORM_OUT_OF_BOUNDS;
+    } else {
+        // we stay on the board, so check for hitting something
+        switch(getContentAt(theBoard, headpos)){
+            case BC_FOOD_1:
+                //grow worm
+                growWorm(theWorm, BONUS_1);
+                *theGamestate = decrementNumberOfFoodItems(theBoard, theGamestate);
+                break;
+            case BC_FOOD_2:
+                growWorm(theWorm, BONUS_2);
+                *theGamestate = decrementNumberOfFoodItems(theBoard, theGamestate);
+                break;
+            case BC_FOOD_3:
+                growWorm(theWorm, BONUS_3);
+                *theGamestate = decrementNumberOfFoodItems(theBoard, theGamestate);
+                break;
+            case BC_BARRIER:
+                // thats bad, we crashed into the wall
+                *theGamestate = WORM_CRASH;
+                break;
+            case BC_USED_BY_WORM:
+                // bad, worm bit itself
+                *theGamestate = WORM_CROSSING;
+                break;
+            default:
+                // without default we get warning
+                {;} // do nothing
+        }
+    }
+
+    // check the gamestatus
+    if (*theGamestate == WORM_GAME_ONGOING){
+        // all is good
+        // go round if end of worm is reached (ring buffer)
+        theWorm->headindex++;
+        if (theWorm->headindex > theWorm->cur_lastindex){
+            theWorm->headindex = 0;
+        }
+
+        // store new coordinates
+        setWormpos(theWorm, headpos);
+    }
+}
+
+void growWorm(worm_t* theWorm, bonus_t growth)
+{
+    if (getWormLength(theWorm) + growth >= getMaxIndex(theWorm)){
+        setCurLastindex(theWorm, getMaxIndex(theWorm));
+    } else {
+        theWorm -> cur_lastindex += growth;
+    }
+}
 
 
 //*********************************************************
@@ -123,6 +202,23 @@ void setWormHeading(worm_t* theWorm, wormheading_t dir)
     setNextStep(theWorm, nextStep);
 }
 
+void cleanWormTail(board_t* theBoard, worm_t* theWorm)
+{
+    int tailindex;
+
+    // compute tailindex
+    tailindex = (getHeadindex(theWorm) + 1) % getWormLength(theWorm);
+
+    pos_t tailpos = getWormposAtIndex(theWorm, tailindex);
+
+    // check if the tail exists
+    // is the wormpos @ tailindex already in use?
+    if (tailpos.x != -1) {
+        // remove tail from board
+        placeItem(theBoard, tailpos, SYMBOL_FREE_CELL, BC_FREE_CELL, COLP_FREE_CELL);
+    }
+}
+
 
 //*********************************************************
 //* output management
@@ -134,3 +230,38 @@ void setWormHeading(worm_t* theWorm, wormheading_t dir)
 
 //*********************************************************
 //* display interaction
+void showWorm(board_t* theBoard, worm_t* theWorm)
+{
+    pos_t curPos;
+    int curIndex;
+    int headindex = getHeadindex(theWorm);
+    colorpairs_t color = getWormColor(theWorm);
+
+
+    // place new Body element
+    if (headindex == 0){
+        curIndex = theWorm -> cur_lastindex;
+    } else {
+        curIndex = headindex -1;
+    }
+
+    curPos = getWormposAtIndex(theWorm, curIndex);
+    placeItem(theBoard, curPos, SYMBOL_WORM_INNER_ELEMENT, BC_USED_BY_WORM, color);
+
+    // place tail element
+    if (headindex == theWorm -> cur_lastindex){
+        curIndex = 0;
+    } else {
+        curIndex = headindex + 1;
+    }
+
+    curPos = getWormposAtIndex(theWorm, curIndex);
+    if (curPos.x == -1 && curPos.y == -1){
+        curPos = getWormposAtIndex(theWorm, 0);
+    }
+
+    placeItem(theBoard, curPos, SYMBOL_WORM_TAIL_ELEMENT, BC_USED_BY_WORM, color);
+
+    // place the new head
+    placeItem(theBoard, getWormHeadpos(theWorm), SYMBOL_WORM_HEAD_ELEMENT, BC_USED_BY_WORM, color);
+}

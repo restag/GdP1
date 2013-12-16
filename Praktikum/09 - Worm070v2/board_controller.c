@@ -80,7 +80,7 @@ board_t* initializeBoard(void)
     }
 
     // setNumber of Food items
-    setNumberOfFoodItems(newBoard, 10);
+    setNumberOfFoodItems(newBoard, GAME_INITIAL_FOOD_ITEMS);
     
     // return pointer to board
     return newBoard;
@@ -106,6 +106,50 @@ void initializeBarriers(board_t* theBoard)
     }
 }
 
+void initializeFoodItems(board_t* theBoard)
+{
+    pos_t curPos[GAME_INITIAL_FOOD_ITEMS];
+    
+    // set food positions
+    curPos[0].x = 11;
+    curPos[0].y = 4;
+    curPos[1].x = 14;
+    curPos[1].y = 14;
+    curPos[2].x = 19;
+    curPos[2].y = 17;
+    curPos[3].x = 5;
+    curPos[3].y = 5;
+    curPos[4].x = 60;
+    curPos[4].y = 10;
+    curPos[5].x = 55;
+    curPos[5].y = 15;
+    curPos[6].x = 48;
+    curPos[6].y = 19;
+    curPos[7].x = 22;
+    curPos[7].y = 22;
+    curPos[8].x = 52;
+    curPos[8].y = 22;
+    curPos[9].x = 38;
+    curPos[9].y = 20;
+
+    int i;
+    
+    // food type 1
+    for (i = 0; i < GAME_FOOD_ITEMS_1; i++){
+        placeItem(theBoard, curPos[i], SYMBOL_FOOD_1, BC_FOOD_1, COLP_FOOD_1);
+    }
+
+    // food type 1
+    for (; i < (GAME_FOOD_ITEMS_1 + GAME_FOOD_ITEMS_2); i++){
+        placeItem(theBoard, curPos[i], SYMBOL_FOOD_2, BC_FOOD_2, COLP_FOOD_2);
+    }
+
+    // food type 3
+    for (;i < GAME_INITIAL_FOOD_ITEMS;i++){
+        placeItem(theBoard, curPos[i], SYMBOL_FOOD_3, BC_FOOD_3, COLP_FOOD_3);
+    }
+}
+
 
 //*********************************************************
 //* free module
@@ -126,6 +170,16 @@ void placeItem(board_t* theBoard, pos_t position, char symbol, boardcodes_t boar
     printItem(position, symbol, color);
 }
 
+gamestates_t decrementNumberOfFoodItems(board_t* theBoard, gamestates_t* theGamestate)
+{
+    theBoard -> food_items--;
+
+    if (theBoard -> food_items == 0){
+        return BOARD_NO_FOOD_LEFT;
+    }
+
+    return WORM_GAME_ONGOING;
+}
 
 //*********************************************************
 //* output management
