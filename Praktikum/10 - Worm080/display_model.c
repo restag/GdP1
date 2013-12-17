@@ -28,6 +28,7 @@
 // put framework header includes below here
 
 // put custom header includes below here
+#include "display_model.h"
 
 
 //*********************************************************
