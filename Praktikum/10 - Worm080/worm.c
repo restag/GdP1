@@ -25,6 +25,7 @@
 
 // put custom header includes below here
 #include "worm.h"
+#include "board_model.h"
 #include "display_controller.h"
 
 //*********************************************************
@@ -42,44 +43,39 @@
 int main()
 {
     // initialize curses
-    initializeCursesApp();
-    // stops runtime of program and waits for user input
-    #ifdef _DEBUG_H
-    waitForUserInput();
-    #endif
-  
+    initializeCursesApp();  
 
     //* starting point for wormApp
     // result code from functions
-    //rescodes_t res_code;
+    rescodes_t res_code;
 
     // * pregame checks
     // check the window dimesions
-    /*if (windowCanContainMessagearea()){
+    if (windowCanContainMessagearea()){
         // do visual setup
-        initializeColors();
-        messagearea_t* theMessagearea = initializeMessagearea();
+        //initializeColors();
+        //messagearea_t* theMessagearea = initializeMessagearea();
         
         // check if game can be run
         if (windowCanContainMessageareaAndBoard()){
             // all good, do pre-game setup
-            moveMessageareaToIndex(theMessagearea, BOARD_MIN_HEIGHT);
+            //moveMessageareaToIndex(theMessagearea, BOARD_MIN_HEIGHT);
 
             // initialize the gameboard
-            board_t* theBoard = initializeBoard();
-            worm_t* userworm = initializeUserWorm(theBoard);
-            initializeLevel(theBoard);
-            refreshDisplay();
+           // board_t* theBoard = initializeBoard();
+            //worm_t* userworm = initializeUserWorm(theBoard);
+            //initializeLevel(theBoard);
+            //refreshDisplay();
 
 
 
 
             // run game
-            res_code = doLevel(theBoard, theMessagearea, userworm);
+            //res_code = doLevel(theBoard, theMessagearea, userworm);
         } else {
             // window too small for gameboard
             // print the Messagearea
-            printDialog(theMessagearea, "Das Fenster ist zu klein!", NULL);
+            //printDialog(theMessagearea, "Das Fenster ist zu klein!", NULL);
 
             // set rescode
             res_code = RES_FAILED;
@@ -96,7 +92,7 @@ int main()
         puts("window is too small for messagearea");
         res_code = RES_FAILED;
     }
-    */
+    
     // return rescode
-    return 0;
+    return res_code;
 }
