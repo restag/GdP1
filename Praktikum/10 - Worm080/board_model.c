@@ -45,6 +45,16 @@
 
 //*********************************************************
 //* model allocation
+pos_t makePos(int x, int y)
+{
+    pos_t newPos;
+
+    newPos.x = x;
+    newPos.y = y;
+
+    return newPos;
+}
+
 board_t* allocBoard(void)
 {
     board_t* newBoard = malloc(sizeof(board_t));

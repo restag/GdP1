@@ -117,6 +117,7 @@ typedef struct board board_t;
 // put prototypes below here
 
 //* model allocation
+pos_t makePos(int x, int y);
 board_t* allocBoard(void);
 
 //* free model
