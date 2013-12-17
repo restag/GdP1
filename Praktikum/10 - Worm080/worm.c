@@ -25,7 +25,7 @@
 
 // put custom header includes below here
 #include "worm.h"
-
+#include "display_controller.h"
 
 //*********************************************************
 //* global vars
@@ -42,7 +42,7 @@
 int main()
 {
     // initialize curses
-    //initializeCursesApp();
+    initializeCursesApp();
     // stops runtime of program and waits for user input
     #ifdef _DEBUG_H
     waitForUserInput();
@@ -96,7 +96,7 @@ int main()
         puts("window is too small for messagearea");
         res_code = RES_FAILED;
     }
-    
+    */
     // return rescode
-    return res_code;*/
+    return 0;
 }
