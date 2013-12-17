@@ -97,6 +97,9 @@ rescodes_t doLevel(board_t* theBoard, messagearea_t* theMessagearea, worm_t* the
         // now move the worm for one step
         moveWorm(theBoard, userworm, &game_state);
 
+        // show the new Head
+        showWorm(theBoard, userworm);
+
         //quit when worm leaves the board
         if(game_state == WORM_OUT_OF_BOUNDS){
             end_level_loop = true;
@@ -120,9 +123,6 @@ rescodes_t doLevel(board_t* theBoard, messagearea_t* theMessagearea, worm_t* the
             end_level_loop = true;
             continue;
         }
-
-        // show the new Head
-        showWorm(theBoard, userworm);
 
         // update messagearea
         updateWormStatus(theMessagearea, theBoard, userworm);
