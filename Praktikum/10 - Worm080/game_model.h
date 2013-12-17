@@ -78,18 +78,19 @@ typedef enum GameStates gamestates_t;
 //* structs
 //*********************************************************
 // put structs below here
-struct GameStatus {
+struct StatusCodes {
     rescodes_t rescode;
     gamestates_t gamestate;
+    messagecodes_t messagecode;
 };
-typedef struct GameStatus gamestatus_t;
+typedef struct StatusCodes statuscodes_t;
 
 struct Game {
     board_t* gameboard;
     messagearea_t* messagearea;
     settings_t* settingsset;
     worm_t** worms;
-    gamestatus_t* gamestatus;
+    statuscodes_t* statuscodes;
 };
 typedef struct Game game_t;
 
@@ -101,20 +102,31 @@ typedef struct Game game_t;
 
 //* model allocation
 game_t* allocGame(void);
+statuscodes_t* allocStatuscodes(void);
 
 //* free model
 void freeGame(game_t* aGame);
+void freeStatuscodes(statuscodes_t* aStatuscode);
 
 //* model setters
 void setGameboard(game_t* aGame, board_t* aBoard);
 void setMessageareaForGame(game_t* aGame, messagearea_t* aMessagearea);
 void setSettingssetForGame(game_t* aGame, settings_t* aSettingsset);
 void setWormAtIndex(game_t* aGame, worm_t* aWorm, int index);
+void setStatuscodesForGame(game_t* aGame, statuscodes_t* aStatuscode);
+void setRescodeAtStatuscodes(statuscodes_t* aStatuscode, rescodes_t aRescode);
+void setGamestateAtStatuscodes(statuscodes_t* aStatuscode, gamestates_t aGamestate);
+void setMessagecodeAtStatuscodes(statuscodes_t* aStatuscode, messagecodes_t aMessagecode);
+
 
 //* getters
 board_t* getGameboard(game_t* aGame);
 messagearea_t* getMessageareaFromGame(game_t* aGame);
 settings_t* getSettingssetForGame(game_t* aGame);
 worm_t* getWormAtIndex(game_t* aGame, int index);
+statuscodes_t* getStatuscodesFromGame(game_t* aGame);
+rescodes_t getRescodeFromStatuscodes(statuscodes_t* aStatuscode);
+gamestates_t getGamestateFromStatuscodes(statuscodes_t* aStatuscode);
+messagecodes_t getMessagecodeFromStatuscodes(statuscodes_t* aStatuscode);
 
 #endif  // #define _<MODULE-NAME>_MODEL_H

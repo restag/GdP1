@@ -26,7 +26,9 @@
 // put custom header includes below here
 #include "worm.h"
 #include "board_model.h"
+#include "game_model.h"
 #include "display_controller.h"
+#include "pregame_controller.h"
 
 //*********************************************************
 //* global vars

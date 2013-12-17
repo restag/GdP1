@@ -51,12 +51,24 @@ game_t* allocGame(void)
     return newGame;
 }
 
+statuscodes_t* allocStatuscodes(void)
+{
+    statuscodes_t* newCodeset = malloc(sizeof(statuscodes_t));
+
+    return newCodeset;
+}
+
 
 //*********************************************************
 //* free model
 void freeGame(game_t* theGame)
 {
     free(theGame);
+}
+
+void freeStatuscodes(statuscodes_t* theStatuscode)
+{
+    free(theStatuscode);
 }
 
 
@@ -82,6 +94,27 @@ void setWormAtIndex(game_t* theGame, worm_t* theWorm, int index)
     theGame -> worms[index] = theWorm;
 }
 
+void setStatuscodesForGame(game_t* theGame, statuscodes_t* theStatuscodes)
+{
+    theGame -> statuscodes = theStatuscodes;
+}
+
+void setRescodeAtStatuscodes(statuscodes_t* theStatus, rescodes_t theRescode)
+{
+    theStatus -> rescode = theRescode;
+}
+
+void setGamestateAtStatuscodes(statuscodes_t* theStatus, gamestates_t theGamestate)
+{
+    theStatus -> gamestate = theGamestate;
+}
+
+void setMessagecodeAtStatuscodes(statuscodes_t* theStatus, messagecodes_t aMessagecode)
+{
+    theStatus -> messagecode = aMessagecode;
+}
+
+
 //*********************************************************
 //* getters
 board_t* getGameboard(game_t* theGame)
@@ -102,4 +135,24 @@ settings_t* getSettingssetFromGame(game_t* theGame)
 worm_t* getWormAtIndex(game_t* theGame, int index)
 {
     return theGame -> worms[index];
+}
+
+statuscodes_t* getStatuscodesFromGame(game_t* theGame)
+{
+    return theGame -> statuscodes;
+}
+
+rescodes_t getRescodeFromStatuscodes(statuscodes_t* theStatuscode)
+{
+    return theStatuscode -> rescode;
+}
+
+gamestates_t getGamestateFromStatuscodes(statuscodes_t* theStatuscode)
+{
+    return theStatuscode -> gamestate;
+}
+
+messagecodes_t getMessagecodeFromStatuscodes(statuscodes_t* theStatuscode)
+{
+    return theStatuscode -> messagecode;
 }
