@@ -67,7 +67,6 @@ typedef enum WormHeading wormheading_t;
 // put structs below here
 // a worm structure
 struct worm {
-    int cur_lastindex;  // current last index in the array of worms element positions
     int maxindex;       // Last usable index in the array pointed to by wormpos
     int headindex;      // An index in the array for the head position of the worm
                         // 0 <= headindex <= maxindex
@@ -96,15 +95,23 @@ typedef struct worm worm_t;
 
 //* model allocation
 worm_t* allocWorm(void);
-pos_t* allocWormposArray(int arraypositions);
+pos_t* allocWormposArray(worm_t* aWorm);
 
 //* free model
 void freeWorm(worm_t* aWorm);
 void freeWormposArray(pos_t* wormposArray);
 
 //* model setters
+void setWormMaxindex(worm_t* aWorm, int maxindex);
+void setWormHeadindex(worm_t* aWorm, int headindex);
+void setWormposAtIndex(worm_t* aWorm, pos_t* aWormpos, int index);
+void setWormNextStep(worm_t* aWorm, pos_t* aWormpos);
+void setWormcolor(worm_t* aWorm, colorpairs_t aColor);
 
 //* getters
+int getWormMaxindex(worm_t* aWorm);
 int getWormLength(worm_t* aWorm);
-pos_t getWormposAtIndex(worm_t* aWorm, int index);
+int getWormHeadindex(worm_t* aWorm);
+pos_t* getWormposAtIndex(worm_t* aWorm, int index);
+pos_t* getWormNextStep(worm_t* aWorm);
 #endif  // #define _WORM_MODEL_H
