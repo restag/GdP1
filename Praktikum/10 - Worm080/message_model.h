@@ -57,6 +57,7 @@
 //*********************************************************
 // put structs below here
 struct Message {
+    int max_length;
     char* msgString;
 };
 
@@ -81,9 +82,11 @@ void freeMessage(message_t* aMessage);
 void freeMsgString(char* aMsgString);
 
 //* model setters
+void setMsgMaxlength(message_t* aMessage, int maxlength);
 void setMsgString(message_t* aMessage, char* aString);
 
 //* getters
+int getMsgMaxlength(message_t* aMessage);
 char* getMsgString(message_t* aMessage);
 
 #endif  // #define _<MODULE-NAME>_MODEL_H

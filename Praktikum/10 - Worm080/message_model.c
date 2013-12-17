@@ -74,6 +74,11 @@ void freeMsgString(char* theMsgString)
 
 //*********************************************************
 //* setters
+void setMsgMaxlength(message_t* theMessage, int maxlength)
+{
+    theMessage -> max_length = maxlength;
+}
+
 void setMsgString(message_t* theMessage, char* theString)
 {
     if (theString != NULL) {
@@ -85,6 +90,11 @@ void setMsgString(message_t* theMessage, char* theString)
 
 //*********************************************************
 //* getters
+int getMsgMaxlength(message_t* theMessage)
+{
+    return theMessage -> max_length;
+}
+
 char* getMsgString(message_t* theMessage)
 {
     return theMessage -> msgString;
