@@ -61,9 +61,29 @@ void freeBoard(board_t* theBoard)
 
 //*********************************************************
 //* setters
-void setCellContentAtPos(board_t* theBoard, pos_t cellPos, boardcodes_t cellContent)
+void setXPos(pos_t* thePos, int n)
 {
-    theBoard -> cells[cellPos.y][cellPos.x] = cellContent;
+    thePos -> x = n;
+}
+
+void setYPos(pos_t* thePos, int n)
+{
+    thePos -> y = n;
+}
+
+void setLastRowOnBoard(board_t* theBoard, int lastRow)
+{
+    theBoard -> last_row = lastRow;
+}
+
+void setLastColOnBoard(board_t* theBoard, int lastCol)
+{
+    theBoard -> last_col = lastCol;
+}
+
+void setCellContentAtPos(board_t* theBoard, pos_t* cellPos, boardcodes_t cellContent)
+{
+    theBoard -> cells[getYPos(cellPos)][getXPos(cellPos)] = cellContent;
 }
 
 void setNumberOfFoodItems(board_t* theBoard, int n)
@@ -73,6 +93,16 @@ void setNumberOfFoodItems(board_t* theBoard, int n)
 
 //*********************************************************
 //* getters
+int getXPos(pos_t* thePos)
+{
+    return thePos -> x;
+}
+
+int getYPos(pos_t* thePos)
+{
+    return thePos -> y;
+}
+
 int getLastRowOnBoard(board_t* theBoard)
 {
     return theBoard -> last_row;
@@ -83,9 +113,9 @@ int getLastColOnBoard(board_t* theBoard)
     return theBoard -> last_col;
 }
 
-boardcodes_t getContentAt(board_t* theBoard, pos_t pos)
+boardcodes_t getCellContentAtPos(board_t* theBoard, pos_t* thePos)
 {
-    return theBoard -> cells[pos.y][pos.x];
+    return theBoard -> cells[getYPos(thePos)][getXPos(thePos)];
 }
 
 int getNumberOfFoodItems(board_t* theBoard)
