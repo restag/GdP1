@@ -25,7 +25,7 @@ HEADERS += game_model.h
 #HEADERS += board_controller.h
 #HEADERS += userinteraction_controller.h
 #HEADERS += game_controller.h
-#HEADERS += worm.h
+HEADERS += worm.h
 
 
 # Please add all object files in ./ here
@@ -44,7 +44,7 @@ OBJECTS += game_model.o
 #OBJECTS += board_controller.o
 #OBJECTS += userinteraction_controller.o
 #OBJECTS += game_controller.o
-#OBJECTS += worm.o
+OBJECTS += worm.o
 
 # Please add THE target in ./bin here
 TARGET += $(BIN_DIR)/worm
