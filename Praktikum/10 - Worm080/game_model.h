@@ -46,30 +46,53 @@
 //* enums
 //*********************************************************
 // put enums below here
+enum ResCodes {
+    RES_BOARD_EMPTY,
+    RES_CRASHED,
+    RES_CROSSING,
+    RES_INTERNAL_ERROR,
+    RES_FAILED,
+    RES_OK,
+    RES_WRONG_OPTION,
+};
+
+enum GameStates {
+    BOARD_NO_FOOD_LEFT,     // all food items are gone
+    WORM_CRASH,             // crashed into barrier
+    WORM_CROSSING,          // worm bit itself
+    WORM_GAME_ONGOING,      // all good
+    WORM_GAME_QUIT,         // user likes to quit
+    WORM_OUT_OF_BOUNDS,     // left gameboard
+};
 
 
 //*********************************************************
 //* enum type definitions
 //*********************************************************
 // put typedefs for enums here
+typedef enum ResCodes rescodes_t;
+typedef enum GameStates gamestates_t;
 
 
 //*********************************************************
 //* structs
 //*********************************************************
 // put structs below here
+struct GameStatus {
+    rescodes_t rescode;
+    gamestates_t gamestate;
+};
+typedef struct GameStatus gamestatus_t;
+
 struct Game {
     board_t* gameboard;
     messagearea_t* messagearea;
     settings_t* settingsset;
     worm_t** worms;
+    gamestatus_t* gamestatus;
 };
-
-//*********************************************************
-//* struct type definitions
-//*********************************************************
-// put struct typedefs below here
 typedef struct Game game_t;
+
 
 //*********************************************************
 //* function prototypes

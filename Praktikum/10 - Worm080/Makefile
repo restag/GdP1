@@ -19,6 +19,7 @@ HEADERS += messagearea_model.h
 HEADERS += settings_model.h
 HEADERS += game_model.h
 HEADERS += display_controller.h
+#HEADERS += pregame_controller.h
 #HEADERS += message_controller.h
 #HEADERS += worm_controller.h
 #HEADERS += messagearea_controller.h
