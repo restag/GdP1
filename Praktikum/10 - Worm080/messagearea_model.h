@@ -69,8 +69,8 @@ typedef enum MessageCodes messagecodes_t;
 //*********************************************************
 // put structs below here
 struct MessageArea {
-    int baseIndex;
-    messagecodes_t messageCode;
+    int baseindex;
+    messagecodes_t messagecode;
     message_t* messageLine[MESSAGEAREA_MAX_MESSAGES];
 };
 
@@ -94,9 +94,15 @@ messagearea_t* allocMessagearea(void);
 void freeMessagearea(messagearea_t* aMessagearea);
 
 //* model setters
+void setMessageareaBaseindex(messagearea_t* aMessagearea, int baseindex);
+void setMessageareaMessagecode(messagearea_t* aMessagearea, messagecodes_t aMessagecode);
+void setMessageAtIndex(messagearea_t* aMessagearea, message_t* aMessage, int lineIndex);
 void setMessageAtLine(messagearea_t* aMessagearea, message_t* aMessage, int lineNumber);
 
 //* getters
+int getMessageareaBaseindex(messagearea_t* aMessagearea);
+messagecodes_t getMessageareaMessagecode(messagearea_t* aMessagearea);
+message_t* getMessageAtIndex(messagearea_t* aMessagearea, int lineIndex);
 message_t* getMessageAtLine(messagearea_t* aMessagearea, int lineNumber);
 
 #endif  // #define _MESSAGEAREA_MODEL_H

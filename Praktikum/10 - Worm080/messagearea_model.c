@@ -64,19 +64,49 @@ void freeMessagearea(messagearea_t* theMessagearea)
 
 //*********************************************************
 //* setters
-void setMessageAtLine(messagearea_t* theMessagearea, message_t* theMessage, int lineNumber)
+void setMessageareaBaseindex(messagearea_t* theMessagearea, int baseindex)
+{
+    theMessagearea -> baseindex = baseindex;
+}
+
+void setMessageareaMessagecode(messagearea_t* theMessagearea, messagecodes_t theMessagecode)
+{
+    theMessagearea -> messagecode = theMessagecode;
+}
+
+void setMessageAtIndex(messagearea_t* theMessagearea, message_t* theMessage, int lineIndex)
 {
     if (theMessage != NULL) {
-        theMessagearea -> messageLine[lineNumber - 1] = theMessage;
+        theMessagearea -> messageLine[lineIndex] = theMessage;
     } else {
-        theMessagearea -> messageLine[lineNumber - 1] = NULL;
+        theMessagearea -> messageLine[lineIndex] = NULL;
     }
+}
+
+void setMessageAtLine(messagearea_t* theMessagearea, message_t* theMessage, int lineNumber)
+{
+    setMessageAtIndex(theMessagearea, theMessage, lineNumber - 1);
 }
 
 
 //*********************************************************
 //* getters
+int getMessageareaBaseindex(messagearea_t* theMessagearea)
+{
+    return theMessagearea -> baseindex;
+}
+
+messagecodes_t getMessageareaMessagecode(messagearea_t* theMessagearea)
+{
+    return theMessagearea -> messagecode;
+}
+
+message_t* getMessageFromIndex(messagearea_t* theMessagearea, int lineIndex)
+{
+    return theMessagearea -> messageLine[lineIndex];
+}
+
 message_t* getMessageFromLine(messagearea_t* theMessagearea, int lineNumber)
 {
-    return theMessagearea -> messageLine[lineNumber -1];
+    return getMessageFromIndex(theMessagearea, lineNumber -1);
 }
