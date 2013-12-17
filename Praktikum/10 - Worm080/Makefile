@@ -13,7 +13,7 @@
 # Please add all header files in ./ here
 HEADERS += board_model.h
 HEADERS += display_model.h
-#HEADERS += worm_model.h
+HEADERS += worm_model.h
 #HEADERS += display_controller.h
 #HEADERS += message_model.h
 #HEADERS += messagearea_model.h
@@ -29,7 +29,7 @@ HEADERS += display_model.h
 # Please add all object files in ./ here
 OBJECTS += board_model.o
 OBJECTS += display_model.o
-#OBJECTS += worm_model.o
+OBJECTS += worm_model.o
 #OBJECTS += display_controller.o
 #OBJECTS += pregame_controller.o
 #OBJECTS += message_model.o
