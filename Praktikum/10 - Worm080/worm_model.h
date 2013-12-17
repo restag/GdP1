@@ -105,7 +105,7 @@ void freeWormposArray(pos_t* wormposArray);
 //* model setters
 void setWormMaxindex(worm_t* aWorm, int maxindex);
 void setWormHeadindex(worm_t* aWorm, int headindex);
-void setWormposAtIndex(worm_t* aWorm, pos_t* aWormpos, int index);
+void setWormposAtIndex(worm_t* aWorm, pos_t aWormpos, int index);
 void setWormNextStep(worm_t* aWorm, pos_t* aWormpos);
 void setWormcolor(worm_t* aWorm, colorpairs_t aColor);
 

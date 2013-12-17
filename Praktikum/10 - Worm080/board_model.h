@@ -61,7 +61,7 @@ enum BoardCodes {
     BC_FOOD_2,              // food type 2; if hit => bonus type 2
     BC_FOOD_3,              // food type 3; if hit => bonus type 3
     BC_FREE_CELL,           // Cell is free
-    BC_USED_BY_USERWORM,    // Cell is occupied by userworm    
+    BC_USED_BY_WORM,    // Cell is occupied by userworm    
 };
 
 enum Boni {

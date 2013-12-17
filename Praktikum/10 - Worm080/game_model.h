@@ -52,6 +52,7 @@ enum ResCodes {
     RES_CROSSING,
     RES_INTERNAL_ERROR,
     RES_FAILED,
+    RES_MEM_ALLOC_FAILURE,
     RES_OK,
     RES_WRONG_OPTION,
 };

@@ -96,9 +96,9 @@ void setWormHeadindex(worm_t* theWorm, int headindex)
     theWorm -> headindex = headindex;
 }
 
-void setWormposAtIndex(worm_t* theWorm, pos_t* theWormpos, int index)
+void setWormposAtIndex(worm_t* theWorm, pos_t theWormpos, int index)
 {
-    theWorm -> wormpos[index] = *theWormpos;
+    theWorm -> wormpos[index] = theWormpos;
 }
 
 void setWormNextStep(worm_t* theWorm, pos_t* theWormpos)
