@@ -96,6 +96,7 @@ typedef struct worm worm_t;
 //* model allocation
 worm_t* allocWorm(void);
 pos_t* allocWormposArray(worm_t* aWorm);
+worm_t* resizeWormposArray(worm_t* aWorm, int newLength);
 
 //* free model
 void freeWorm(worm_t* aWorm);
@@ -112,6 +113,7 @@ void setWormcolor(worm_t* aWorm, colorpairs_t aColor);
 int getWormMaxindex(worm_t* aWorm);
 int getWormLength(worm_t* aWorm);
 int getWormHeadindex(worm_t* aWorm);
+pos_t* getWormposArray(worm_t* aWorm);
 pos_t* getWormposAtIndex(worm_t* aWorm, int index);
 pos_t* getWormNextStep(worm_t* aWorm);
 #endif  // #define _WORM_MODEL_H

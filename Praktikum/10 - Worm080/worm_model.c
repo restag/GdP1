@@ -64,6 +64,13 @@ pos_t* allocWormposArray(worm_t* theWorm)
     return newWormposArray;
 }
 
+worm_t* resizeWormposArray(worm_t* theWorm, int newLength)
+{
+    worm_t* newArray = realloc(getWormposArray(theWorm), newLength * sizeof(pos_t));
+
+    return newArray;
+}
+
 //*********************************************************
 //* free model
 void freeWorm(worm_t* theWorm)
@@ -119,6 +126,11 @@ int getWormLength(worm_t* theWorm)
 int getWormHeadindex(worm_t* theWorm)
 {
     return theWorm -> headindex;
+}
+
+pos_t* getWormposArray(worm_t* theWorm)
+{
+    return theWorm -> wormpos;
 }
 
 pos_t* getWormposAtIndex(worm_t* theWorm, int index)
