@@ -62,11 +62,44 @@ board_t* allocBoard(void)
     return newBoard;
 }
 
+boardcodes_t* allocCells(theBoard)
+{
+    // alloc board rows
+    setCellContentarray(theBoard, malloc((getLastRowOnBoard(aboard) + 1) * sizeof(struct pos*)));
+
+    // set rows of 2 dim array
+    if (getBoardCellarray(theBoard) == NULL){
+        //print error
+    }
+
+    int i;
+    for (i = 0; i < getLastColOnBoard; i++){
+        setPosarrayAtRow(malloc((getLastColOnBoard(aboard) + 1) * sizeof(struct pos)) , i);
+        if (getPosarrayAtIndex(getBoardCellarray(theBoard), i) == NULL){
+            // print error
+        }
+    }
+
+    return getBoardCellarray(theBoard);
+}
+
 //*********************************************************
 //* free model
 void freeBoard(board_t* theBoard)
 {
     free(theBoard);
+}
+
+void freeCells(board_t* theBoard)
+{
+    // free child arrays
+    int i;
+    for (i = 0; i <= getLastRowOnBoard) {
+        free(getPosarrayAtIndex(getBoardCellarray(theBoard)), i);
+    }
+
+    //free parent array
+    free(getBoardCellarray(theBoard));
 }
 
 //*********************************************************

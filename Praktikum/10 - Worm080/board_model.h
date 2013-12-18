@@ -22,6 +22,7 @@
  *
  */
 
+
 #ifndef _BOARD_MODEL_H
 #define _BOARD_MODEL_H
 //*********************************************************
@@ -128,6 +129,8 @@ void setXPos(pos_t* aPos, int x);
 void setYPos(pos_t* aPos, int y);
 void setLastRowOnBoard(board_t* aBoard, int lastRow);
 void setLastColOnBoard(board_t* aBoard, int lastCol);
+void setBoardCellarray(aBoard, pos_t* anArray);
+void setPosarrayAtRow(pos_t* aPosarray, int index);
 void setCellContentAtPos(board_t* aBoard, pos_t* cellPos, boardcodes_t cellContent); 
 void setNumberOfFoodItems(board_t* aBoard, int n);
 
@@ -136,6 +139,7 @@ int getXPos(pos_t* aPos);
 int getYPos(pos_t* aPos);
 int getLastRowOnBoard(board_t* aBoard);
 int getLastColOnBoard(board_t* aBoard);
+boardcodes_t* getBoardCellarray(board_t*);
 boardcodes_t getCellContentAtPos(board_t* aBoard, pos_t* aPos);
 int getNumberOfFoodItems(board_t* aBoard);
 
