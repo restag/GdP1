@@ -62,10 +62,10 @@ board_t* allocBoard(void)
     return newBoard;
 }
 
-boardcodes_t* allocCells(theBoard)
+boardcodes_t* allocCells(board_t* theBoard)
 {
     // alloc board rows
-    setCellContentarray(theBoard, malloc((getLastRowOnBoard(aboard) + 1) * sizeof(struct pos*)));
+    setBoardCellarray(theBoard, malloc((getLastRowOnBoard(theBoard) + 1) * sizeof(pos_t*)));
 
     // set rows of 2 dim array
     if (getBoardCellarray(theBoard) == NULL){
@@ -73,8 +73,8 @@ boardcodes_t* allocCells(theBoard)
     }
 
     int i;
-    for (i = 0; i < getLastColOnBoard; i++){
-        setPosarrayAtRow(malloc((getLastColOnBoard(aboard) + 1) * sizeof(struct pos)) , i);
+    for (i = 0; i < getLastColOnBoard(theBoard); i++){
+        setPosarrayAtIndex(malloc((getLastColOnBoard(theBoard) + 1) * sizeof(pos_t)) , i);
         if (getPosarrayAtIndex(getBoardCellarray(theBoard), i) == NULL){
             // print error
         }
@@ -94,8 +94,8 @@ void freeCells(board_t* theBoard)
 {
     // free child arrays
     int i;
-    for (i = 0; i <= getLastRowOnBoard) {
-        free(getPosarrayAtIndex(getBoardCellarray(theBoard)), i);
+    for (i = 0; i <= getLastRowOnBoard(theBoard); i++) {
+        free(getPosarrayAtIndex(getBoardCellarray(theBoard), i));
     }
 
     //free parent array
