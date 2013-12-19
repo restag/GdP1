@@ -30,7 +30,6 @@
 
 // put custom header includes below here
 #include "worm_controller.h"
-#include "board_controller.h"
 
 //*********************************************************
 //* global vars
@@ -173,8 +172,14 @@ pos_t getWormHeadpos(worm_t* theWorm)
     // structures are passed by value!
     // -> we return a copy here
     return getWormposAtIndex(theWorm, getHeadindex(theWorm));
+}
+
+pos_t getWormTailpos(worm_t* theWorm)
+{
+    pos_t theTailpos;
 
 
+    return theTailpos;
 }
 
 void setWormHeading(worm_t* theWorm, wormheading_t dir)
@@ -218,6 +223,10 @@ void cleanWormTail(board_t* theBoard, worm_t* theWorm)
         // remove tail from board
         placeItem(theBoard, tailpos, SYMBOL_FREE_CELL, BC_FREE_CELL, COLP_FREE_CELL);
     }
+}
+
+void incrementWormindex(int index)
+    index++;
 }
 
 

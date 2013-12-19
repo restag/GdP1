@@ -90,6 +90,6 @@ void incrementWormindex(int index);
 //* display management
 
 //* display interaction
-void showWorm(board_t* aBoard, worm_t* aWorm);
+void refreshWormelements(board_t* aBoard, worm_t* aWorm);
 
 #endif  // #define _<MODULE-NAME>_CONTROLLER_H
