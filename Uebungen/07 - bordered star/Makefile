@@ -11,14 +11,14 @@
 #
 
 # Please add all header files in ./ here
-HEADERS += rahmen2.h
+HEADERS += variante2.h
 
 
 # Please add all object files in ./ here
-OBJECTS += rahmen2.o
+OBJECTS += variante.o
 
 # Please add THE target in ./bin here
-TARGET += $(BIN_DIR)/bordered_thing
+TARGET += $(BIN_DIR)/bin
  
 #################################################
 # There is no need to edit below this line
