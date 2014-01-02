@@ -1,4 +1,6 @@
-/* put a description in here 
+/* This is an exercise for working with 2 dim arrays
+ *
+ * This Version uses an iterative approch to draw the star
  *
  */
 

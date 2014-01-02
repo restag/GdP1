@@ -1,5 +1,7 @@
 /* This is an exercise for working with 2dim. arrays 
  *
+ * This version uses an iterative approach to draw the star
+ *
  */
 
 //*********************************************************
