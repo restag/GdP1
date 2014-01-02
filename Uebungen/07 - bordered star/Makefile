@@ -11,14 +11,14 @@
 #
 
 # Please add all header files in ./ here
-HEADERS += variante2.h
+HEADERS += variante3.h
 
 
 # Please add all object files in ./ here
-OBJECTS += variante2.o
+OBJECTS += variante3.o
 
 # Please add THE target in ./bin here
-TARGET += $(BIN_DIR)/var2
+TARGET += $(BIN_DIR)/star
  
 #################################################
 # There is no need to edit below this line
