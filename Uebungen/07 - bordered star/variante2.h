@@ -2,8 +2,8 @@
  *
  */
 
-#ifndef _RAHMEN1_H
-#define _RAHMEN1_H
+#ifndef _VARIANTE2_H
+#define _VARIANTE2_H
 //*********************************************************
 //* header includes 
 //*********************************************************
@@ -29,8 +29,8 @@
 //*********************************************************
 // put prototypes below here
 void baueRahmen(char einBild[][SPALTEN], int rows, int cols);
-void baueStern(char einBild[][SPALTEN], int rows, int cols, int s0, int z0);
-void machStrahl(char einBild[][SPALTEN], int rows, int cols, int s0, int z0, int xStep, int yStep);
+void baueStern(char einBild[][SPALTEN], int rows, int cols, int z0, int s0);
+void machStrahl(char einBild[][SPALTEN], int rows, int cols, int z0, int s0, int xStep, int yStep);
 void drucke(char einBild[][SPALTEN], int rows, int cols);
 
-#endif  // #define _RAHMEN1_H
+#endif  // #define _VARIANTE2_H

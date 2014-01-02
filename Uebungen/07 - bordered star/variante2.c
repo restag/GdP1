@@ -8,7 +8,7 @@
 // include framework headers below here
 
 // include headers below here
-#include "rahmen1.h"
+#include "variante2.h"
 
 //global var
 
@@ -16,12 +16,15 @@
 //* fuctions
 //*********************************************************
 // put function code below here
-int main()
+int main(void)
 {
     char dasBild[ZEILEN][SPALTEN];
     
     // build border
     baueRahmen(dasBild, ZEILEN, SPALTEN);
+
+    // build star
+    baueStern(dasBild, ZEILEN, SPALTEN, 1, 1);
 
     // draw border
     drucke(dasBild, ZEILEN, SPALTEN);
@@ -32,51 +35,58 @@ int main()
 
 // draw a border
 void baueRahmen(char einBild[][SPALTEN], int rows, int cols) {
-    int i,j;
+    int row, col;
 
-    // fill array with blanks
-    for (i=0;i<rows;i++){
-        for (j=0;j<cols;j++) {
-            einBild[i][j] = ' ';
+    // fill array with blanks & border
+    for (row=0; row < rows; row++){
+        for (col=0; col < cols; col++) {
+            if (row == 0 || row == ZEILEN -1 || col == 0 || col == SPALTEN -1){
+                einBild[row][col] = '*';
+            } else {
+                einBild[row][col] = ' ';
+            }
         }
     }
-
-    // fill first and last row with *
-    for (j=0; j<rows; j++) {
-        einBild[0][j] = '*';
-        einBild[cols-1][j] = '*';
-    }
-
-    // fill first and last col with *
-    for (i=0; i<rows; i++) {
-        einBild[i][0] = '*';
-        einBild[i][cols-1] = '*';
-    }
-
 }
 
+// draw star
 void baueStern(char einBild[][SPALTEN], int rows, int cols, int z0, int s0)
 {
+    machStrahl(einBild, rows, cols, z0, s0, -1, 0);
+    machStrahl(einBild, rows, cols, z0, s0, -1, 1);
+    machStrahl(einBild, rows, cols, z0, s0, 0, 1);
     machStrahl(einBild, rows, cols, z0, s0, 1, 1);
-
-
+    machStrahl(einBild, rows, cols, z0, s0, 1, 0);
+    machStrahl(einBild, rows, cols, z0, s0, 1, -1);
+    machStrahl(einBild, rows, cols, z0, s0, 0, -1);
+    machStrahl(einBild, rows, cols, z0, s0, -1, -1);
 }
 
-void machStrahl(char einBild[][SPALTEN], int rows, int cols, int xStep, int yStep)
+void machStrahl(char einBild[][SPALTEN], int rows, int cols, int z0, int s0, int xStep, int yStep)
 {
+    int row = z0;
+    int col = s0;
+    char baseChar = 'a';
+    char* tmpChar = &baseChar;
+    int tmpInt = *tmpChar;
 
-
+    while (row > 0 && col > 0 && row < rows-1 && col < cols-1){
+        einBild[row][col] = tmpInt;
+        tmpInt += 1;
+        row += xStep;
+        col += yStep;
+    }
 }
 
 // print all
 void drucke(char einBild[][SPALTEN], int rows, int cols) {
-    int i,j;
+    int row, col;
 
-    for (i=0; i<rows; i++) {
+    for (row=0; row < rows; row++) {
 
         // print char
-        for (j=0;j<cols; j++) {
-            printf("%c", einBild[i][j]);
+        for (col=0; col < cols; col++) {
+            printf("%c", einBild[row][col]);
         }
 
         // linebreak

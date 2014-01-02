@@ -15,10 +15,10 @@ HEADERS += variante2.h
 
 
 # Please add all object files in ./ here
-OBJECTS += variante.o
+OBJECTS += variante2.o
 
 # Please add THE target in ./bin here
-TARGET += $(BIN_DIR)/bin
+TARGET += $(BIN_DIR)/var2
  
 #################################################
 # There is no need to edit below this line
